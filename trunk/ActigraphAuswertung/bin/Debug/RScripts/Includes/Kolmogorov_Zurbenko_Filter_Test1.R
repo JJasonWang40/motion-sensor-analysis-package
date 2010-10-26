@@ -1,0 +1,1 @@
+oneAxisDatenSpalte <- kz(oneAxisDatenSpalte , 10, 10)
