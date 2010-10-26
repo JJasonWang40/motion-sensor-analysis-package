@@ -1,0 +1,548 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ActigraphAuswertung</name>
+    </assembly>
+    <members>
+        <member name="M:ActigraphAuswertung.Form1.openFileDialog_OpenFiles(System.Object,System.ComponentModel.CancelEventArgs)">
+            Opens a list of files, trys to parse them and add them to the parsed-files list.
+            If parsing of one file fails, the exception will be displayed and the next file
+            will be parsed.
+        </member>
+        <member name="F:ActigraphAuswertung.Form1.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Form1.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ActigraphAuswertung.Form1.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Working.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Working.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ActigraphAuswertung.Working.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Properties.Resources">
+            <summary>
+              Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Properties.Resources.ResourceManager">
+            <summary>
+              Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Properties.Resources.Culture">
+            <summary>
+              Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+              Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.SelectDataCells.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.SelectDataCells.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ActigraphAuswertung.SelectDataCells.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.RExport.Abstract">
+            Template base for all RExport-Scripts
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.Abstract.checkConditions">
+            <summary>
+            Checks all conditions for the export to be successfull.
+            This. includes the r-executable, the output folder and the temporary folder.
+            </summary>
+            <exception cref="T:ActigraphAuswertung.RExport.RExportException">If one condition is failed.</exception>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.Abstract.execute">
+            <summary>
+            Only entry-point for the export. Checks all condiditions, writes the 
+            launch script and the filtered csv-data, starts the r-process, moves
+            all involved files and finally cleans up.
+            </summary>
+            <remarks>May be overwritten for further execution-steps.</remarks>
+            <exception cref="T:ActigraphAuswertung.RExport.RExportException">Thrown by any of the internal functions</exception>
+        </member>
+        <member name="T:ActigraphAuswertung.RExport.ClassAttribute">
+            Associates a Enum-Fields with a class
+            
+            Usage: [Class(typeof(ClassToAssociateWith))]
+            Only one class can be bound to a field!
+        </member>
+        <member name="T:ActigraphAuswertung.RExport.ExportScriptsExtensions">
+            Extends the Enum ExportScripts
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportScriptsExtensions.ToDescription(ActigraphAuswertung.RExport.ExportScripts)">
+            Get the description of a field or an empty string if not set
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportScriptsExtensions.ToClassName(ActigraphAuswertung.RExport.ExportScripts)">
+            Get the class name as string of a field or an empty string if not set
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportScriptsExtensions.ToClassType(ActigraphAuswertung.RExport.ExportScripts)">
+            Get the class type of a field. 
+            
+            Throws an exception if no class is bound to the field.
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportScriptsExtensions.ToClass(ActigraphAuswertung.RExport.ExportScripts)">
+            Get an instance of the class the field is bound to. 
+            
+            Throws an exception if no class is bound to the field 
+            or the class does not inherit from the Abstract base class.
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportScriptsExtensions.ToList">
+            Returns a list of all Values and their description in defined for the enum ExportScripts
+        </member>
+        <member name="F:ActigraphAuswertung.ShowDirectoryContent.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.ShowDirectoryContent.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ActigraphAuswertung.ShowDirectoryContent.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Filter.FilterCollection">
+            <summary>
+            A List of filters that a model can be applied to.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Filter.FilterCollection.filter(ActigraphAuswertung.Model.CsvModel,ActigraphAuswertung.Model.CsvModel,ActigraphAuswertung.Filter.FilterMethod)">
+            <summary>
+            Filters a model into a target using this filter-collection.
+            </summary>
+            <param name="input">The source model</param>
+            <param name="target">The target model</param>
+            <param name="method">The filter method</param>
+        </member>
+        <member name="T:ActigraphAuswertung.CommandManager.Commands.ExportCommand">
+            <summary>
+            Command for R-Export. For stand-alone use, use the <see cref="T:ActigraphAuswertung.RExport.Abstract"/>export class directly.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.CommandManager.Commands.AbstractCommand">
+            <summary>
+            Abstract base class for all commands. This class provides 
+            the basic structure for command priority, a callback being called if
+            the command was successfull, a command description and an entry point 
+            for command execution.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.CommandManager.Commands.AbstractCommand.#ctor(ActigraphAuswertung.CommandManager.Priority,ActigraphAuswertung.CommandManager.Commands.CommandFinishedDelegate)">
+            <summary>
+            Constructor for the command.
+            </summary>
+            <param name="priority">The priority for the command</param>
+            <param name="callback">The callback for the command</param>
+        </member>
+        <member name="M:ActigraphAuswertung.CommandManager.Commands.AbstractCommand.execute">
+            <summary>
+            Execution entry point for commands. Result is the only parameter of the callback.
+            </summary>
+            <returns>The result of the command (if any)</returns>
+        </member>
+        <member name="P:ActigraphAuswertung.CommandManager.Commands.AbstractCommand.Priority">
+            <summary>
+            The priority of this command. Used by the <see cref="T:ActigraphAuswertung.CommandManager.Manager"/> 
+            to determine the command execution order.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.CommandManager.Commands.AbstractCommand.Callback">
+            <summary>
+            The function to be called if the command was executed successful.
+            Called by the <see cref="T:ActigraphAuswertung.CommandManager.Manager"/> with the result of this command.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.CommandManager.Commands.AbstractCommand.Description">
+            <summary>
+            The Description of the command.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.CommandManager.Commands.ExportCommand.#ctor(ActigraphAuswertung.RExport.Abstract,ActigraphAuswertung.CommandManager.Commands.CommandFinishedDelegate)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="exportClass">The Export-Class</param>
+            <param name="callback">The callback for successful exports</param>
+        </member>
+        <member name="M:ActigraphAuswertung.CommandManager.Commands.ExportCommand.execute">
+            <summary>
+            Command execution entry point.
+            </summary>
+            <returns>The export-class used: <see cref="T:ActigraphAuswertung.RExport.Abstract"/></returns>
+        </member>
+        <member name="T:ActigraphAuswertung.Model.CsvModel">
+            WARNING: Do not add index-based. This will cause serious troubles with the 
+            avarage calculations! This class only supports appending of elements.
+        </member>
+        <member name="F:ActigraphAuswertung.Model.CsvModel.absoluteFileName">
+            Absolute file name of the csv-file, accessor for datagrid binding
+        </member>
+        <member name="F:ActigraphAuswertung.Model.CsvModel.fileName">
+            File-name only without path
+        </member>
+        <member name="F:ActigraphAuswertung.Model.CsvModel.SupportedValues">
+            Supported sensor values of this file
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.AbstractLineParser">
+            Abstract base class for all line parsers
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.AbstractGT3XLineParser">
+            Abstract base class for all GT3X/GT1X sensors
+            
+            This class reads header information and stores them
+            for later possibly DateTime calculations.
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.SingleEntryLineParser">
+            Sensor: GT3X
+            Firmware: 420/210
+            Sample-file: 12_ArmCSV.csv
+            
+            Parser for files that contain only one value
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.DateTimeActivityStepsLineParser">
+            Sensor GT3X
+            Firmware 430/220
+            Sample-file: ARM.csv
+            
+            Parser for lines that match "[Date],[Time],[Activity],[Steps]
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.DateTime3dActivityStepsLineParser">
+            Sensor (GT3X?)
+            Firmware ?
+            Sample-file: G_Data.csv
+            
+            Parser for files that match "[Date],[Time],3x [Activity],[Steps]"
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.ActivityUnknownLineParser">
+            Sensor GT3X
+            Firmware 430/220
+            Sample-file: 25 leg of MCSV.csv
+            
+            Parser for lines that match "[Activity],[Unknown, maybe steps]"
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.DateTimeActivity3dVMUStepsInclLineParser">
+            Sensor: GT3X
+            Firmware: 430/220
+            Sample-file: P50_bein.csv
+            
+            Parser for lines that match "[Date],[Time],[Activity],[Activity Horz.],[3d Axis],[VMU],[Steps],[Inclinometer]"
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.DateTimeActivity2dVMUStepsInclLineParser">
+            Sensor: GT3X
+            Firmware: 430/220
+            Sample-file: P50_bein.csv
+            
+            Parser for lines that match "[Date],[Time],[Activity],[Activity Horz.],[VMU],[Steps],[Inclinometer]"
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.Activity3dVMULineParser">
+            Sensor: GT3X
+            Firmware: 430/220
+            Sample-file: 19leg,26,13CSV.csv
+            
+            Parser for lines that match "[Activity],[Activity Horz.],[3d Axis],[VMU],[Steps]"
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.Activity2dVMULineParser">
+            Sensor: GT1X
+            Firmware: 441/620
+            Sample-file: g,f,iCSV.csv
+            
+            Parser for lines that match "[Activity],[Activity Horz.],[VMU]"
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.DateTimeActivityLineParser">
+            Sensor: Unknown (GT3X?)
+            
+            Sample file: B leg of DCSV.csv
+            
+            Line format: "[Date];[Time];ActivityX"
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.RT3LineParser">
+            Sensor: RT3
+            Firmware: -
+            Sample-file: -
+            
+            Parser for lines that match "[Entry],[Date],[Time],[Tot. Cal.],[Act. Cal.],[VMU],[Start],[Stop]"
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.RExportedLineParser">
+            Lineparser for files that have been exported previously
+            
+            Possible duplicate of DateTimeActivityLineParser
+        </member>
+        <member name="F:ActigraphAuswertung.ShowParsedFileDailyStartEndTimes.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.ShowParsedFileDailyStartEndTimes.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ActigraphAuswertung.ShowParsedFileDailyStartEndTimes.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.CommandManager.Manager">
+            <summary>
+            Class for managing commands and executing them in the background.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.CommandManager.Manager.#ctor(System.Int32)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="maxThreadsRunning">Maximum number of commands running at the same time.</param>
+        </member>
+        <member name="M:ActigraphAuswertung.CommandManager.Manager.#ctor">
+            <summary>
+            Constructor. Sets the number of maximum running commands to the processor count.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.CommandManager.Manager.addCommand(ActigraphAuswertung.CommandManager.Commands.AbstractCommand)">
+            <summary>
+            Adds a command to the manager. 
+            </summary>
+            <param name="command">The command to be executed.</param>
+        </member>
+        <member name="M:ActigraphAuswertung.CommandManager.Manager.nextCommand">
+            <summary>
+            Starts the next command (if any).
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.CommandManager.Manager.onWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
+            <summary>
+            Called by a backgorundworker when the command is completed or an exception was caught.
+            Sets the command's status and message according to the result and calls the command's 
+            callback if the execution was successful.
+            Starts the next command (if any).
+            </summary>
+            <param name="sender">The finished backgroundworker.</param>
+            <param name="args"></param>
+        </member>
+        <member name="P:ActigraphAuswertung.CommandManager.Manager.Commands">
+            <summary>
+            All commands the command-manager is aware of.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.CommandManager.Manager.MaxThreadsRunning">
+            <summary>
+            Number of commands that may run at the same time.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.ShowParsedFileContent.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.ShowParsedFileContent.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ActigraphAuswertung.ShowParsedFileContent.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.CommandManager.Priority">
+            <summary>
+            Possible prioritys for commands. Sortable (highest priority has value 10, lowest value 0).
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.CommandManager.Status">
+            <summary>
+            Possible status states of a command. 
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Filter.Filters.Time">
+            <summary>
+            Time based filter
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Filter.FilterInterface">
+            <summary>
+            Interface for all filter implementations.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Filter.Filters.Time.#ctor(System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="startTime">The time the row must be bigger then</param>
+            <param name="endTime">The time the row must be smaller then</param>
+        </member>
+        <member name="M:ActigraphAuswertung.Filter.Filters.Time.Filter">
+            <summary>
+            Returns the filter function
+            </summary>
+            <returns>The filter function</returns>
+        </member>
+        <member name="T:ActigraphAuswertung.Filter.Filters.Day">
+            <summary>
+            Filter where every row must be within a list of days
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Filter.Filters.Day.#ctor(System.Collections.Generic.List{System.DateTime})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="days">The list of days the rows must be within</param>
+        </member>
+        <member name="M:ActigraphAuswertung.Filter.Filters.Day.Filter">
+            <summary>
+            Returns the filter function
+            </summary>
+            <returns>The filter function</returns>
+        </member>
+        <member name="T:ActigraphAuswertung.CommandManager.Commands.FilterCommand">
+            <summary>
+            Command for filtering a CSVModel. For stand-alone use, use the <see cref="M:ActigraphAuswertung.Mapper.Factory.filter(ActigraphAuswertung.Model.CsvModel,ActigraphAuswertung.Filter.FilterCollection,ActigraphAuswertung.Filter.FilterMethod)"/> method directly.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.CommandManager.Commands.FilterCommand.#ctor(ActigraphAuswertung.Model.CsvModel,ActigraphAuswertung.Filter.FilterCollection,ActigraphAuswertung.Filter.FilterMethod,ActigraphAuswertung.CommandManager.Commands.CommandFinishedDelegate)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="filterData">The data to be filtered</param>
+            <param name="filterCollection">The filtercollectio to be applied to</param>
+            <param name="filterMethod">The filtermethod</param>
+            <param name="callback">The callback for successfull filtering</param>
+        </member>
+        <member name="M:ActigraphAuswertung.CommandManager.Commands.FilterCommand.execute">
+            <summary>
+            Filter command execution entry point
+            </summary>
+            <returns>The filtered data: <see cref="T:ActigraphAuswertung.Model.CsvModel"/></returns>
+        </member>
+        <member name="T:ActigraphAuswertung.CommandManager.CommandContainer">
+            <summary>
+            A facade like container for commands. Abstracts backgroundworker handling for 
+            commands and manages the command's status and error messages. Implements
+            <see cref="T:System.ComponentModel.INotifyPropertyChanged"/> to be able to inform binding objects of 
+            changes to the command's status.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.CommandManager.CommandContainer.#ctor(ActigraphAuswertung.CommandManager.Commands.AbstractCommand)">
+            <summary>
+            Constructor. Set's the command's status to <see cref="F:ActigraphAuswertung.CommandManager.Status.Waiting"/>
+            </summary>
+            <param name="command">The command to be encapsulated</param>
+        </member>
+        <member name="M:ActigraphAuswertung.CommandManager.CommandContainer.runCommand(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            The execution entry for the backgroundworker. Encapsulates backgroundworker
+            logic for the command.
+            </summary>
+            <param name="sender">The calling backgroundworker</param>
+            <param name="args"></param>
+        </member>
+        <member name="E:ActigraphAuswertung.CommandManager.CommandContainer.PropertyChanged">
+            <summary>
+            Event called when the command's status or message have changed.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.CommandManager.CommandContainer.Status">
+            <summary>
+            The command's status. Fires <see cref="T:System.ComponentModel.PropertyChangedEventHandler"/> when changed.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.CommandManager.CommandContainer.Message">
+            <summary>
+            The command's (error) message. Fires <see cref="T:System.ComponentModel.PropertyChangedEventHandler"/> when changed.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.CommandManager.CommandContainer.Command">
+            <summary>
+            The command encapsulated.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.CommandManager.CommandContainer.Description">
+            <summary>
+            The description of the encapsulated command.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.CommandManager.CommandContainer.Priority">
+            <summary>
+            The priority of the encapsulated command.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.CommandManager.Commands.CommandFinishedDelegate">
+            <summary>
+            Callback definition for successful commands.
+            </summary>
+            <param name="result">The result of the command, returned by <see cref="M:ActigraphAuswertung.CommandManager.Commands.AbstractCommand.execute"/></param>
+        </member>
+        <member name="T:ActigraphAuswertung.CommandManager.Commands.ImportCommand">
+            <summary>
+            Command for import. For stand-alone use, use the <see cref="!:Factory.parse"/> method directly.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.CommandManager.Commands.ImportCommand.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,ActigraphAuswertung.CommandManager.Commands.CommandFinishedDelegate)">
+            <summary>
+            Constructor. Lower limit values are used for the <see cref="T:ActigraphAuswertung.Model.ActivityLevelsCalculator"/>.
+            </summary>
+            <param name="file">The file to be imported</param>
+            <param name="minSedantary">Lower limit for sedantary activity</param>
+            <param name="minLight">Lower limit for light activity</param>
+            <param name="minModerate">Lower limit for moderate activity</param>
+            <param name="minHeavy">Lower limit for heavy activity</param>
+            <param name="minVeryheavy">Lower limit for very heavy activity</param>
+            <param name="callback">The callback for successful imports</param>
+        </member>
+        <member name="M:ActigraphAuswertung.CommandManager.Commands.ImportCommand.execute">
+            <summary>
+            Import execution entry point.
+            </summary>
+            <returns>The imported data: <see cref="T:ActigraphAuswertung.Model.CsvModel"/></returns>
+        </member>
+    </members>
+</doc>
