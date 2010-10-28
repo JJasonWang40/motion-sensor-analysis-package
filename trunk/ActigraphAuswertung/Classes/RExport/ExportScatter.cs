@@ -3,16 +3,29 @@ using ActigraphAuswertung.Model;
 using System.IO;
 using System.Linq;
 using System;
+using ActigraphAuswertung.Model.Calculators;
 
 namespace ActigraphAuswertung.RExport
 {
+    /// <summary>
+    /// Export to scatter graph.
+    /// </summary>
     class ExportScatter : Abstract
     {
+        /// <summary>
+        /// Constructor. Adds the additional parameter "numberOfDatasets".
+        /// </summary>
         public ExportScatter()
         {
             this.Parameters.Add("numberOfDatasets", new KeyValuePair<string, object>("# of datasets", 1000));
         }
 
+        /// <summary>
+        /// Additionally to the basic checks it checks for exactly two datasets to be 
+        /// selected with both having the same size and if the additional parameter 
+        /// "numberOfDatasets" contains a valid value.
+        /// </summary>
+        /// <exception cref="RExportException">If one condition fails.</exception>
         public override void checkConditions()
         {
             base.checkConditions();
@@ -37,6 +50,10 @@ namespace ActigraphAuswertung.RExport
             }
         }
 
+        /// <summary>
+        /// Adds additional R Script information and scripts to the start script.
+        /// </summary>
+        /// <returns>Additional start script content</returns>
         protected override string prepareLaunchScript()
         {
             String addition = base.prepareLaunchScript();
@@ -49,6 +66,9 @@ namespace ActigraphAuswertung.RExport
             return addition;
         }
 
+        /// <summary>
+        /// Copys additional involved files and launches the process.
+        /// </summary>
         protected override void launchProcess()
         {
             File.Copy(this.RSettings.PathToApplication + "RScripts\\Auswertung_Scatter.R",

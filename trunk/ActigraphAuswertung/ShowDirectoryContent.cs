@@ -1,19 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 
 namespace ActigraphAuswertung
-{
+{    
+    /// <summary>
+    /// Displays all jpg-files of a directory.
+    /// </summary>
     public partial class ShowDirectoryContent : Form
     {
         private String directory;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="directory">The directory</param>
         public ShowDirectoryContent(String directory)
         {
             InitializeComponent();
@@ -29,6 +30,7 @@ namespace ActigraphAuswertung
             }
         }
 
+        // display selected picture
         private void fileListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.pictureBox.LoadAsync(this.directory + "\\" + this.fileListBox.SelectedItem);

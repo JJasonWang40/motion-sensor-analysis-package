@@ -1,5 +1,8 @@
 ﻿namespace ActigraphAuswertung
 {
+    /// <summary>
+    /// Displays all jpg-files of a directory.
+    /// </summary>
     partial class ShowDirectoryContent
     {
         /// <summary>

@@ -1,0 +1,17 @@
+C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\bin\Debug\ActigraphAuswertung.exe.manifest
+C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\bin\Debug\ActigraphAuswertung.application
+C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\bin\Debug\ActigraphAuswertung.exe
+C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\bin\Debug\ActigraphAuswertung.pdb
+C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.SelectDataCells.resources
+C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.ShowDirectoryContent.resources
+C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.ShowParsedFileContent.resources
+C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.Form1.resources
+C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.Properties.Resources.resources
+C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.ShowParsedFileDailyStartEndTimes.resources
+C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.csproj.GenerateResource.Cache
+C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.exe.manifest
+C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.application
+C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.exe
+C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.pdb
+C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\bin\Debug\ActigraphAuswertung.XML

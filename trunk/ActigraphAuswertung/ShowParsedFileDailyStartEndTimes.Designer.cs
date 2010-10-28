@@ -1,5 +1,8 @@
 ﻿namespace ActigraphAuswertung
 {
+    /// <summary>
+    /// Show all detected days and their activity start and end times and the daily active time.
+    /// </summary>
     partial class ShowParsedFileDailyStartEndTimes
     {
         /// <summary>

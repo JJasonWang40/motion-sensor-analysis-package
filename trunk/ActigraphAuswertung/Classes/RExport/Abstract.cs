@@ -7,21 +7,40 @@ using ActigraphAuswertung.Model;
 
 namespace ActigraphAuswertung.RExport
 {
-    /**
-     * Template base for all RExport-Scripts
-     */
+    /// <summary>
+    /// Base class for all export classes. Export classes are implemented in a 
+    /// Template-Pattern way.
+    /// </summary>
     public abstract class Abstract
     {
+        /// <summary>
+        /// Dictionary of all involved models and their column to be exported.
+        /// </summary>
         public Dictionary<CsvModel, SensorData> Datasets;
 
+        /// <summary>
+        /// Settings for the export.
+        /// </summary>
         public RSettings RSettings;
 
+        /// <summary>
+        /// List of all files that need be copied.
+        /// </summary>
         protected List<String> filesInvolved = new List<String>();
 
+        /// <summary>
+        /// Opional list of additional parameters an export scripts requires.
+        /// </summary>
         public Dictionary<String, KeyValuePair<String, Object>> Parameters = new Dictionary<string,KeyValuePair<string,object>>();
 
+        /// <summary>
+        /// R Process output.
+        /// </summary>
         private String outputMessage = "";
 
+        /// <summary>
+        /// R process error output.
+        /// </summary>
         private String errorMessage = "";
         
         /// <summary>
@@ -121,11 +140,20 @@ namespace ActigraphAuswertung.RExport
             this.filesInvolved.Add(file);
         }
 
+        /// <summary>
+        /// Template method to add additional content to the R launchscript.
+        /// No need to call the base class when overwriting.
+        /// </summary>
+        /// <returns>Additional content to be added</returns>
         protected virtual String prepareLaunchScript()
         {
             return "";
         }
 
+        /// <summary>
+        /// Prepares all csv files in a general format for the export.
+        /// Call base class when overwriting this method!
+        /// </summary>
         protected virtual void prepareCsvData()
         { 
             // write csv data to temp folder
@@ -153,6 +181,11 @@ namespace ActigraphAuswertung.RExport
             }
         }
 
+        /// <summary>
+        /// Prepares and launches the r process.
+        /// Call base class when overwriting!
+        /// </summary>
+        /// <exception cref="RExportException">If the process reports an error.</exception>
         protected virtual void launchProcess()
         { 
             // create & launch r-process
@@ -171,6 +204,7 @@ namespace ActigraphAuswertung.RExport
             R.StartInfo.RedirectStandardError = true;
             R.Start();
 
+            // Set async. listeners
             R.BeginErrorReadLine();
             R.BeginOutputReadLine();
             R.OutputDataReceived += this.onOutputData;
@@ -189,10 +223,14 @@ namespace ActigraphAuswertung.RExport
 
             if (this.errorMessage.Length > 0)
             {
-                throw new Exception(this.errorMessage);
+                throw new RExportException(this.errorMessage);
             }
         }
 
+        /// <summary>
+        /// Cleans the temp directory and moves all involved files to the output directory.
+        /// Call base class when overwriting!
+        /// </summary>
         protected virtual void cleanUp()
         { 
             foreach (String file in this.filesInvolved)
@@ -209,6 +247,7 @@ namespace ActigraphAuswertung.RExport
             }
         }
 
+        // async. event listener on regular process output data
         private void onOutputData(object sender, DataReceivedEventArgs args)
         {
             if (args.Data != null)
@@ -217,6 +256,7 @@ namespace ActigraphAuswertung.RExport
             }
         }
 
+        // async. event listener on process error output data
         private void onErrorData(object sender, DataReceivedEventArgs args)
         {
             if (args.Data != null)

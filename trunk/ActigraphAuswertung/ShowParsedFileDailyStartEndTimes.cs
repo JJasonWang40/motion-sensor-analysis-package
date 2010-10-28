@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Windows.Forms;
 using ActigraphAuswertung.Model;
 
 namespace ActigraphAuswertung
 {
+    /// <summary>
+    /// Show all detected days and their activity start and end times and the daily active time.
+    /// </summary>
     public partial class ShowParsedFileDailyStartEndTimes : Form
     {
         private BindingList<SensorStartEndWearing> data;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="data">The model</param>
         public ShowParsedFileDailyStartEndTimes(CsvModel data)
         {
             this.data = data.DayStartEndCalculator.DayStartEndList;
