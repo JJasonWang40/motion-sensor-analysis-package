@@ -8,17 +8,32 @@ using ActigraphAuswertung.Filter;
 using ActigraphAuswertung.Model;
 using ActigraphAuswertung.RExport;
 using ActigraphAuswertung.CommandManager.Commands;
+using ActigraphAuswertung.Model.Calculators;
 
 namespace ActigraphAuswertung
 {
+    /// <summary>
+    /// Delegate to start the export (callback from the SelectDataCells form).
+    /// </summary>
+    /// <param name="modelCellSelection"></param>
     public delegate void FunctionStartExport(Dictionary<CsvModel, SensorData> modelCellSelection);
 
     public partial class Form1 : Form
     {
-        BindingList<CsvModel> parsedFiles = new BindingList<CsvModel>();
-        CommandManager.Manager commandManager = new CommandManager.Manager();
+        // All imported models
+        private  BindingList<CsvModel> parsedFiles = new BindingList<CsvModel>();
+
+        // Command manager
+        private CommandManager.Manager commandManager = new CommandManager.Manager();
+
+        /// <summary>
+        /// Absolute path to the application directory.
+        /// </summary>
         public static string APP_PATH = "";
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Form1()
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
@@ -305,7 +320,7 @@ namespace ActigraphAuswertung
             this.commandManager.addCommand(new FilterCommand(data, filterCollection, filterMethod, this.filter_command_callback));
         }
 
-        public void filter_command_callback(Object result)
+        private void filter_command_callback(Object result)
         {
             this.parsedFiles.Add(result as CsvModel);
         }
@@ -352,7 +367,7 @@ namespace ActigraphAuswertung
             }
         }
 
-        public void import_task_finished(object result)
+        private void import_task_finished(object result)
         {
             CsvModel model = (CsvModel)result;
             if (model != null)
@@ -427,7 +442,7 @@ namespace ActigraphAuswertung
             }
         }
 
-        public void export_command_callback(object result)
+        private void export_command_callback(object result)
         { 
             RExport.Abstract exportClass = (RExport.Abstract) result;
             ShowDirectoryContent imageBrowser = new ShowDirectoryContent(exportClass.RSettings.PathToOutput);

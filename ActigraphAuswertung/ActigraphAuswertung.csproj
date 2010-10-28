@@ -40,6 +40,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\ActigraphAuswertung.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -81,11 +82,32 @@
     <Compile Include="Classes\Filter\Filters\Time.cs" />
     <Compile Include="Classes\Filter\Interface.cs" />
     <Compile Include="Classes\Mapper\Factory.cs" />
-    <Compile Include="Classes\Mapper\LineParser.cs" />
-    <Compile Include="Classes\Model\Calculators.cs" />
+    <Compile Include="Classes\Mapper\LineParser\AbstractGT3XLineParser.cs" />
+    <Compile Include="Classes\Mapper\LineParser\AbstractLineParser.cs" />
+    <Compile Include="Classes\Mapper\LineParser\Activity2dVMULineParser.cs" />
+    <Compile Include="Classes\Mapper\LineParser\Activity3dVMULineParser.cs" />
+    <Compile Include="Classes\Mapper\LineParser\ActivityUnknownLineParser.cs" />
+    <Compile Include="Classes\Mapper\LineParser\DateTime3dActivityStepsLineParser.cs" />
+    <Compile Include="Classes\Mapper\LineParser\DateTimeActivity2dVMUStepsInclLineParser.cs" />
+    <Compile Include="Classes\Mapper\LineParser\DateTimeActivity3dVMUStepsInclLineParser.cs" />
+    <Compile Include="Classes\Mapper\LineParser\DateTimeActivityLineParser.cs" />
+    <Compile Include="Classes\Mapper\LineParser\DateTimeActivityStepsLineParser.cs" />
+    <Compile Include="Classes\Mapper\LineParser\LineparserException.cs" />
+    <Compile Include="Classes\Mapper\LineParser\NoDate3dActivityStepsLineParser.cs" />
+    <Compile Include="Classes\Mapper\LineParser\RExportedLineParser.cs" />
+    <Compile Include="Classes\Mapper\LineParser\RT3LineParser.cs" />
+    <Compile Include="Classes\Mapper\LineParser\RT3SemicolomSepLineParser.cs" />
+    <Compile Include="Classes\Mapper\LineParser\SingleEntryLineParser.cs" />
+    <Compile Include="Classes\Model\Calculators\ActiveTimeCalculator.cs" />
+    <Compile Include="Classes\Model\Calculators\ActivityLevelsCalculator.cs" />
+    <Compile Include="Classes\Model\Calculators\CalculatorInterface.cs" />
+    <Compile Include="Classes\Model\Calculators\DayStartEndCalculator.cs" />
     <Compile Include="Classes\Model\CsvModel.cs">
     </Compile>
-    <Compile Include="Classes\Model\SensorTypes.cs" />
+    <Compile Include="Classes\Model\ActivityLevels.cs" />
+    <Compile Include="Classes\Model\RowEntry.cs" />
+    <Compile Include="Classes\Model\SensorData.cs" />
+    <Compile Include="Classes\Model\SensorStartEndWearing.cs" />
     <Compile Include="Classes\RExport\Abstract.cs" />
     <Compile Include="Classes\RExport\ExportCrossCorrelation.cs" />
     <Compile Include="Classes\RExport\ExportDaily.cs" />
@@ -100,7 +122,6 @@
     <Compile Include="Classes\RExport\ExportWorn.cs" />
     <Compile Include="Classes\RExport\RExportException.cs" />
     <Compile Include="Classes\RExport\RSettings.cs" />
-    <Compile Include="Classes\Settings.cs" />
     <Compile Include="SelectDataCells.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,10 +173,6 @@
       <DependentUpon>ShowParsedFileDailyStartEndTimes.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Working.resx">
-      <DependentUpon>Working.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -175,12 +192,6 @@
     </Compile>
     <Compile Include="ShowParsedFileDailyStartEndTimes.Designer.cs">
       <DependentUpon>ShowParsedFileDailyStartEndTimes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Working.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Working.Designer.cs">
-      <DependentUpon>Working.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

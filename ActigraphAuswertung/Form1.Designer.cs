@@ -1,5 +1,8 @@
 ﻿namespace ActigraphAuswertung
 {
+    /// <summary>
+    /// Application main window.
+    /// </summary>
     partial class Form1
     {
         /// <summary>

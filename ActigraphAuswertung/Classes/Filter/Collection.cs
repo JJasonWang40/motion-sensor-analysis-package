@@ -4,7 +4,25 @@ using ActigraphAuswertung.Model;
 
 namespace ActigraphAuswertung.Filter
 {
-    public enum FilterMethod { ALL, EITHER, NONE };
+    /// <summary>
+    /// Possible filter methods.
+    /// </summary>
+    public enum FilterMethod { 
+        /// <summary>
+        /// All applied filters must be true.
+        /// </summary>
+        ALL, 
+
+        /// <summary>
+        /// At least one of the applied filters must be true.
+        /// </summary>
+        EITHER, 
+
+        /// <summary>
+        /// None of the applied filters must be true.
+        /// </summary>
+        NONE 
+    };
 
     /// <summary>
     /// A List of filters that a model can be applied to.

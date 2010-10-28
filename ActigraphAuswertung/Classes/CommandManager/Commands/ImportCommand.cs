@@ -3,7 +3,7 @@
 namespace ActigraphAuswertung.CommandManager.Commands
 {
     /// <summary>
-    /// Command for import. For stand-alone use, use the <see cref="Factory.parse"/> method directly.
+    /// Command for import. For stand-alone use, use the <see cref="Mapper.Factory.parse"/> method directly.
     /// </summary>
     class ImportCommand : AbstractCommand
     {
@@ -15,7 +15,7 @@ namespace ActigraphAuswertung.CommandManager.Commands
         private int minVeryheavy;
 
         /// <summary>
-        /// Constructor. Lower limit values are used for the <see cref="Model.ActivityLevelsCalculator"/>.
+        /// Constructor. Lower limit values are used for the <see cref="Model.Calculators.ActivityLevelsCalculator"/>.
         /// </summary>
         /// <param name="file">The file to be imported</param>
         /// <param name="minSedantary">Lower limit for sedantary activity</param>

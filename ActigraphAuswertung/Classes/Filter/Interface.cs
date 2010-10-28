@@ -8,6 +8,10 @@ namespace ActigraphAuswertung.Filter
     /// </summary>
     public interface FilterInterface
     {
+        /// <summary>
+        /// Get the created filter function.
+        /// </summary>
+        /// <returns></returns>
         Func<RowEntry, bool> Filter();
     }
 }

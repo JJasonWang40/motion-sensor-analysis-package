@@ -1,5 +1,8 @@
 ﻿namespace ActigraphAuswertung
 {
+    /// <summary>
+    /// Form to ask for one <see cref="Model.SensorData"/> for each model.
+    /// </summary>
     partial class SelectDataCells
     {
         /// <summary>

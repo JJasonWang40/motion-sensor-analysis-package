@@ -7,10 +7,17 @@ using ActigraphAuswertung.Model;
 
 namespace ActigraphAuswertung
 {
+    /// <summary>
+    /// Show all entries of the selected model.
+    /// </summary>
     public partial class ShowParsedFileContent : Form
     {
         private CsvModel data;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="data">The model to show all entrys of</param>
         public ShowParsedFileContent(CsvModel data)
         {
             // set bindinglist for gridview
