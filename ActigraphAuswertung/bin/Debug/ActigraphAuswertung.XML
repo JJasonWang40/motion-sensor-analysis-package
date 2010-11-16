@@ -9,12 +9,6 @@
             Show all entries of the selected model.
             </summary>
         </member>
-        <member name="M:ActigraphAuswertung.ShowParsedFileContent.#ctor(ActigraphAuswertung.Model.CsvModel)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="data">The model to show all entrys of</param>
-        </member>
         <member name="F:ActigraphAuswertung.ShowParsedFileContent.components">
             <summary>
             Required designer variable.
@@ -32,9 +26,46 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:ActigraphAuswertung.RExport.ExportWorn">
+        <member name="M:ActigraphAuswertung.ShowParsedFileContent.#ctor(ActigraphAuswertung.Model.CsvModel)">
             <summary>
-            Export to worn graph.
+            Constructor.
+            </summary>
+            <param name="data">The model to show all entrys of</param>
+        </member>
+        <member name="T:ActigraphAuswertung.ShowDirectoryContent">
+            <summary>
+            Displays all jpg-files of a directory.
+            </summary>
+            <summary>
+            Displays all jpg-files of a directory.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.ShowDirectoryContent.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.ShowDirectoryContent.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ActigraphAuswertung.ShowDirectoryContent.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.ShowDirectoryContent.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="directory">The directory</param>
+        </member>
+        <member name="T:ActigraphAuswertung.RExport.ExportLevels">
+            <summary>
+            Exports the activity levels.
             </summary>
         </member>
         <member name="T:ActigraphAuswertung.RExport.Abstract">
@@ -115,72 +146,119 @@
             Call base class when overwriting!
             </summary>
         </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportWorn.checkConditions">
+        <member name="M:ActigraphAuswertung.RExport.ExportLevels.checkConditions">
             <summary>
             Additionally to the basic checks exactly one dataset must be selected.
             </summary>
             <exception cref="T:ActigraphAuswertung.RExport.RExportException">If not exactly one dataset is selected.</exception>
         </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportWorn.prepareLaunchScript">
+        <member name="M:ActigraphAuswertung.RExport.ExportLevels.prepareLaunchScript">
             <summary>
             Adds additional R Script information and scripts to the start script.
             </summary>
             <returns>Additional start script content</returns>
         </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportWorn.launchProcess">
+        <member name="M:ActigraphAuswertung.RExport.ExportLevels.launchProcess">
             <summary>
             Copys additional involved files and launches the process.
             </summary>
         </member>
-        <member name="T:ActigraphAuswertung.RExport.ExportCrossCorrelation">
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.DateTimeActivityLineParser">
             <summary>
-            Export class for cross correlation.
+            Lineparser for lines that contain <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/> 
+            and <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/> seperated by 
+            a semicolom.
             </summary>
         </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportCrossCorrelation.#ctor">
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.AbstractLineParser">
             <summary>
-            Constructor. Adds the additional parameter "numberOfDatasets".
+            Abstract base class for all line parsers.
             </summary>
         </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportCrossCorrelation.checkConditions">
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.AbstractLineParser.parseLine(System.String)">
             <summary>
-            Additionally to the basic checks it checks for exactly two datasets to be 
-            selected with both having the same size and if the additional parameter 
-            "numberOfDatasets" contains a valid value.
+            Abstract parseLine method. 
             </summary>
-            <exception cref="T:ActigraphAuswertung.RExport.RExportException">If one condition fails.</exception>
+            <param name="line">The line of data</param>
+            <returns>Fully interpretated data</returns>
         </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportCrossCorrelation.prepareLaunchScript">
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.AbstractLineParser.test(System.String)">
             <summary>
-            Adds additional R Script information and scripts to the start script.
+            Tests if the line  matches the format for the current lineparser.
             </summary>
-            <returns>Additional start script content</returns>
+            <param name="line">The line to test</param>
+            <returns>True if test was successful</returns>
+            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If no linematcher is set</exception>
         </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportCrossCorrelation.launchProcess">
+        <member name="P:ActigraphAuswertung.Mapper.LineParser.AbstractLineParser.SupportedValues">
             <summary>
-            Copys additional involved files and launches the process.
+            Array of all datatypes each row contains if it has this line-format.
             </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.DateTimeActivityLineParser.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.DateTimeActivityLineParser.parseLine(System.String)">
+            <summary>
+            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with  
+            <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/> and <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/> set.
+            </summary>
+            <param name="line">The line to parse</param>
+            <returns>The parsed data</returns>
+            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.Activity2dVMULineParser">
+            <summary>
+            Lineparser for lines that contain <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>, 
+            <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityY"/>
+            and <see cref="F:ActigraphAuswertung.Model.SensorData.Vmu"/> seperated by 
+            a comma.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.AbstractGT3XLineParser">
+            <summary>
+            Abstract base class for all GT3X or GT1X sensors. 
+            Does additional header analysis to extract epoch period and start time 
+            of the sensor.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.AbstractGT3XLineParser.test(System.String)">
+            <summary>
+            Tests if the line  matches the format for the current lineparser 
+            and performs additional header analysis.
+            </summary>
+            <param name="line">The line to test</param>
+            <returns>True if successful</returns>
+            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If no linematcher is set</exception>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.AbstractGT3XLineParser.tryParseHeaderLine(System.String)">
+            <summary>
+            Performs additional header analysis to extract data start time and epoch period.
+            </summary>
+            <param name="line">The line to analyse</param>
+            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If an analysed line has invalid format.</exception>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.Activity2dVMULineParser.parseLine(System.String)">
+            <summary>
+            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with  
+            <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityY"/>, 
+            and <see cref="F:ActigraphAuswertung.Model.SensorData.Vmu"/> set.
+            </summary>
+            <param name="line">The line to parse</param>
+            <returns>The parsed data</returns>
+            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
+        </member>
+        <member name="T:ActigraphAuswertung.FunctionStartExport">
+            <summary>
+            Delegate to start the export (callback from the SelectDataCells form).
+            </summary>
+            <param name="modelCellSelection"></param>
         </member>
         <member name="T:ActigraphAuswertung.Form1">
             <summary>
             Application main window.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Form1.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Form1.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:ActigraphAuswertung.Form1.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
             </summary>
         </member>
         <member name="F:ActigraphAuswertung.Form1.APP_PATH">
@@ -198,62 +276,22 @@
             If parsing of one file fails, the exception will be displayed and the next file
             will be parsed.
         </member>
-        <member name="T:ActigraphAuswertung.RExport.ExportScatter">
+        <member name="F:ActigraphAuswertung.Form1.components">
             <summary>
-            Export to scatter graph.
+            Required designer variable.
             </summary>
         </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportScatter.#ctor">
+        <member name="M:ActigraphAuswertung.Form1.Dispose(System.Boolean)">
             <summary>
-            Constructor. Adds the additional parameter "numberOfDatasets".
+            Clean up any resources being used.
             </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportScatter.checkConditions">
+        <member name="M:ActigraphAuswertung.Form1.InitializeComponent">
             <summary>
-            Additionally to the basic checks it checks for exactly two datasets to be 
-            selected with both having the same size and if the additional parameter 
-            "numberOfDatasets" contains a valid value.
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
             </summary>
-            <exception cref="T:ActigraphAuswertung.RExport.RExportException">If one condition fails.</exception>
-        </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportScatter.prepareLaunchScript">
-            <summary>
-            Adds additional R Script information and scripts to the start script.
-            </summary>
-            <returns>Additional start script content</returns>
-        </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportScatter.launchProcess">
-            <summary>
-            Copys additional involved files and launches the process.
-            </summary>
-        </member>
-        <member name="T:ActigraphAuswertung.Filter.FilterInterface">
-            <summary>
-            Interface for all filter implementations.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Filter.FilterInterface.Filter">
-            <summary>
-            Get the created filter function.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:ActigraphAuswertung.Filter.Filters.Day">
-            <summary>
-            Filter where every row must be within a list of days
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Filter.Filters.Day.#ctor(System.Collections.Generic.List{System.DateTime})">
-            <summary>
-            Constructor
-            </summary>
-            <param name="days">The list of days the rows must be within</param>
-        </member>
-        <member name="M:ActigraphAuswertung.Filter.Filters.Day.Filter">
-            <summary>
-            Returns the filter function
-            </summary>
-            <returns>The filter function</returns>
         </member>
         <member name="T:ActigraphAuswertung.CommandManager.Commands.FilterCommand">
             <summary>
@@ -321,6 +359,13 @@
             Form to ask for one <see cref="T:ActigraphAuswertung.Model.SensorData"/> for each model.
             </summary>
         </member>
+        <member name="M:ActigraphAuswertung.SelectDataCells.#ctor(System.Collections.Generic.List{ActigraphAuswertung.Model.CsvModel},ActigraphAuswertung.FunctionStartExport)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="datasets">The models to ask for selection</param>
+            <param name="callback">The callback on selection</param>
+        </member>
         <member name="F:ActigraphAuswertung.SelectDataCells.components">
             <summary>
             Required designer variable.
@@ -338,16 +383,526 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="M:ActigraphAuswertung.SelectDataCells.#ctor(System.Collections.Generic.List{ActigraphAuswertung.Model.CsvModel},ActigraphAuswertung.FunctionStartExport)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="datasets">The models to ask for selection</param>
-            <param name="callback">The callback on selection</param>
-        </member>
         <member name="P:ActigraphAuswertung.SelectDataCells.ModelCellSelection">
             <summary>
             The selected <see cref="T:ActigraphAuswertung.Model.SensorData"/> for each <see cref="T:ActigraphAuswertung.Model.CsvModel"/>.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.RExport.ExportRegressionLinear">
+            <summary>
+            Exports to linear regression.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportRegressionLinear.checkConditions">
+            <summary>
+            Additionally to the basic checks it checks for exactly two datasets with the 
+            same ammount of entrys.
+            </summary>
+            <exception cref="T:ActigraphAuswertung.RExport.RExportException">If one condition fails.</exception>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportRegressionLinear.prepareLaunchScript">
+            <summary>
+            Adds additional R Script information and scripts to the start script.
+            </summary>
+            <returns>Additional start script content</returns>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportRegressionLinear.launchProcess">
+            <summary>
+            Copys additional involved files and launches the process.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Model.Calculators.DayStartEndCalculator">
+            <summary>
+            Calculator for calculating the daily start and end times of activity.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Model.Calculators.CalculatorInterface">
+            <summary>
+            Interface that all calculators shade
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Model.Calculators.CalculatorInterface.Add(ActigraphAuswertung.Model.RowEntry)">
+            <summary>
+            Called by the model when a new entry is added.
+            </summary>
+            <param name="entry">The entry to be added</param>
+        </member>
+        <member name="M:ActigraphAuswertung.Model.Calculators.CalculatorInterface.NewDay">
+            <summary>
+            Called by the model on a new day.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Model.Calculators.DayStartEndCalculator.#ctor(ActigraphAuswertung.Model.CsvModel)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="model">The model for calculations</param>
+        </member>
+        <member name="M:ActigraphAuswertung.Model.Calculators.DayStartEndCalculator.Add(ActigraphAuswertung.Model.RowEntry)">
+            <summary>
+            Called by the model on a new entry.
+            </summary>
+            <param name="entry">The entry to be added</param>
+        </member>
+        <member name="M:ActigraphAuswertung.Model.Calculators.DayStartEndCalculator.NewDay">
+            <summary>
+            Called by the model on a new day.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Model.Calculators.DayStartEndCalculator.DayStartEndList">
+            <summary>
+            List of all days and their start and end times of activity.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Model.Calculators.ActiveTimeCalculator">
+            <summary>
+            Calculator to calculate the active time of the model.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Model.Calculators.ActiveTimeCalculator.#ctor(ActigraphAuswertung.Model.CsvModel)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="model">The model</param>
+        </member>
+        <member name="M:ActigraphAuswertung.Model.Calculators.ActiveTimeCalculator.Add(ActigraphAuswertung.Model.RowEntry)">
+            <summary>
+            Called by the model on adding a new entry. Unused.
+            </summary>
+            <param name="entry">The entry to be added.</param>
+        </member>
+        <member name="M:ActigraphAuswertung.Model.Calculators.ActiveTimeCalculator.NewDay">
+            <summary>
+            Called by the model on a new day. Unused.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Model.Calculators.ActiveTimeCalculator.TotalActiveTime">
+            <summary>
+            The total time of the sensor.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Model.Calculators.ActiveTimeCalculator.ActiveTime">
+            <summary>
+            The total active time of the sensor
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Model.Calculators.ActiveTimeCalculator.AvgStartTime">
+            <summary>
+            The avarage start time of activity
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Model.Calculators.ActiveTimeCalculator.AvgEndTime">
+            <summary>
+            The avarage end time of activity
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.SingleEntryLineParser">
+            <summary>
+            Line parser for GT3X sensors that only have <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.SingleEntryLineParser.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.SingleEntryLineParser.parseLine(System.String)">
+            <summary>
+            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with only 
+            <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/> and <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/> set.
+            </summary>
+            <param name="line">The line to parse</param>
+            <returns>The parsed data</returns>
+            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">
+            <summary>
+            Class of any exception that is thrown in the lineparsers.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.LineparserException.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="message">The exception message</param>
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.Activity3dVMULineParser">
+            <summary>
+            Lineparser for lines that contain <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>, 
+            <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityY"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityZ"/> 
+            <see cref="F:ActigraphAuswertung.Model.SensorData.Steps"/> and <see cref="F:ActigraphAuswertung.Model.SensorData.Vmu"/> seperated by 
+            a comma.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.Activity3dVMULineParser.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.Activity3dVMULineParser.parseLine(System.String)">
+            <summary>
+            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with  
+            <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>, 
+            <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityY"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityZ"/> 
+            <see cref="F:ActigraphAuswertung.Model.SensorData.Steps"/> and <see cref="F:ActigraphAuswertung.Model.SensorData.Vmu"/> set.
+            </summary>
+            <param name="line">The line to parse</param>
+            <returns>The parsed data</returns>
+            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
+        </member>
+        <member name="T:ActigraphAuswertung.CommandManager.Priority">
+            <summary>
+            Possible prioritys for commands. Sortable (highest priority has value 10, lowest value 0).
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.CommandManager.Status">
+            <summary>
+            Possible status states of a command. 
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.CommandManager.Commands.ImportCommand">
+            <summary>
+            Command for import. For stand-alone use, use the <see cref="M:ActigraphAuswertung.Mapper.Factory.parse(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)"/> method directly.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.CommandManager.Commands.ImportCommand.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,ActigraphAuswertung.CommandManager.Commands.CommandFinishedDelegate)">
+            <summary>
+            Constructor. Lower limit values are used for the <see cref="T:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator"/>.
+            </summary>
+            <param name="file">The file to be imported</param>
+            <param name="minSedantary">Lower limit for sedantary activity</param>
+            <param name="minLight">Lower limit for light activity</param>
+            <param name="minModerate">Lower limit for moderate activity</param>
+            <param name="minHeavy">Lower limit for heavy activity</param>
+            <param name="minVeryheavy">Lower limit for very heavy activity</param>
+            <param name="callback">The callback for successful imports</param>
+        </member>
+        <member name="M:ActigraphAuswertung.CommandManager.Commands.ImportCommand.execute">
+            <summary>
+            Import execution entry point.
+            </summary>
+            <returns>The imported data: <see cref="T:ActigraphAuswertung.Model.CsvModel"/></returns>
+        </member>
+        <member name="T:ActigraphAuswertung.RExport.RExportException">
+            <summary>
+            Exception class for R export exceptions.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.RExportException.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="message">The message of the exception.</param>
+        </member>
+        <member name="T:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator">
+            <summary>
+            Calculator to calculate the activity levels of a model.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.Steps">
+            <summary>
+            The number of accumulated rows for each calculation step.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.MinSedantary">
+            <summary>
+            The lower limit for sendantary activity level.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.MinLight">
+            <summary>
+            The lower limit for light activity level.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.MinModerate">
+            <summary>
+            The lower limit for moderate activity level.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.MinHeavy">
+            <summary>
+            The lower limit for heavy activity level.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.MinVeryheavy">
+            <summary>
+            The lower limit for very heavy activity level.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.#ctor(ActigraphAuswertung.Model.CsvModel)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="model">The model used for calculations</param>
+        </member>
+        <member name="M:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.Add(ActigraphAuswertung.Model.RowEntry)">
+            <summary>
+            Called by the model on a new entry.
+            </summary>
+            <param name="entry">The new entry</param>
+        </member>
+        <member name="M:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.NewDay">
+            <summary>
+            Called by the model on a new day. Unused.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.getActivityLevel(ActigraphAuswertung.Model.ActivityLevels)">
+            <summary>
+            Gets the activity level information for the given activity level.
+            </summary>
+            <param name="level">The activity level to get the information for.</param>
+            <returns>The activity level information</returns>
+            <exception cref="T:System.Exception">If the given activity level is not supported.</exception>
+        </member>
+        <member name="T:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.ActivityLevel">
+            <summary>
+            Structure to save the absolute count and percent values of each activity level.
+            </summary>
+            <remarks>Must be class to change values reference based</remarks>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.ActivityLevel.Level">
+            <summary>
+            The Activity level
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.ActivityLevel.Count">
+            <summary>
+            The absolute count of intervals for this activity level.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.ActivityLevel.Percent">
+            <summary>
+            The percent value for this activity level.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.RT3SemicolomSepLineParser">
+            <summary>
+            Lineparser for lines that contain <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>, 
+            <see cref="F:ActigraphAuswertung.Model.SensorData.CaloriesTotal"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.CaloriesActivity"/> 
+            and <see cref="F:ActigraphAuswertung.Model.SensorData.Vmu"/> and an entry-id and start and stop-flag (ignored)
+            seperated by a semicolom.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.RT3SemicolomSepLineParser.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.RT3SemicolomSepLineParser.parseLine(System.String)">
+            <summary>
+            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with  
+            <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>, 
+            <see cref="F:ActigraphAuswertung.Model.SensorData.CaloriesTotal"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.CaloriesActivity"/>
+            and <see cref="F:ActigraphAuswertung.Model.SensorData.Vmu"/> set.
+            </summary>
+            <param name="line">The line to parse</param>
+            <returns>The parsed data</returns>
+            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.DateTime3dActivityStepsLineParser">
+            <summary>
+            Lineparser for lines that contain <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>,
+            <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityY"/>, 
+            <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityZ"/> and <see cref="F:ActigraphAuswertung.Model.SensorData.Steps"/> seperated by 
+            a semicolom.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.DateTime3dActivityStepsLineParser.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.DateTime3dActivityStepsLineParser.parseLine(System.String)">
+            <summary>
+            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with  
+            <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>,
+            <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityY"/>, 
+            <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityZ"/> and <see cref="F:ActigraphAuswertung.Model.SensorData.Steps"/> set.
+            </summary>
+            <param name="line">The line to parse</param>
+            <returns>The parsed data</returns>
+            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
+        </member>
+        <member name="T:ActigraphAuswertung.Filter.Filters.Time">
+            <summary>
+            Time based filter
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Filter.FilterInterface">
+            <summary>
+            Interface for all filter implementations.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Filter.FilterInterface.Filter">
+            <summary>
+            Get the created filter function.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ActigraphAuswertung.Filter.Filters.Time.#ctor(System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="startTime">The time the row must be bigger then</param>
+            <param name="endTime">The time the row must be smaller then</param>
+        </member>
+        <member name="M:ActigraphAuswertung.Filter.Filters.Time.Filter">
+            <summary>
+            Returns the filter function
+            </summary>
+            <returns>The filter function</returns>
+        </member>
+        <member name="T:ActigraphAuswertung.ShowParsedFileDailyStartEndTimes">
+            <summary>
+            Show all detected days and their activity start and end times and the daily active time.
+            </summary>
+            <summary>
+            Show all detected days and their activity start and end times and the daily active time.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.ShowParsedFileDailyStartEndTimes.#ctor(ActigraphAuswertung.Model.CsvModel)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="data">The model</param>
+        </member>
+        <member name="F:ActigraphAuswertung.ShowParsedFileDailyStartEndTimes.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.ShowParsedFileDailyStartEndTimes.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ActigraphAuswertung.ShowParsedFileDailyStartEndTimes.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.RExport.RSettings">
+            <summary>
+            Container for all settings for the R export.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.RExport.RSettings.PathToR">
+            <summary>
+            Absolute path to the r binary (including the r binary itself).
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.RExport.RSettings.PathToTmp">
+            <summary>
+            Absolute path to the temporary directory.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.RExport.RSettings.PathToOutput">
+            <summary>
+            Absolute path to the output directory.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.RExport.RSettings.PathToApplication">
+            <summary>
+            Absolute path to the application directoy.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.RExport.RSettings.OutputWidth">
+            <summary>
+            Width of the output images.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.RExport.RSettings.OutputHeight">
+            <summary>
+            Height of the output images.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.RExport.RSettings.FilePrefix">
+            <summary>
+            Prefix for all files.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.RExport.RSettings.CopyInvoledFiles">
+            <summary>
+            Copy all involved files (csv files and r scripts) to the output directory.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.RExport.RSettings.CopyROutput">
+            <summary>
+            Copy the output of the r process to the output directory.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.RExport.ExportSteps">
+            <summary>
+            Export to step graph.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportSteps.checkConditions">
+            <summary>
+            Additionally to the basic checks exactly one dataset must be selected.
+            </summary>
+            <exception cref="T:ActigraphAuswertung.RExport.RExportException">If not exactly one dataset is selected.</exception>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportSteps.prepareLaunchScript">
+            <summary>
+            Adds additional R Script information and scripts to the start script.
+            </summary>
+            <returns>Additional start script content</returns>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportSteps.launchProcess">
+            <summary>
+            Copys additional involved files and launches the process.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Model.SensorData">
+            <summary>
+            Enum for all possible sensor datas and their plaintext description.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.SensorData.Date">
+            <summary>
+            Date and time of the entry.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.SensorData.Activity">
+            <summary>
+            Activity (X) of the entry.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.SensorData.ActivityY">
+            <summary>
+            Y-Activity of the entry.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.SensorData.ActivityZ">
+            <summary>
+            Z-Activity of the entry.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.SensorData.Vmu">
+            <summary>
+            Vmu of the entry.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.SensorData.Steps">
+            <summary>
+            Step-Counter of the entry.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.SensorData.Inclinometer">
+            <summary>
+            Inclinometer of the entry.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.SensorData.CaloriesTotal">
+            <summary>
+            Total calories of the entry.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.SensorData.CaloriesActivity">
+            <summary>
+            Activity calories of the entry.
             </summary>
         </member>
         <member name="T:ActigraphAuswertung.Mapper.LineParser.NoDate3dActivityStepsLineParser">
@@ -357,54 +912,6 @@
             and <see cref="F:ActigraphAuswertung.Model.SensorData.Steps"/> seperated by 
             a comma.
             </summary>
-        </member>
-        <member name="T:ActigraphAuswertung.Mapper.LineParser.AbstractGT3XLineParser">
-            <summary>
-            Abstract base class for all GT3X or GT1X sensors. 
-            Does additional header analysis to extract epoch period and start time 
-            of the sensor.
-            </summary>
-        </member>
-        <member name="T:ActigraphAuswertung.Mapper.LineParser.AbstractLineParser">
-            <summary>
-            Abstract base class for all line parsers.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.AbstractLineParser.parseLine(System.String)">
-            <summary>
-            Abstract parseLine method. 
-            </summary>
-            <param name="line">The line of data</param>
-            <returns>Fully interpretated data</returns>
-        </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.AbstractLineParser.test(System.String)">
-            <summary>
-            Tests if the line  matches the format for the current lineparser.
-            </summary>
-            <param name="line">The line to test</param>
-            <returns>True if test was successful</returns>
-            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If no linematcher is set</exception>
-        </member>
-        <member name="P:ActigraphAuswertung.Mapper.LineParser.AbstractLineParser.SupportedValues">
-            <summary>
-            Array of all datatypes each row contains if it has this line-format.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.AbstractGT3XLineParser.test(System.String)">
-            <summary>
-            Tests if the line  matches the format for the current lineparser 
-            and performs additional header analysis.
-            </summary>
-            <param name="line">The line to test</param>
-            <returns>True if successful</returns>
-            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If no linematcher is set</exception>
-        </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.AbstractGT3XLineParser.tryParseHeaderLine(System.String)">
-            <summary>
-            Performs additional header analysis to extract data start time and epoch period.
-            </summary>
-            <param name="line">The line to analyse</param>
-            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If an analysed line has invalid format.</exception>
         </member>
         <member name="M:ActigraphAuswertung.Mapper.LineParser.NoDate3dActivityStepsLineParser.#ctor">
             <summary>
@@ -416,6 +923,388 @@
             Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with  
             <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityY"/>, 
             <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityZ"/> and <see cref="F:ActigraphAuswertung.Model.SensorData.Steps"/> set.
+            </summary>
+            <param name="line">The line to parse</param>
+            <returns>The parsed data</returns>
+            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.ActivityUnknownLineParser">
+            <summary>
+            Lineparser for lines that contain <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>
+            and an unknown value seperated by a comma.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.ActivityUnknownLineParser.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.ActivityUnknownLineParser.parseLine(System.String)">
+            <summary>
+            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with  
+            <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/> and <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/> set.
+            </summary>
+            <param name="line">The line to parse</param>
+            <returns>The parsed data</returns>
+            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
+        </member>
+        <member name="T:ActigraphAuswertung.RExport.ExportDaily">
+            <summary>
+            Exports the activity for every day.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportDaily.checkConditions">
+            <summary>
+            Additionally to the basic checks exactly one dataset must be selected.
+            </summary>
+            <exception cref="T:ActigraphAuswertung.RExport.RExportException">If not exactly one dataset is selected.</exception>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportDaily.prepareLaunchScript">
+            <summary>
+            Adds additional R Script information and scripts to the start script.
+            </summary>
+            <returns>Additional start script content</returns>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportDaily.launchProcess">
+            <summary>
+            Copys additional involved files and launches the process.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Model.ActivityLevels">
+            <summary>
+            Possible activity levels.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.ActivityLevels.SEDENTARY">
+            <summary>
+            Sedantary activity level.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.ActivityLevels.LIGHT">
+            <summary>
+            Light activity level.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.ActivityLevels.MODERATE">
+            <summary>
+            Moderate activity level.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.ActivityLevels.VIGOROUS">
+            <summary>
+            Heavy activity level.
+            </summary>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.ActivityLevels.VERYVIGOROUS">
+            <summary>
+            Very heavy activity level.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.RExport.ExportWorn">
+            <summary>
+            Export to worn graph.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportWorn.checkConditions">
+            <summary>
+            Additionally to the basic checks exactly one dataset must be selected.
+            </summary>
+            <exception cref="T:ActigraphAuswertung.RExport.RExportException">If not exactly one dataset is selected.</exception>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportWorn.prepareLaunchScript">
+            <summary>
+            Adds additional R Script information and scripts to the start script.
+            </summary>
+            <returns>Additional start script content</returns>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportWorn.launchProcess">
+            <summary>
+            Copys additional involved files and launches the process.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.DateTimeActivity2dVMUStepsInclLineParser">
+            <summary>
+            Lineparser for lines that contain <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>,
+            <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityY"/>, 
+            <see cref="F:ActigraphAuswertung.Model.SensorData.Inclinometer"/> 
+            and <see cref="F:ActigraphAuswertung.Model.SensorData.Steps"/> seperated by 
+            a comma.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.DateTimeActivity2dVMUStepsInclLineParser.parseLine(System.String)">
+            <summary>
+            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with  
+            <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>,
+            <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityY"/>, 
+            <see cref="F:ActigraphAuswertung.Model.SensorData.Inclinometer"/> 
+            and <see cref="F:ActigraphAuswertung.Model.SensorData.Steps"/> set.
+            </summary>
+            <param name="line">The line to parse</param>
+            <returns>The parsed data</returns>
+            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
+        </member>
+        <member name="T:ActigraphAuswertung.RExport.ExportDailyAvg">
+            <summary>
+            Exports the dailys avarage activity.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportDailyAvg.checkConditions">
+            <summary>
+            Additionally to the basic checks exactly one dataset must be selected.
+            </summary>
+            <exception cref="T:ActigraphAuswertung.RExport.RExportException">If not exactly one dataset is selected.</exception>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportDailyAvg.prepareLaunchScript">
+            <summary>
+            Adds additional R Script information and scripts to the start script.
+            </summary>
+            <returns>Additional start script content</returns>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportDailyAvg.launchProcess">
+            <summary>
+            Copys additional involved files and launches the process.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.Factory">
+            <summary>
+            Factory for <see cref="T:ActigraphAuswertung.Model.CsvModel"/>s. 
+            Provides functions for importing and filtering data.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.Factory.parse(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Imports a csv-file into <see cref="T:ActigraphAuswertung.Model.CsvModel"/> with the given
+            lower limits for the activitylevel calculator
+            </summary>
+            <param name="file">The absolute filepath to the file to import</param>
+            <param name="minSedantary">Lower limit for sedantary activity</param>
+            <param name="minLight">Lower limit for light activity</param>
+            <param name="minModerate">Lower limit for moderate activity</param>
+            <param name="minHeavy">Lower limit for heavy activity</param>
+            <param name="minVeryheavy">Lower limit for very heavy activity</param>
+            <returns>The imported CsvModel</returns>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.Factory.filter(ActigraphAuswertung.Model.CsvModel,ActigraphAuswertung.Filter.FilterCollection,ActigraphAuswertung.Filter.FilterMethod)">
+            <summary>
+            Factory function for filtering a <see cref="T:ActigraphAuswertung.Model.CsvModel"/>.
+            </summary>
+            <param name="data">The data to be filtered</param>
+            <param name="filterCollection">The filter collection to be applied</param>
+            <param name="method">The filter method</param>
+            <returns>The filtered data</returns>
+        </member>
+        <member name="T:ActigraphAuswertung.RExport.ExportScatter">
+            <summary>
+            Export to scatter graph.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportScatter.#ctor">
+            <summary>
+            Constructor. Adds the additional parameter "numberOfDatasets".
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportScatter.checkConditions">
+            <summary>
+            Additionally to the basic checks it checks for exactly two datasets to be 
+            selected with both having the same size and if the additional parameter 
+            "numberOfDatasets" contains a valid value.
+            </summary>
+            <exception cref="T:ActigraphAuswertung.RExport.RExportException">If one condition fails.</exception>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportScatter.prepareLaunchScript">
+            <summary>
+            Adds additional R Script information and scripts to the start script.
+            </summary>
+            <returns>Additional start script content</returns>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportScatter.launchProcess">
+            <summary>
+            Copys additional involved files and launches the process.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Filter.Filters.Day">
+            <summary>
+            Filter where every row must be within a list of days
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Filter.Filters.Day.#ctor(System.Collections.Generic.List{System.DateTime})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="days">The list of days the rows must be within</param>
+        </member>
+        <member name="M:ActigraphAuswertung.Filter.Filters.Day.Filter">
+            <summary>
+            Returns the filter function
+            </summary>
+            <returns>The filter function</returns>
+        </member>
+        <member name="T:ActigraphAuswertung.RExport.ExportCrossCorrelation">
+            <summary>
+            Export class for cross correlation.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportCrossCorrelation.#ctor">
+            <summary>
+            Constructor. Adds the additional parameter "numberOfDatasets".
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportCrossCorrelation.checkConditions">
+            <summary>
+            Additionally to the basic checks it checks for exactly two datasets to be 
+            selected with both having the same size and if the additional parameter 
+            "numberOfDatasets" contains a valid value.
+            </summary>
+            <exception cref="T:ActigraphAuswertung.RExport.RExportException">If one condition fails.</exception>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportCrossCorrelation.prepareLaunchScript">
+            <summary>
+            Adds additional R Script information and scripts to the start script.
+            </summary>
+            <returns>Additional start script content</returns>
+        </member>
+        <member name="M:ActigraphAuswertung.RExport.ExportCrossCorrelation.launchProcess">
+            <summary>
+            Copys additional involved files and launches the process.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.CommandManager.Commands.CommandFinishedDelegate">
+            <summary>
+            Callback definition for successful commands.
+            </summary>
+            <param name="result">The result of the command, returned by <see cref="M:ActigraphAuswertung.CommandManager.Commands.AbstractCommand.execute"/></param>
+        </member>
+        <member name="T:ActigraphAuswertung.Properties.Resources">
+            <summary>
+              Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Properties.Resources.ResourceManager">
+            <summary>
+              Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Properties.Resources.Culture">
+            <summary>
+              Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+              Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Model.SensorStartEndWearing">
+            <summary>
+            Helper class to represent the activity start and end times of a day.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Model.SensorStartEndWearing.StartTime">
+            <summary>
+            Activity starttime of the day.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Model.SensorStartEndWearing.EndTime">
+            <summary>
+            Activity endtime of the day.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Model.SensorStartEndWearing.Date">
+            <summary>
+            Date of the day.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Model.SensorStartEndWearing.ActiveTime">
+            <summary>
+            Activity time of the day.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Model.RowEntry">
+            <summary>
+            Represents one row entry of the model.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Model.RowEntry.setValue(ActigraphAuswertung.Model.SensorData,System.String)">
+            <summary>
+            Sets the <paramref name="entry"/> of the entry to <paramref name="value"/>.
+            </summary>
+            <param name="entry">The key to set</param>
+            <param name="value">The value to set the key to</param>
+            <exception cref="T:System.Exception">If the entry does not support the key.</exception>
+        </member>
+        <member name="M:ActigraphAuswertung.Model.RowEntry.getValue(ActigraphAuswertung.Model.SensorData)">
+            <summary>
+            Gets the value of <paramref name="entry"/> or null if not found.
+            </summary>
+            <param name="entry">The key to search for.</param>
+            <returns>The value of <paramref name="entry"/></returns>
+        </member>
+        <member name="P:ActigraphAuswertung.Model.RowEntry.Date">
+            <summary>
+            Date and time of the entry.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Model.RowEntry.ActivityX">
+            <summary>
+            The activity(X) of the entry.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Model.RowEntry.ActivityY">
+            <summary>
+            The Y-Activity of the entry.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Model.RowEntry.ActivityZ">
+            <summary>
+            The Z-Activity of the entry.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Model.RowEntry.Vmu">
+            <summary>
+            The Vmu of the entry.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Model.RowEntry.Steps">
+            <summary>
+            The Steps of the entry.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Model.RowEntry.Inclinometer">
+            <summary>
+            The inclinometer of the value.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Model.RowEntry.CaloriesTotal">
+            <summary>
+            The total calories of the entry.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Model.RowEntry.CaloriesActivity">
+            <summary>
+            The activity calories of the entry.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.RExportedLineParser">
+            <summary>
+            Lineparser that parsed lines with <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/> and one unknown 
+            value which is determined from the header information. 
+            Parses lines previously exported for R-Export.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.RExportedLineParser.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.RExportedLineParser.test(System.String)">
+            <summary>
+            Tests for the lineparser format. Additionally it looks for the header row and 
+            trys to determine the third value seperated by semicolom.
+            </summary>
+            <param name="line">The line to parse</param>
+            <returns>True is successful</returns>
+            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If no linematcher is set</exception>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.RExportedLineParser.parseLine(System.String)">
+            <summary>
+            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with  
+            <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/> and one variable value determined by the header.
             </summary>
             <param name="line">The line to parse</param>
             <returns>The parsed data</returns>
@@ -454,339 +1343,158 @@
             <param name="target">The target model</param>
             <param name="method">The filter method</param>
         </member>
-        <member name="T:ActigraphAuswertung.CommandManager.Priority">
+        <member name="T:ActigraphAuswertung.CommandManager.Commands.ExportCommand">
             <summary>
-            Possible prioritys for commands. Sortable (highest priority has value 10, lowest value 0).
+            Command for R-Export. For stand-alone use, use the <see cref="T:ActigraphAuswertung.RExport.Abstract"/>export class directly.
             </summary>
         </member>
-        <member name="T:ActigraphAuswertung.Properties.Resources">
+        <member name="M:ActigraphAuswertung.CommandManager.Commands.ExportCommand.#ctor(ActigraphAuswertung.RExport.Abstract,ActigraphAuswertung.CommandManager.Commands.CommandFinishedDelegate)">
             <summary>
-              Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+            Constructor
+            </summary>
+            <param name="exportClass">The Export-Class</param>
+            <param name="callback">The callback for successful exports</param>
+        </member>
+        <member name="M:ActigraphAuswertung.CommandManager.Commands.ExportCommand.execute">
+            <summary>
+            Command execution entry point.
+            </summary>
+            <returns>The export-class used: <see cref="T:ActigraphAuswertung.RExport.Abstract"/></returns>
+        </member>
+        <member name="T:ActigraphAuswertung.RExport.ExportHourlyAvg">
+            <summary>
+            Exports the hourly avarage activity.
             </summary>
         </member>
-        <member name="P:ActigraphAuswertung.Properties.Resources.ResourceManager">
-            <summary>
-              Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Properties.Resources.Culture">
-            <summary>
-              Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
-              Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
-            </summary>
-        </member>
-        <member name="T:ActigraphAuswertung.RExport.ExportDailyAvg">
-            <summary>
-            Exports the dailys avarage activity.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportDailyAvg.checkConditions">
+        <member name="M:ActigraphAuswertung.RExport.ExportHourlyAvg.checkConditions">
             <summary>
             Additionally to the basic checks exactly one dataset must be selected.
             </summary>
             <exception cref="T:ActigraphAuswertung.RExport.RExportException">If not exactly one dataset is selected.</exception>
         </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportDailyAvg.prepareLaunchScript">
+        <member name="M:ActigraphAuswertung.RExport.ExportHourlyAvg.prepareLaunchScript">
             <summary>
             Adds additional R Script information and scripts to the start script.
             </summary>
             <returns>Additional start script content</returns>
         </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportDailyAvg.launchProcess">
+        <member name="M:ActigraphAuswertung.RExport.ExportHourlyAvg.launchProcess">
             <summary>
             Copys additional involved files and launches the process.
             </summary>
         </member>
-        <member name="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">
+        <member name="T:ActigraphAuswertung.Model.CsvModel">
             <summary>
-            Class of any exception that is thrown in the lineparsers.
+            Sensor independent represenation of a file. 
+            </summary>
+            <remarks>Do not insert index-based. This will screw up all calculations!</remarks>
+        </member>
+        <member name="F:ActigraphAuswertung.Model.CsvModel.fileName">
+            File-name only without path
+        </member>
+        <member name="F:ActigraphAuswertung.Model.CsvModel.SupportedValues">
+            <summary>
+            Supported values of the file.
             </summary>
         </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.LineparserException.#ctor(System.String)">
+        <member name="M:ActigraphAuswertung.Model.CsvModel.#ctor">
             <summary>
-            Constructor
-            </summary>
-            <param name="message">The exception message</param>
-        </member>
-        <member name="T:ActigraphAuswertung.ShowParsedFileDailyStartEndTimes">
-            <summary>
-            Show all detected days and their activity start and end times and the daily active time.
-            </summary>
-            <summary>
-            Show all detected days and their activity start and end times and the daily active time.
+            Constructor.
             </summary>
         </member>
-        <member name="F:ActigraphAuswertung.ShowParsedFileDailyStartEndTimes.components">
+        <member name="M:ActigraphAuswertung.Model.CsvModel.isValid">
             <summary>
-            Required designer variable.
+            Helper function to see if Start and End date are set correctly.
+            </summary>
+            <returns>True if model is valid</returns>
+        </member>
+        <member name="M:ActigraphAuswertung.Model.CsvModel.InsertItem(System.Int32,ActigraphAuswertung.Model.RowEntry)">
+            <summary>
+            Overwritten insert method of the model.
+            </summary>
+            <param name="index">The position where to add the item.</param>
+            <param name="item">The entry to add to the model</param>
+            <exception cref="T:System.Exception">If the model is already locked.</exception>
+        </member>
+        <member name="M:ActigraphAuswertung.Model.CsvModel.finishDay">
+            <summary>
+            Finish the current day the model is aware of.
             </summary>
         </member>
-        <member name="M:ActigraphAuswertung.ShowParsedFileDailyStartEndTimes.Dispose(System.Boolean)">
+        <member name="M:ActigraphAuswertung.Model.CsvModel.finishParsing">
             <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:ActigraphAuswertung.ShowParsedFileDailyStartEndTimes.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
+            Finish the parsing of the model. Locks the model for further modifications 
+            and finishes the current day.
             </summary>
         </member>
-        <member name="M:ActigraphAuswertung.ShowParsedFileDailyStartEndTimes.#ctor(ActigraphAuswertung.Model.CsvModel)">
+        <member name="P:ActigraphAuswertung.Model.CsvModel.AbsoluteFileName">
             <summary>
-            Constructor
-            </summary>
-            <param name="data">The model</param>
-        </member>
-        <member name="M:ActigraphAuswertung.Program.Main">
-            <summary>
-            The main entry point for the application.
+            Absolute path to the file including the filename.
             </summary>
         </member>
-        <member name="T:ActigraphAuswertung.Filter.Filters.Time">
+        <member name="P:ActigraphAuswertung.Model.CsvModel.FileName">
             <summary>
-            Time based filter
+            Filename of the file.
             </summary>
         </member>
-        <member name="M:ActigraphAuswertung.Filter.Filters.Time.#ctor(System.TimeSpan,System.TimeSpan)">
+        <member name="P:ActigraphAuswertung.Model.CsvModel.EpochPeriod">
             <summary>
-            Constructor
-            </summary>
-            <param name="startTime">The time the row must be bigger then</param>
-            <param name="endTime">The time the row must be smaller then</param>
-        </member>
-        <member name="M:ActigraphAuswertung.Filter.Filters.Time.Filter">
-            <summary>
-            Returns the filter function
-            </summary>
-            <returns>The filter function</returns>
-        </member>
-        <member name="T:ActigraphAuswertung.CommandManager.Commands.ImportCommand">
-            <summary>
-            Command for import. For stand-alone use, use the <see cref="M:ActigraphAuswertung.Mapper.Factory.parse(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)"/> method directly.
+            Epoch period between two entrys.
             </summary>
         </member>
-        <member name="M:ActigraphAuswertung.CommandManager.Commands.ImportCommand.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,ActigraphAuswertung.CommandManager.Commands.CommandFinishedDelegate)">
+        <member name="P:ActigraphAuswertung.Model.CsvModel.DayStartEndCalculator">
             <summary>
-            Constructor. Lower limit values are used for the <see cref="T:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator"/>.
-            </summary>
-            <param name="file">The file to be imported</param>
-            <param name="minSedantary">Lower limit for sedantary activity</param>
-            <param name="minLight">Lower limit for light activity</param>
-            <param name="minModerate">Lower limit for moderate activity</param>
-            <param name="minHeavy">Lower limit for heavy activity</param>
-            <param name="minVeryheavy">Lower limit for very heavy activity</param>
-            <param name="callback">The callback for successful imports</param>
-        </member>
-        <member name="M:ActigraphAuswertung.CommandManager.Commands.ImportCommand.execute">
-            <summary>
-            Import execution entry point.
-            </summary>
-            <returns>The imported data: <see cref="T:ActigraphAuswertung.Model.CsvModel"/></returns>
-        </member>
-        <member name="T:ActigraphAuswertung.RExport.ExportUnknown">
-            <summary>
-            Error export class.
+            The <see cref="P:ActigraphAuswertung.Model.CsvModel.DayStartEndCalculator"/> of the model.
             </summary>
         </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportUnknown.checkConditions">
+        <member name="P:ActigraphAuswertung.Model.CsvModel.ActiveTimeCalculator">
             <summary>
-            Will always throw an exception.
-            </summary>
-            <exception cref="T:ActigraphAuswertung.RExport.RExportException">No script was selected.</exception>
-        </member>
-        <member name="T:ActigraphAuswertung.RExport.ExportLevels">
-            <summary>
-            Exports the activity levels.
+            The <see cref="P:ActigraphAuswertung.Model.CsvModel.ActiveTimeCalculator"/> of the model.
             </summary>
         </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportLevels.checkConditions">
+        <member name="P:ActigraphAuswertung.Model.CsvModel.ActivityLevelCalculator">
             <summary>
-            Additionally to the basic checks exactly one dataset must be selected.
-            </summary>
-            <exception cref="T:ActigraphAuswertung.RExport.RExportException">If not exactly one dataset is selected.</exception>
-        </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportLevels.prepareLaunchScript">
-            <summary>
-            Adds additional R Script information and scripts to the start script.
-            </summary>
-            <returns>Additional start script content</returns>
-        </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportLevels.launchProcess">
-            <summary>
-            Copys additional involved files and launches the process.
+            The <see cref="T:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator"/> of the model.
             </summary>
         </member>
-        <member name="T:ActigraphAuswertung.Mapper.LineParser.SingleEntryLineParser">
+        <member name="P:ActigraphAuswertung.Model.CsvModel.StartDate">
             <summary>
-            Line parser for GT3X sensors that only have <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>.
+            Date of the first entry of the model.
             </summary>
         </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.SingleEntryLineParser.#ctor">
+        <member name="P:ActigraphAuswertung.Model.CsvModel.EndDate">
+            <summary>
+            Date of the last entry of the model.
+            </summary>
+        </member>
+        <member name="P:ActigraphAuswertung.Model.CsvModel.CurrentDay">
+            <summary>
+            Date of the current day the model is working on.
+            </summary>
+        </member>
+        <member name="T:ActigraphAuswertung.Mapper.LineParser.RT3LineParser">
+            <summary>
+            Lineparser for lines that contain <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>, 
+            <see cref="F:ActigraphAuswertung.Model.SensorData.CaloriesTotal"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.CaloriesActivity"/> 
+            and <see cref="F:ActigraphAuswertung.Model.SensorData.Vmu"/> and an entry-id and start and stop-flag (ignored)
+            seperated by a comma.
+            </summary>
+        </member>
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.RT3LineParser.#ctor">
             <summary>
             Constructor
             </summary>
         </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.SingleEntryLineParser.parseLine(System.String)">
+        <member name="M:ActigraphAuswertung.Mapper.LineParser.RT3LineParser.parseLine(System.String)">
             <summary>
-            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with only 
-            <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/> and <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/> set.
+            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with  
+            <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>, 
+            <see cref="F:ActigraphAuswertung.Model.SensorData.CaloriesTotal"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.CaloriesActivity"/> 
+            and <see cref="F:ActigraphAuswertung.Model.SensorData.Vmu"/> set.
             </summary>
             <param name="line">The line to parse</param>
             <returns>The parsed data</returns>
             <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
-        </member>
-        <member name="T:ActigraphAuswertung.FunctionStartExport">
-            <summary>
-            Delegate to start the export (callback from the SelectDataCells form).
-            </summary>
-            <param name="modelCellSelection"></param>
-        </member>
-        <member name="T:ActigraphAuswertung.ShowDirectoryContent">
-            <summary>
-            Displays all jpg-files of a directory.
-            </summary>
-            <summary>
-            Displays all jpg-files of a directory.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.ShowDirectoryContent.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.ShowDirectoryContent.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:ActigraphAuswertung.ShowDirectoryContent.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.ShowDirectoryContent.#ctor(System.String)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="directory">The directory</param>
-        </member>
-        <member name="T:ActigraphAuswertung.RExport.ExportSteps">
-            <summary>
-            Export to step graph.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportSteps.checkConditions">
-            <summary>
-            Additionally to the basic checks exactly one dataset must be selected.
-            </summary>
-            <exception cref="T:ActigraphAuswertung.RExport.RExportException">If not exactly one dataset is selected.</exception>
-        </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportSteps.prepareLaunchScript">
-            <summary>
-            Adds additional R Script information and scripts to the start script.
-            </summary>
-            <returns>Additional start script content</returns>
-        </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportSteps.launchProcess">
-            <summary>
-            Copys additional involved files and launches the process.
-            </summary>
-        </member>
-        <member name="T:ActigraphAuswertung.RExport.ExportDaily">
-            <summary>
-            Exports the activity for every day.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportDaily.checkConditions">
-            <summary>
-            Additionally to the basic checks exactly one dataset must be selected.
-            </summary>
-            <exception cref="T:ActigraphAuswertung.RExport.RExportException">If not exactly one dataset is selected.</exception>
-        </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportDaily.prepareLaunchScript">
-            <summary>
-            Adds additional R Script information and scripts to the start script.
-            </summary>
-            <returns>Additional start script content</returns>
-        </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportDaily.launchProcess">
-            <summary>
-            Copys additional involved files and launches the process.
-            </summary>
-        </member>
-        <member name="T:ActigraphAuswertung.RExport.ExportRegressionLinear">
-            <summary>
-            Exports to linear regression.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportRegressionLinear.checkConditions">
-            <summary>
-            Additionally to the basic checks it checks for exactly two datasets with the 
-            same ammount of entrys.
-            </summary>
-            <exception cref="T:ActigraphAuswertung.RExport.RExportException">If one condition fails.</exception>
-        </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportRegressionLinear.prepareLaunchScript">
-            <summary>
-            Adds additional R Script information and scripts to the start script.
-            </summary>
-            <returns>Additional start script content</returns>
-        </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportRegressionLinear.launchProcess">
-            <summary>
-            Copys additional involved files and launches the process.
-            </summary>
-        </member>
-        <member name="T:ActigraphAuswertung.CommandManager.Manager">
-            <summary>
-            Class for managing commands and executing them in the background.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.CommandManager.Manager.#ctor(System.Int32)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="maxThreadsRunning">Maximum number of commands running at the same time.</param>
-        </member>
-        <member name="M:ActigraphAuswertung.CommandManager.Manager.#ctor">
-            <summary>
-            Constructor. Sets the number of maximum running commands to the processor count.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.CommandManager.Manager.addCommand(ActigraphAuswertung.CommandManager.Commands.AbstractCommand)">
-            <summary>
-            Adds a command to the manager. 
-            </summary>
-            <param name="command">The command to be executed.</param>
-        </member>
-        <member name="M:ActigraphAuswertung.CommandManager.Manager.nextCommand">
-            <summary>
-            Starts the next command (if any).
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.CommandManager.Manager.onWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
-            <summary>
-            Called by a backgorundworker when the command is completed or an exception was caught.
-            Sets the command's status and message according to the result and calls the command's 
-            callback if the execution was successful.
-            Starts the next command (if any).
-            </summary>
-            <param name="sender">The finished backgroundworker.</param>
-            <param name="args"></param>
-        </member>
-        <member name="P:ActigraphAuswertung.CommandManager.Manager.Commands">
-            <summary>
-            All commands the command-manager is aware of.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.CommandManager.Manager.MaxThreadsRunning">
-            <summary>
-            Number of commands that may run at the same time.
-            </summary>
         </member>
         <member name="T:ActigraphAuswertung.Mapper.LineParser.DateTimeActivityStepsLineParser">
             <summary>
@@ -862,139 +1570,21 @@
             The priority of the encapsulated command.
             </summary>
         </member>
-        <member name="T:ActigraphAuswertung.RExport.RExportException">
+        <member name="M:ActigraphAuswertung.Program.Main">
             <summary>
-            Exception class for R export exceptions.
+            The main entry point for the application.
             </summary>
         </member>
-        <member name="M:ActigraphAuswertung.RExport.RExportException.#ctor(System.String)">
+        <member name="T:ActigraphAuswertung.RExport.ExportUnknown">
             <summary>
-            Constructor.
-            </summary>
-            <param name="message">The message of the exception.</param>
-        </member>
-        <member name="T:ActigraphAuswertung.Mapper.Factory">
-            <summary>
-            Factory for <see cref="T:ActigraphAuswertung.Model.CsvModel"/>s. 
-            Provides functions for importing and filtering data.
+            Error export class.
             </summary>
         </member>
-        <member name="M:ActigraphAuswertung.Mapper.Factory.parse(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:ActigraphAuswertung.RExport.ExportUnknown.checkConditions">
             <summary>
-            Imports a csv-file into <see cref="T:ActigraphAuswertung.Model.CsvModel"/> with the given
-            lower limits for the activitylevel calculator
+            Will always throw an exception.
             </summary>
-            <param name="file">The absolute filepath to the file to import</param>
-            <param name="minSedantary">Lower limit for sedantary activity</param>
-            <param name="minLight">Lower limit for light activity</param>
-            <param name="minModerate">Lower limit for moderate activity</param>
-            <param name="minHeavy">Lower limit for heavy activity</param>
-            <param name="minVeryheavy">Lower limit for very heavy activity</param>
-            <returns>The imported CsvModel</returns>
-        </member>
-        <member name="M:ActigraphAuswertung.Mapper.Factory.filter(ActigraphAuswertung.Model.CsvModel,ActigraphAuswertung.Filter.FilterCollection,ActigraphAuswertung.Filter.FilterMethod)">
-            <summary>
-            Factory function for filtering a <see cref="T:ActigraphAuswertung.Model.CsvModel"/>.
-            </summary>
-            <param name="data">The data to be filtered</param>
-            <param name="filterCollection">The filter collection to be applied</param>
-            <param name="method">The filter method</param>
-            <returns>The filtered data</returns>
-        </member>
-        <member name="T:ActigraphAuswertung.RExport.ExportHourlyAvg">
-            <summary>
-            Exports the hourly avarage activity.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportHourlyAvg.checkConditions">
-            <summary>
-            Additionally to the basic checks exactly one dataset must be selected.
-            </summary>
-            <exception cref="T:ActigraphAuswertung.RExport.RExportException">If not exactly one dataset is selected.</exception>
-        </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportHourlyAvg.prepareLaunchScript">
-            <summary>
-            Adds additional R Script information and scripts to the start script.
-            </summary>
-            <returns>Additional start script content</returns>
-        </member>
-        <member name="M:ActigraphAuswertung.RExport.ExportHourlyAvg.launchProcess">
-            <summary>
-            Copys additional involved files and launches the process.
-            </summary>
-        </member>
-        <member name="T:ActigraphAuswertung.CommandManager.Status">
-            <summary>
-            Possible status states of a command. 
-            </summary>
-        </member>
-        <member name="T:ActigraphAuswertung.RExport.RSettings">
-            <summary>
-            Container for all settings for the R export.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.RExport.RSettings.PathToR">
-            <summary>
-            Absolute path to the r binary (including the r binary itself).
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.RExport.RSettings.PathToTmp">
-            <summary>
-            Absolute path to the temporary directory.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.RExport.RSettings.PathToOutput">
-            <summary>
-            Absolute path to the output directory.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.RExport.RSettings.PathToApplication">
-            <summary>
-            Absolute path to the application directoy.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.RExport.RSettings.OutputWidth">
-            <summary>
-            Width of the output images.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.RExport.RSettings.OutputHeight">
-            <summary>
-            Height of the output images.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.RExport.RSettings.FilePrefix">
-            <summary>
-            Prefix for all files.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.RExport.RSettings.CopyInvoledFiles">
-            <summary>
-            Copy all involved files (csv files and r scripts) to the output directory.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.RExport.RSettings.CopyROutput">
-            <summary>
-            Copy the output of the r process to the output directory.
-            </summary>
-        </member>
-        <member name="T:ActigraphAuswertung.CommandManager.Commands.ExportCommand">
-            <summary>
-            Command for R-Export. For stand-alone use, use the <see cref="T:ActigraphAuswertung.RExport.Abstract"/>export class directly.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.CommandManager.Commands.ExportCommand.#ctor(ActigraphAuswertung.RExport.Abstract,ActigraphAuswertung.CommandManager.Commands.CommandFinishedDelegate)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="exportClass">The Export-Class</param>
-            <param name="callback">The callback for successful exports</param>
-        </member>
-        <member name="M:ActigraphAuswertung.CommandManager.Commands.ExportCommand.execute">
-            <summary>
-            Command execution entry point.
-            </summary>
-            <returns>The export-class used: <see cref="T:ActigraphAuswertung.RExport.Abstract"/></returns>
+            <exception cref="T:ActigraphAuswertung.RExport.RExportException">No script was selected.</exception>
         </member>
         <member name="T:ActigraphAuswertung.RExport.ExportScripts">
             <summary>
@@ -1120,145 +1710,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:ActigraphAuswertung.Model.CsvModel">
-            <summary>
-            Sensor independent represenation of a file. 
-            </summary>
-            <remarks>Do not insert index-based. This will screw up all calculations!</remarks>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.CsvModel.fileName">
-            File-name only without path
-        </member>
-        <member name="F:ActigraphAuswertung.Model.CsvModel.SupportedValues">
-            <summary>
-            Supported values of the file.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Model.CsvModel.#ctor">
-            <summary>
-            Constructor.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Model.CsvModel.isValid">
-            <summary>
-            Helper function to see if Start and End date are set correctly.
-            </summary>
-            <returns>True if model is valid</returns>
-        </member>
-        <member name="M:ActigraphAuswertung.Model.CsvModel.InsertItem(System.Int32,ActigraphAuswertung.Model.RowEntry)">
-            <summary>
-            Overwritten insert method of the model.
-            </summary>
-            <param name="index">The position where to add the item.</param>
-            <param name="item">The entry to add to the model</param>
-            <exception cref="T:System.Exception">If the model is already locked.</exception>
-        </member>
-        <member name="M:ActigraphAuswertung.Model.CsvModel.finishDay">
-            <summary>
-            Finish the current day the model is aware of.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Model.CsvModel.finishParsing">
-            <summary>
-            Finish the parsing of the model. Locks the model for further modifications 
-            and finishes the current day.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.CsvModel.AbsoluteFileName">
-            <summary>
-            Absolute path to the file including the filename.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.CsvModel.FileName">
-            <summary>
-            Filename of the file.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.CsvModel.EpochPeriod">
-            <summary>
-            Epoch period between two entrys.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.CsvModel.DayStartEndCalculator">
-            <summary>
-            The <see cref="P:ActigraphAuswertung.Model.CsvModel.DayStartEndCalculator"/> of the model.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.CsvModel.ActiveTimeCalculator">
-            <summary>
-            The <see cref="P:ActigraphAuswertung.Model.CsvModel.ActiveTimeCalculator"/> of the model.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.CsvModel.ActivityLevelCalculator">
-            <summary>
-            The <see cref="T:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator"/> of the model.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.CsvModel.StartDate">
-            <summary>
-            Date of the first entry of the model.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.CsvModel.EndDate">
-            <summary>
-            Date of the last entry of the model.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.CsvModel.CurrentDay">
-            <summary>
-            Date of the current day the model is working on.
-            </summary>
-        </member>
-        <member name="T:ActigraphAuswertung.CommandManager.Commands.CommandFinishedDelegate">
-            <summary>
-            Callback definition for successful commands.
-            </summary>
-            <param name="result">The result of the command, returned by <see cref="M:ActigraphAuswertung.CommandManager.Commands.AbstractCommand.execute"/></param>
-        </member>
-        <member name="T:ActigraphAuswertung.Mapper.LineParser.DateTime3dActivityStepsLineParser">
-            <summary>
-            Lineparser for lines that contain <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>,
-            <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityY"/>, 
-            <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityZ"/> and <see cref="F:ActigraphAuswertung.Model.SensorData.Steps"/> seperated by 
-            a semicolom.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.DateTime3dActivityStepsLineParser.#ctor">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.DateTime3dActivityStepsLineParser.parseLine(System.String)">
-            <summary>
-            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with  
-            <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>,
-            <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityY"/>, 
-            <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityZ"/> and <see cref="F:ActigraphAuswertung.Model.SensorData.Steps"/> set.
-            </summary>
-            <param name="line">The line to parse</param>
-            <returns>The parsed data</returns>
-            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
-        </member>
-        <member name="T:ActigraphAuswertung.Mapper.LineParser.ActivityUnknownLineParser">
-            <summary>
-            Lineparser for lines that contain <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>
-            and an unknown value seperated by a comma.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.ActivityUnknownLineParser.#ctor">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.ActivityUnknownLineParser.parseLine(System.String)">
-            <summary>
-            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with  
-            <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/> and <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/> set.
-            </summary>
-            <param name="line">The line to parse</param>
-            <returns>The parsed data</returns>
-            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
-        </member>
         <member name="T:ActigraphAuswertung.Mapper.LineParser.DateTimeActivity3dVMUStepsInclLineParser">
             <summary>
             Lineparser for lines that contain <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>,
@@ -1285,502 +1736,51 @@
             <returns>The parsed data</returns>
             <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
         </member>
-        <member name="T:ActigraphAuswertung.Mapper.LineParser.DateTimeActivity2dVMUStepsInclLineParser">
+        <member name="T:ActigraphAuswertung.CommandManager.Manager">
             <summary>
-            Lineparser for lines that contain <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>,
-            <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityY"/>, 
-            <see cref="F:ActigraphAuswertung.Model.SensorData.Inclinometer"/> 
-            and <see cref="F:ActigraphAuswertung.Model.SensorData.Steps"/> seperated by 
-            a comma.
+            Class for managing commands and executing them in the background.
             </summary>
         </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.DateTimeActivity2dVMUStepsInclLineParser.parseLine(System.String)">
+        <member name="M:ActigraphAuswertung.CommandManager.Manager.#ctor(System.Int32)">
             <summary>
-            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with  
-            <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>,
-            <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityY"/>, 
-            <see cref="F:ActigraphAuswertung.Model.SensorData.Inclinometer"/> 
-            and <see cref="F:ActigraphAuswertung.Model.SensorData.Steps"/> set.
+            Constructor.
             </summary>
-            <param name="line">The line to parse</param>
-            <returns>The parsed data</returns>
-            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
+            <param name="maxThreadsRunning">Maximum number of commands running at the same time.</param>
         </member>
-        <member name="T:ActigraphAuswertung.Mapper.LineParser.Activity3dVMULineParser">
+        <member name="M:ActigraphAuswertung.CommandManager.Manager.#ctor">
             <summary>
-            Lineparser for lines that contain <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>, 
-            <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityY"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityZ"/> 
-            <see cref="F:ActigraphAuswertung.Model.SensorData.Steps"/> and <see cref="F:ActigraphAuswertung.Model.SensorData.Vmu"/> seperated by 
-            a comma.
+            Constructor. Sets the number of maximum running commands to the processor count.
             </summary>
         </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.Activity3dVMULineParser.#ctor">
+        <member name="M:ActigraphAuswertung.CommandManager.Manager.addCommand(ActigraphAuswertung.CommandManager.Commands.AbstractCommand)">
             <summary>
-            Constructor
+            Adds a command to the manager. 
             </summary>
+            <param name="command">The command to be executed.</param>
         </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.Activity3dVMULineParser.parseLine(System.String)">
+        <member name="M:ActigraphAuswertung.CommandManager.Manager.nextCommand">
             <summary>
-            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with  
-            <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>, 
-            <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityY"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityZ"/> 
-            <see cref="F:ActigraphAuswertung.Model.SensorData.Steps"/> and <see cref="F:ActigraphAuswertung.Model.SensorData.Vmu"/> set.
+            Starts the next command (if any).
             </summary>
-            <param name="line">The line to parse</param>
-            <returns>The parsed data</returns>
-            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
         </member>
-        <member name="T:ActigraphAuswertung.Mapper.LineParser.Activity2dVMULineParser">
+        <member name="M:ActigraphAuswertung.CommandManager.Manager.onWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
             <summary>
-            Lineparser for lines that contain <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>, 
-            <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityY"/>
-            and <see cref="F:ActigraphAuswertung.Model.SensorData.Vmu"/> seperated by 
-            a comma.
+            Called by a backgorundworker when the command is completed or an exception was caught.
+            Sets the command's status and message according to the result and calls the command's 
+            callback if the execution was successful.
+            Starts the next command (if any).
             </summary>
+            <param name="sender">The finished backgroundworker.</param>
+            <param name="args"></param>
         </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.Activity2dVMULineParser.parseLine(System.String)">
+        <member name="P:ActigraphAuswertung.CommandManager.Manager.Commands">
             <summary>
-            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with  
-            <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.ActivityY"/>, 
-            and <see cref="F:ActigraphAuswertung.Model.SensorData.Vmu"/> set.
+            All commands the command-manager is aware of.
             </summary>
-            <param name="line">The line to parse</param>
-            <returns>The parsed data</returns>
-            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
         </member>
-        <member name="T:ActigraphAuswertung.Mapper.LineParser.DateTimeActivityLineParser">
+        <member name="P:ActigraphAuswertung.CommandManager.Manager.MaxThreadsRunning">
             <summary>
-            Lineparser for lines that contain <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/> 
-            and <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/> seperated by 
-            a semicolom.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.DateTimeActivityLineParser.#ctor">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.DateTimeActivityLineParser.parseLine(System.String)">
-            <summary>
-            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with  
-            <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/> and <see cref="F:ActigraphAuswertung.Model.SensorData.Activity"/> set.
-            </summary>
-            <param name="line">The line to parse</param>
-            <returns>The parsed data</returns>
-            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
-        </member>
-        <member name="T:ActigraphAuswertung.Mapper.LineParser.RT3LineParser">
-            <summary>
-            Lineparser for lines that contain <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>, 
-            <see cref="F:ActigraphAuswertung.Model.SensorData.CaloriesTotal"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.CaloriesActivity"/> 
-            and <see cref="F:ActigraphAuswertung.Model.SensorData.Vmu"/> and an entry-id and start and stop-flag (ignored)
-            seperated by a comma.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.RT3LineParser.#ctor">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.RT3LineParser.parseLine(System.String)">
-            <summary>
-            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with  
-            <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>, 
-            <see cref="F:ActigraphAuswertung.Model.SensorData.CaloriesTotal"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.CaloriesActivity"/> 
-            and <see cref="F:ActigraphAuswertung.Model.SensorData.Vmu"/> set.
-            </summary>
-            <param name="line">The line to parse</param>
-            <returns>The parsed data</returns>
-            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
-        </member>
-        <member name="T:ActigraphAuswertung.Mapper.LineParser.RT3SemicolomSepLineParser">
-            <summary>
-            Lineparser for lines that contain <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>, 
-            <see cref="F:ActigraphAuswertung.Model.SensorData.CaloriesTotal"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.CaloriesActivity"/> 
-            and <see cref="F:ActigraphAuswertung.Model.SensorData.Vmu"/> and an entry-id and start and stop-flag (ignored)
-            seperated by a semicolom.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.RT3SemicolomSepLineParser.#ctor">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.RT3SemicolomSepLineParser.parseLine(System.String)">
-            <summary>
-            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with  
-            <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/>, 
-            <see cref="F:ActigraphAuswertung.Model.SensorData.CaloriesTotal"/>, <see cref="F:ActigraphAuswertung.Model.SensorData.CaloriesActivity"/>
-            and <see cref="F:ActigraphAuswertung.Model.SensorData.Vmu"/> set.
-            </summary>
-            <param name="line">The line to parse</param>
-            <returns>The parsed data</returns>
-            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
-        </member>
-        <member name="T:ActigraphAuswertung.Mapper.LineParser.RExportedLineParser">
-            <summary>
-            Lineparser that parsed lines with <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/> and one unknown 
-            value which is determined from the header information. 
-            Parses lines previously exported for R-Export.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.RExportedLineParser.#ctor">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.RExportedLineParser.test(System.String)">
-            <summary>
-            Tests for the lineparser format. Additionally it looks for the header row and 
-            trys to determine the third value seperated by semicolom.
-            </summary>
-            <param name="line">The line to parse</param>
-            <returns>True is successful</returns>
-            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If no linematcher is set</exception>
-        </member>
-        <member name="M:ActigraphAuswertung.Mapper.LineParser.RExportedLineParser.parseLine(System.String)">
-            <summary>
-            Parses a line and returns the <see cref="T:ActigraphAuswertung.Model.RowEntry"/> with  
-            <see cref="F:ActigraphAuswertung.Model.SensorData.Date"/> and one variable value determined by the header.
-            </summary>
-            <param name="line">The line to parse</param>
-            <returns>The parsed data</returns>
-            <exception cref="T:ActigraphAuswertung.Mapper.LineParser.LineparserException">If the line has an invalid format for this parser.</exception>
-        </member>
-        <member name="T:ActigraphAuswertung.Model.ActivityLevels">
-            <summary>
-            Possible activity levels.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.ActivityLevels.SEDENTARY">
-            <summary>
-            Sedantary activity level.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.ActivityLevels.LIGHT">
-            <summary>
-            Light activity level.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.ActivityLevels.MODERATE">
-            <summary>
-            Moderate activity level.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.ActivityLevels.VIGOROUS">
-            <summary>
-            Heavy activity level.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.ActivityLevels.VERYVIGOROUS">
-            <summary>
-            Very heavy activity level.
-            </summary>
-        </member>
-        <member name="T:ActigraphAuswertung.Model.Calculators.CalculatorInterface">
-            <summary>
-            Interface that all calculators shade
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Model.Calculators.CalculatorInterface.Add(ActigraphAuswertung.Model.RowEntry)">
-            <summary>
-            Called by the model when a new entry is added.
-            </summary>
-            <param name="entry">The entry to be added</param>
-        </member>
-        <member name="M:ActigraphAuswertung.Model.Calculators.CalculatorInterface.NewDay">
-            <summary>
-            Called by the model on a new day.
-            </summary>
-        </member>
-        <member name="T:ActigraphAuswertung.Model.Calculators.ActiveTimeCalculator">
-            <summary>
-            Calculator to calculate the active time of the model.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Model.Calculators.ActiveTimeCalculator.#ctor(ActigraphAuswertung.Model.CsvModel)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="model">The model</param>
-        </member>
-        <member name="M:ActigraphAuswertung.Model.Calculators.ActiveTimeCalculator.Add(ActigraphAuswertung.Model.RowEntry)">
-            <summary>
-            Called by the model on adding a new entry. Unused.
-            </summary>
-            <param name="entry">The entry to be added.</param>
-        </member>
-        <member name="M:ActigraphAuswertung.Model.Calculators.ActiveTimeCalculator.NewDay">
-            <summary>
-            Called by the model on a new day. Unused.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.Calculators.ActiveTimeCalculator.TotalActiveTime">
-            <summary>
-            The total time of the sensor.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.Calculators.ActiveTimeCalculator.ActiveTime">
-            <summary>
-            The total active time of the sensor
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.Calculators.ActiveTimeCalculator.AvgStartTime">
-            <summary>
-            The avarage start time of activity
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.Calculators.ActiveTimeCalculator.AvgEndTime">
-            <summary>
-            The avarage end time of activity
-            </summary>
-        </member>
-        <member name="T:ActigraphAuswertung.Model.Calculators.DayStartEndCalculator">
-            <summary>
-            Calculator for calculating the daily start and end times of activity.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Model.Calculators.DayStartEndCalculator.#ctor(ActigraphAuswertung.Model.CsvModel)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="model">The model for calculations</param>
-        </member>
-        <member name="M:ActigraphAuswertung.Model.Calculators.DayStartEndCalculator.Add(ActigraphAuswertung.Model.RowEntry)">
-            <summary>
-            Called by the model on a new entry.
-            </summary>
-            <param name="entry">The entry to be added</param>
-        </member>
-        <member name="M:ActigraphAuswertung.Model.Calculators.DayStartEndCalculator.NewDay">
-            <summary>
-            Called by the model on a new day.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.Calculators.DayStartEndCalculator.DayStartEndList">
-            <summary>
-            List of all days and their start and end times of activity.
-            </summary>
-        </member>
-        <member name="T:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator">
-            <summary>
-            Calculator to calculate the activity levels of a model.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.Steps">
-            <summary>
-            The number of accumulated rows for each calculation step.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.MinSedantary">
-            <summary>
-            The lower limit for sendantary activity level.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.MinLight">
-            <summary>
-            The lower limit for light activity level.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.MinModerate">
-            <summary>
-            The lower limit for moderate activity level.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.MinHeavy">
-            <summary>
-            The lower limit for heavy activity level.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.MinVeryheavy">
-            <summary>
-            The lower limit for very heavy activity level.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.#ctor(ActigraphAuswertung.Model.CsvModel)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="model">The model used for calculations</param>
-        </member>
-        <member name="M:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.Add(ActigraphAuswertung.Model.RowEntry)">
-            <summary>
-            Called by the model on a new entry.
-            </summary>
-            <param name="entry">The new entry</param>
-        </member>
-        <member name="M:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.NewDay">
-            <summary>
-            Called by the model on a new day. Unused.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.getActivityLevel(ActigraphAuswertung.Model.ActivityLevels)">
-            <summary>
-            Gets the activity level information for the given activity level.
-            </summary>
-            <param name="level">The activity level to get the information for.</param>
-            <returns>The activity level information</returns>
-            <exception cref="T:System.Exception">If the given activity level is not supported.</exception>
-        </member>
-        <member name="T:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.ActivityLevel">
-            <summary>
-            Structure to save the absolute count and percent values of each activity level.
-            </summary>
-            <remarks>Must be class to change values reference based</remarks>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.ActivityLevel.Level">
-            <summary>
-            The Activity level
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.ActivityLevel.Count">
-            <summary>
-            The absolute count of intervals for this activity level.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator.ActivityLevel.Percent">
-            <summary>
-            The percent value for this activity level.
-            </summary>
-        </member>
-        <member name="T:ActigraphAuswertung.Model.SensorData">
-            <summary>
-            Enum for all possible sensor datas and their plaintext description.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.SensorData.Date">
-            <summary>
-            Date and time of the entry.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.SensorData.Activity">
-            <summary>
-            Activity (X) of the entry.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.SensorData.ActivityY">
-            <summary>
-            Y-Activity of the entry.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.SensorData.ActivityZ">
-            <summary>
-            Z-Activity of the entry.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.SensorData.Vmu">
-            <summary>
-            Vmu of the entry.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.SensorData.Steps">
-            <summary>
-            Step-Counter of the entry.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.SensorData.Inclinometer">
-            <summary>
-            Inclinometer of the entry.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.SensorData.CaloriesTotal">
-            <summary>
-            Total calories of the entry.
-            </summary>
-        </member>
-        <member name="F:ActigraphAuswertung.Model.SensorData.CaloriesActivity">
-            <summary>
-            Activity calories of the entry.
-            </summary>
-        </member>
-        <member name="T:ActigraphAuswertung.Model.RowEntry">
-            <summary>
-            Represents one row entry of the model.
-            </summary>
-        </member>
-        <member name="M:ActigraphAuswertung.Model.RowEntry.setValue(ActigraphAuswertung.Model.SensorData,System.String)">
-            <summary>
-            Sets the <paramref name="entry"/> of the entry to <paramref name="value"/>.
-            </summary>
-            <param name="entry">The key to set</param>
-            <param name="value">The value to set the key to</param>
-            <exception cref="T:System.Exception">If the entry does not support the key.</exception>
-        </member>
-        <member name="M:ActigraphAuswertung.Model.RowEntry.getValue(ActigraphAuswertung.Model.SensorData)">
-            <summary>
-            Gets the value of <paramref name="entry"/> or null if not found.
-            </summary>
-            <param name="entry">The key to search for.</param>
-            <returns>The value of <paramref name="entry"/></returns>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.RowEntry.Date">
-            <summary>
-            Date and time of the entry.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.RowEntry.ActivityX">
-            <summary>
-            The activity(X) of the entry.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.RowEntry.ActivityY">
-            <summary>
-            The Y-Activity of the entry.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.RowEntry.ActivityZ">
-            <summary>
-            The Z-Activity of the entry.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.RowEntry.Vmu">
-            <summary>
-            The Vmu of the entry.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.RowEntry.Steps">
-            <summary>
-            The Steps of the entry.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.RowEntry.Inclinometer">
-            <summary>
-            The inclinometer of the value.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.RowEntry.CaloriesTotal">
-            <summary>
-            The total calories of the entry.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.RowEntry.CaloriesActivity">
-            <summary>
-            The activity calories of the entry.
-            </summary>
-        </member>
-        <member name="T:ActigraphAuswertung.Model.SensorStartEndWearing">
-            <summary>
-            Helper class to represent the activity start and end times of a day.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.SensorStartEndWearing.StartTime">
-            <summary>
-            Activity starttime of the day.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.SensorStartEndWearing.EndTime">
-            <summary>
-            Activity endtime of the day.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.SensorStartEndWearing.Date">
-            <summary>
-            Date of the day.
-            </summary>
-        </member>
-        <member name="P:ActigraphAuswertung.Model.SensorStartEndWearing.ActiveTime">
-            <summary>
-            Activity time of the day.
+            Number of commands that may run at the same time.
             </summary>
         </member>
     </members>
