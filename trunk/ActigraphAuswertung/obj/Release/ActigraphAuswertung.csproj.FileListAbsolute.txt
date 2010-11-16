@@ -14,3 +14,14 @@ C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswer
 C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\obj\Release\ActigraphAuswertung.application
 C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\obj\Release\ActigraphAuswertung.exe
 C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\obj\Release\ActigraphAuswertung.pdb
+F:\Visual\IDP\ActigraphAuswertung\obj\Release\ResolveAssemblyReference.cache
+F:\Visual\IDP\ActigraphAuswertung\obj\Release\ActigraphAuswertung.SelectDataCells.resources
+F:\Visual\IDP\ActigraphAuswertung\obj\Release\ActigraphAuswertung.ShowDirectoryContent.resources
+F:\Visual\IDP\ActigraphAuswertung\obj\Release\ActigraphAuswertung.ShowParsedFileContent.resources
+F:\Visual\IDP\ActigraphAuswertung\obj\Release\ActigraphAuswertung.Form1.resources
+F:\Visual\IDP\ActigraphAuswertung\obj\Release\ActigraphAuswertung.Properties.Resources.resources
+F:\Visual\IDP\ActigraphAuswertung\obj\Release\ActigraphAuswertung.ShowParsedFileDailyStartEndTimes.resources
+F:\Visual\IDP\ActigraphAuswertung\obj\Release\GenerateResource-ResGen.read.1.tlog
+F:\Visual\IDP\ActigraphAuswertung\obj\Release\GenerateResource-ResGen.write.1.tlog
+F:\Visual\IDP\ActigraphAuswertung\obj\Release\ActigraphAuswertung.exe
+F:\Visual\IDP\ActigraphAuswertung\obj\Release\ActigraphAuswertung.pdb

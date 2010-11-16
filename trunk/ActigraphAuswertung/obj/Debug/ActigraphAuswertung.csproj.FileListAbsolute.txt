@@ -15,3 +15,21 @@ C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswer
 C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.exe
 C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.pdb
 C:\Users\Fritz\Documents\Visual Studio 2008\Projects\ActiveGraph\ActigraphAuswertung\2010-04-01 - Verbesserung\motion-sensor-analysis-package\ActigraphAuswertung\bin\Debug\ActigraphAuswertung.XML
+F:\Visual\IDP\ActigraphAuswertung\obj\Debug\ResolveAssemblyReference.cache
+F:\Visual\IDP\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.SelectDataCells.resources
+F:\Visual\IDP\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.ShowDirectoryContent.resources
+F:\Visual\IDP\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.ShowParsedFileContent.resources
+F:\Visual\IDP\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.Form1.resources
+F:\Visual\IDP\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.Properties.Resources.resources
+F:\Visual\IDP\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.ShowParsedFileDailyStartEndTimes.resources
+F:\Visual\IDP\ActigraphAuswertung\obj\Debug\GenerateResource-ResGen.read.1.tlog
+F:\Visual\IDP\ActigraphAuswertung\obj\Debug\GenerateResource-ResGen.write.1.tlog
+F:\Visual\IDP\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.exe
+F:\Visual\IDP\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.pdb
+F:\Visual\IDP\ActigraphAuswertung\bin\Debug\ActigraphAuswertung.XML
+F:\Visual\IDP\ActigraphAuswertung\bin\Debug\ActigraphAuswertung.exe.manifest
+F:\Visual\IDP\ActigraphAuswertung\bin\Debug\ActigraphAuswertung.application
+F:\Visual\IDP\ActigraphAuswertung\bin\Debug\ActigraphAuswertung.exe
+F:\Visual\IDP\ActigraphAuswertung\bin\Debug\ActigraphAuswertung.pdb
+F:\Visual\IDP\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.exe.manifest
+F:\Visual\IDP\ActigraphAuswertung\obj\Debug\ActigraphAuswertung.application
