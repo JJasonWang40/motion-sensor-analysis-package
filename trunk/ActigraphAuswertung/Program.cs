@@ -24,3 +24,4 @@ namespace ActigraphAuswertung
         }
     }
 }
+//Test, ob ein CheckIn funktioniert
