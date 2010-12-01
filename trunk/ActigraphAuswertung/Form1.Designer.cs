@@ -32,9 +32,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.quickoptions = new System.Windows.Forms.TabControl();
@@ -64,26 +64,36 @@
             this.wearingendtimelabel = new System.Windows.Forms.Label();
             this.wearingstartimelabel = new System.Windows.Forms.Label();
             this.activitylevel_groupbox = new System.Windows.Forms.GroupBox();
-            this.activitylevel_sedentary_values = new System.Windows.Forms.Label();
-            this.activitylevel_light_values = new System.Windows.Forms.Label();
-            this.activitylevel_moderate_values = new System.Windows.Forms.Label();
-            this.activitylevel_vigorous_values = new System.Windows.Forms.Label();
-            this.activitylevel_veryvigorous_values = new System.Windows.Forms.Label();
-            this.activitylevel_vigorous_time = new System.Windows.Forms.Label();
-            this.activitylevel_light_time = new System.Windows.Forms.Label();
-            this.activitylevel_sedentary_time = new System.Windows.Forms.Label();
-            this.activitylevel_veryvigorous_label = new System.Windows.Forms.Label();
-            this.activitylevel_moderate_time = new System.Windows.Forms.Label();
-            this.activitylevel_veryvigorous_time = new System.Windows.Forms.Label();
-            this.activitylevel_veryvigorous_perc = new System.Windows.Forms.Label();
-            this.activitylevel_vigorous_label = new System.Windows.Forms.Label();
-            this.activitylevel_vigorous_perc = new System.Windows.Forms.Label();
-            this.activitylevel_moderate_perc = new System.Windows.Forms.Label();
-            this.activitylevel_moderate_label = new System.Windows.Forms.Label();
-            this.activitylevel_light_perc = new System.Windows.Forms.Label();
-            this.activitylevel_sedentary_perc = new System.Windows.Forms.Label();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.activitylevel_sedentary_label = new System.Windows.Forms.Label();
             this.activitylevel_light_label = new System.Windows.Forms.Label();
+            this.activitylevel_moderate_label = new System.Windows.Forms.Label();
+            this.activitylevel_vigorous_label = new System.Windows.Forms.Label();
+            this.activitylevel_veryvigorous_label = new System.Windows.Forms.Label();
+            this.activitylevels_collabel_totaltime = new System.Windows.Forms.Label();
+            this.activitylevel_veryvigorous_time = new System.Windows.Forms.Label();
+            this.activitylevel_vigorous_time = new System.Windows.Forms.Label();
+            this.activitylevel_moderate_time = new System.Windows.Forms.Label();
+            this.activitylevel_light_time = new System.Windows.Forms.Label();
+            this.activitylevel_sedentary_time = new System.Windows.Forms.Label();
+            this.activitylevels_collabel_perc = new System.Windows.Forms.Label();
+            this.activitylevel_veryvigorous_perc = new System.Windows.Forms.Label();
+            this.activitylevel_vigorous_perc = new System.Windows.Forms.Label();
+            this.activitylevel_moderate_perc = new System.Windows.Forms.Label();
+            this.activitylevel_light_perc = new System.Windows.Forms.Label();
+            this.activitylevel_sedentary_perc = new System.Windows.Forms.Label();
+            this.activitylevels_collabel_count = new System.Windows.Forms.Label();
+            this.activitylevel_veryvigorous_values = new System.Windows.Forms.Label();
+            this.activitylevel_vigorous_values = new System.Windows.Forms.Label();
+            this.activitylevel_moderate_values = new System.Windows.Forms.Label();
+            this.activitylevel_light_values = new System.Windows.Forms.Label();
+            this.activitylevel_sedentary_values = new System.Windows.Forms.Label();
+            this.activitylevel_veryvigorous_limit = new System.Windows.Forms.Label();
+            this.activitylevel_vigorous_limit = new System.Windows.Forms.Label();
+            this.activitylevel_moderate_limit = new System.Windows.Forms.Label();
+            this.activitylevel_light_limit = new System.Windows.Forms.Label();
+            this.activitylevel_sedentary_limit = new System.Windows.Forms.Label();
+            this.activitylevels_collabel_limits = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.filter_apply = new System.Windows.Forms.Button();
             this.filter_days_none = new System.Windows.Forms.Button();
@@ -147,6 +157,7 @@
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.activitylevel_groupbox.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.filter_method_panel.SuspendLayout();
             this.quickoptions_export_tab.SuspendLayout();
@@ -234,7 +245,7 @@
             this.groupBox3.Size = new System.Drawing.Size(242, 192);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Activity levels";
+            this.groupBox3.Text = "Activity levels (lower limit)";
             // 
             // import_activity_sedantary
             // 
@@ -450,204 +461,69 @@
             // 
             // activitylevel_groupbox
             // 
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_sedentary_values);
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_light_values);
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_moderate_values);
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_vigorous_values);
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_veryvigorous_values);
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_vigorous_time);
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_light_time);
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_sedentary_time);
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_veryvigorous_label);
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_moderate_time);
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_veryvigorous_time);
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_veryvigorous_perc);
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_vigorous_label);
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_vigorous_perc);
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_moderate_perc);
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_moderate_label);
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_light_perc);
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_sedentary_perc);
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_sedentary_label);
-            this.activitylevel_groupbox.Controls.Add(this.activitylevel_light_label);
+            this.activitylevel_groupbox.Controls.Add(this.tableLayoutPanel2);
             this.activitylevel_groupbox.Location = new System.Drawing.Point(220, 11);
             this.activitylevel_groupbox.Name = "activitylevel_groupbox";
-            this.activitylevel_groupbox.Size = new System.Drawing.Size(317, 187);
+            this.activitylevel_groupbox.Size = new System.Drawing.Size(444, 187);
             this.activitylevel_groupbox.TabIndex = 55;
             this.activitylevel_groupbox.TabStop = false;
             this.activitylevel_groupbox.Text = "Activity levels";
             // 
-            // activitylevel_sedentary_values
+            // tableLayoutPanel2
             // 
-            this.activitylevel_sedentary_values.AutoSize = true;
-            this.activitylevel_sedentary_values.Location = new System.Drawing.Point(79, 126);
-            this.activitylevel_sedentary_values.Name = "activitylevel_sedentary_values";
-            this.activitylevel_sedentary_values.Size = new System.Drawing.Size(30, 13);
-            this.activitylevel_sedentary_values.TabIndex = 59;
-            this.activitylevel_sedentary_values.Text = "0 / 0";
-            // 
-            // activitylevel_light_values
-            // 
-            this.activitylevel_light_values.AutoSize = true;
-            this.activitylevel_light_values.Location = new System.Drawing.Point(79, 101);
-            this.activitylevel_light_values.Name = "activitylevel_light_values";
-            this.activitylevel_light_values.Size = new System.Drawing.Size(30, 13);
-            this.activitylevel_light_values.TabIndex = 58;
-            this.activitylevel_light_values.Text = "0 / 0";
-            // 
-            // activitylevel_moderate_values
-            // 
-            this.activitylevel_moderate_values.AutoSize = true;
-            this.activitylevel_moderate_values.Location = new System.Drawing.Point(79, 76);
-            this.activitylevel_moderate_values.Name = "activitylevel_moderate_values";
-            this.activitylevel_moderate_values.Size = new System.Drawing.Size(30, 13);
-            this.activitylevel_moderate_values.TabIndex = 57;
-            this.activitylevel_moderate_values.Text = "0 / 0";
-            // 
-            // activitylevel_vigorous_values
-            // 
-            this.activitylevel_vigorous_values.AutoSize = true;
-            this.activitylevel_vigorous_values.Location = new System.Drawing.Point(79, 50);
-            this.activitylevel_vigorous_values.Name = "activitylevel_vigorous_values";
-            this.activitylevel_vigorous_values.Size = new System.Drawing.Size(30, 13);
-            this.activitylevel_vigorous_values.TabIndex = 56;
-            this.activitylevel_vigorous_values.Text = "0 / 0";
-            // 
-            // activitylevel_veryvigorous_values
-            // 
-            this.activitylevel_veryvigorous_values.AutoSize = true;
-            this.activitylevel_veryvigorous_values.Location = new System.Drawing.Point(79, 25);
-            this.activitylevel_veryvigorous_values.Name = "activitylevel_veryvigorous_values";
-            this.activitylevel_veryvigorous_values.Size = new System.Drawing.Size(30, 13);
-            this.activitylevel_veryvigorous_values.TabIndex = 55;
-            this.activitylevel_veryvigorous_values.Text = "0 / 0";
-            // 
-            // activitylevel_vigorous_time
-            // 
-            this.activitylevel_vigorous_time.AutoSize = true;
-            this.activitylevel_vigorous_time.Location = new System.Drawing.Point(229, 51);
-            this.activitylevel_vigorous_time.Name = "activitylevel_vigorous_time";
-            this.activitylevel_vigorous_time.Size = new System.Drawing.Size(34, 13);
-            this.activitylevel_vigorous_time.TabIndex = 39;
-            this.activitylevel_vigorous_time.Text = "00:00";
-            // 
-            // activitylevel_light_time
-            // 
-            this.activitylevel_light_time.AutoSize = true;
-            this.activitylevel_light_time.Location = new System.Drawing.Point(229, 101);
-            this.activitylevel_light_time.Name = "activitylevel_light_time";
-            this.activitylevel_light_time.Size = new System.Drawing.Size(34, 13);
-            this.activitylevel_light_time.TabIndex = 36;
-            this.activitylevel_light_time.Text = "00:00";
-            // 
-            // activitylevel_sedentary_time
-            // 
-            this.activitylevel_sedentary_time.AutoSize = true;
-            this.activitylevel_sedentary_time.Location = new System.Drawing.Point(229, 126);
-            this.activitylevel_sedentary_time.Name = "activitylevel_sedentary_time";
-            this.activitylevel_sedentary_time.Size = new System.Drawing.Size(34, 13);
-            this.activitylevel_sedentary_time.TabIndex = 37;
-            this.activitylevel_sedentary_time.Text = "00:00";
-            // 
-            // activitylevel_veryvigorous_label
-            // 
-            this.activitylevel_veryvigorous_label.AutoSize = true;
-            this.activitylevel_veryvigorous_label.Location = new System.Drawing.Point(6, 25);
-            this.activitylevel_veryvigorous_label.Name = "activitylevel_veryvigorous_label";
-            this.activitylevel_veryvigorous_label.Size = new System.Drawing.Size(71, 13);
-            this.activitylevel_veryvigorous_label.TabIndex = 54;
-            this.activitylevel_veryvigorous_label.Text = "Very vigorous";
-            // 
-            // activitylevel_moderate_time
-            // 
-            this.activitylevel_moderate_time.AutoSize = true;
-            this.activitylevel_moderate_time.Location = new System.Drawing.Point(229, 76);
-            this.activitylevel_moderate_time.Name = "activitylevel_moderate_time";
-            this.activitylevel_moderate_time.Size = new System.Drawing.Size(34, 13);
-            this.activitylevel_moderate_time.TabIndex = 38;
-            this.activitylevel_moderate_time.Text = "00:00";
-            // 
-            // activitylevel_veryvigorous_time
-            // 
-            this.activitylevel_veryvigorous_time.AutoSize = true;
-            this.activitylevel_veryvigorous_time.Location = new System.Drawing.Point(229, 26);
-            this.activitylevel_veryvigorous_time.Name = "activitylevel_veryvigorous_time";
-            this.activitylevel_veryvigorous_time.Size = new System.Drawing.Size(34, 13);
-            this.activitylevel_veryvigorous_time.TabIndex = 40;
-            this.activitylevel_veryvigorous_time.Text = "00:00";
-            // 
-            // activitylevel_veryvigorous_perc
-            // 
-            this.activitylevel_veryvigorous_perc.AutoSize = true;
-            this.activitylevel_veryvigorous_perc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.activitylevel_veryvigorous_perc.Location = new System.Drawing.Point(175, 26);
-            this.activitylevel_veryvigorous_perc.Name = "activitylevel_veryvigorous_perc";
-            this.activitylevel_veryvigorous_perc.Size = new System.Drawing.Size(23, 13);
-            this.activitylevel_veryvigorous_perc.TabIndex = 42;
-            this.activitylevel_veryvigorous_perc.Text = "0%";
-            // 
-            // activitylevel_vigorous_label
-            // 
-            this.activitylevel_vigorous_label.AutoSize = true;
-            this.activitylevel_vigorous_label.Location = new System.Drawing.Point(6, 50);
-            this.activitylevel_vigorous_label.Name = "activitylevel_vigorous_label";
-            this.activitylevel_vigorous_label.Size = new System.Drawing.Size(48, 13);
-            this.activitylevel_vigorous_label.TabIndex = 53;
-            this.activitylevel_vigorous_label.Text = "Vigorous";
-            // 
-            // activitylevel_vigorous_perc
-            // 
-            this.activitylevel_vigorous_perc.AutoSize = true;
-            this.activitylevel_vigorous_perc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.activitylevel_vigorous_perc.Location = new System.Drawing.Point(175, 51);
-            this.activitylevel_vigorous_perc.Name = "activitylevel_vigorous_perc";
-            this.activitylevel_vigorous_perc.Size = new System.Drawing.Size(23, 13);
-            this.activitylevel_vigorous_perc.TabIndex = 43;
-            this.activitylevel_vigorous_perc.Text = "0%";
-            // 
-            // activitylevel_moderate_perc
-            // 
-            this.activitylevel_moderate_perc.AutoSize = true;
-            this.activitylevel_moderate_perc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.activitylevel_moderate_perc.Location = new System.Drawing.Point(175, 76);
-            this.activitylevel_moderate_perc.Name = "activitylevel_moderate_perc";
-            this.activitylevel_moderate_perc.Size = new System.Drawing.Size(23, 13);
-            this.activitylevel_moderate_perc.TabIndex = 44;
-            this.activitylevel_moderate_perc.Text = "0%";
-            // 
-            // activitylevel_moderate_label
-            // 
-            this.activitylevel_moderate_label.AutoSize = true;
-            this.activitylevel_moderate_label.Location = new System.Drawing.Point(6, 75);
-            this.activitylevel_moderate_label.Name = "activitylevel_moderate_label";
-            this.activitylevel_moderate_label.Size = new System.Drawing.Size(52, 13);
-            this.activitylevel_moderate_label.TabIndex = 52;
-            this.activitylevel_moderate_label.Text = "Moderate";
-            // 
-            // activitylevel_light_perc
-            // 
-            this.activitylevel_light_perc.AutoSize = true;
-            this.activitylevel_light_perc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.activitylevel_light_perc.Location = new System.Drawing.Point(175, 101);
-            this.activitylevel_light_perc.Name = "activitylevel_light_perc";
-            this.activitylevel_light_perc.Size = new System.Drawing.Size(23, 13);
-            this.activitylevel_light_perc.TabIndex = 45;
-            this.activitylevel_light_perc.Text = "0%";
-            // 
-            // activitylevel_sedentary_perc
-            // 
-            this.activitylevel_sedentary_perc.AutoSize = true;
-            this.activitylevel_sedentary_perc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.activitylevel_sedentary_perc.Location = new System.Drawing.Point(175, 126);
-            this.activitylevel_sedentary_perc.Name = "activitylevel_sedentary_perc";
-            this.activitylevel_sedentary_perc.Size = new System.Drawing.Size(23, 13);
-            this.activitylevel_sedentary_perc.TabIndex = 46;
-            this.activitylevel_sedentary_perc.Text = "0%";
+            this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel2.ColumnCount = 5;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_sedentary_label, 0, 5);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_light_label, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_moderate_label, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_vigorous_label, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_veryvigorous_label, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevels_collabel_totaltime, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_veryvigorous_time, 4, 1);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_vigorous_time, 4, 2);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_moderate_time, 4, 3);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_light_time, 4, 4);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_sedentary_time, 4, 5);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevels_collabel_perc, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_veryvigorous_perc, 3, 1);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_vigorous_perc, 3, 2);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_moderate_perc, 3, 3);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_light_perc, 3, 4);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_sedentary_perc, 3, 5);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevels_collabel_count, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_veryvigorous_values, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_vigorous_values, 2, 2);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_moderate_values, 2, 3);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_light_values, 2, 4);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_sedentary_values, 2, 5);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_veryvigorous_limit, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_vigorous_limit, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_moderate_limit, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_light_limit, 1, 4);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevel_sedentary_limit, 1, 5);
+            this.tableLayoutPanel2.Controls.Add(this.activitylevels_collabel_limits, 1, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 23);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 6;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(432, 158);
+            this.tableLayoutPanel2.TabIndex = 60;
             // 
             // activitylevel_sedentary_label
             // 
+            this.activitylevel_sedentary_label.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.activitylevel_sedentary_label.AutoSize = true;
-            this.activitylevel_sedentary_label.Location = new System.Drawing.Point(6, 125);
+            this.activitylevel_sedentary_label.Location = new System.Drawing.Point(4, 139);
             this.activitylevel_sedentary_label.Name = "activitylevel_sedentary_label";
             this.activitylevel_sedentary_label.Size = new System.Drawing.Size(55, 13);
             this.activitylevel_sedentary_label.TabIndex = 51;
@@ -655,12 +531,293 @@
             // 
             // activitylevel_light_label
             // 
+            this.activitylevel_light_label.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.activitylevel_light_label.AutoSize = true;
-            this.activitylevel_light_label.Location = new System.Drawing.Point(6, 100);
+            this.activitylevel_light_label.Location = new System.Drawing.Point(4, 115);
             this.activitylevel_light_label.Name = "activitylevel_light_label";
             this.activitylevel_light_label.Size = new System.Drawing.Size(30, 13);
             this.activitylevel_light_label.TabIndex = 50;
             this.activitylevel_light_label.Text = "Light";
+            // 
+            // activitylevel_moderate_label
+            // 
+            this.activitylevel_moderate_label.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.activitylevel_moderate_label.AutoSize = true;
+            this.activitylevel_moderate_label.Location = new System.Drawing.Point(4, 92);
+            this.activitylevel_moderate_label.Name = "activitylevel_moderate_label";
+            this.activitylevel_moderate_label.Size = new System.Drawing.Size(52, 13);
+            this.activitylevel_moderate_label.TabIndex = 52;
+            this.activitylevel_moderate_label.Text = "Moderate";
+            // 
+            // activitylevel_vigorous_label
+            // 
+            this.activitylevel_vigorous_label.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.activitylevel_vigorous_label.AutoSize = true;
+            this.activitylevel_vigorous_label.Location = new System.Drawing.Point(4, 69);
+            this.activitylevel_vigorous_label.Name = "activitylevel_vigorous_label";
+            this.activitylevel_vigorous_label.Size = new System.Drawing.Size(48, 13);
+            this.activitylevel_vigorous_label.TabIndex = 53;
+            this.activitylevel_vigorous_label.Text = "Vigorous";
+            // 
+            // activitylevel_veryvigorous_label
+            // 
+            this.activitylevel_veryvigorous_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.activitylevel_veryvigorous_label.AutoSize = true;
+            this.activitylevel_veryvigorous_label.Location = new System.Drawing.Point(4, 46);
+            this.activitylevel_veryvigorous_label.Name = "activitylevel_veryvigorous_label";
+            this.activitylevel_veryvigorous_label.Size = new System.Drawing.Size(84, 13);
+            this.activitylevel_veryvigorous_label.TabIndex = 54;
+            this.activitylevel_veryvigorous_label.Text = "Very vigorous";
+            // 
+            // activitylevels_collabel_totaltime
+            // 
+            this.activitylevels_collabel_totaltime.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.activitylevels_collabel_totaltime.AutoSize = true;
+            this.activitylevels_collabel_totaltime.Location = new System.Drawing.Point(370, 14);
+            this.activitylevels_collabel_totaltime.Name = "activitylevels_collabel_totaltime";
+            this.activitylevels_collabel_totaltime.Size = new System.Drawing.Size(53, 13);
+            this.activitylevels_collabel_totaltime.TabIndex = 63;
+            this.activitylevels_collabel_totaltime.Text = "Total time";
+            // 
+            // activitylevel_veryvigorous_time
+            // 
+            this.activitylevel_veryvigorous_time.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_veryvigorous_time.AutoSize = true;
+            this.activitylevel_veryvigorous_time.Location = new System.Drawing.Point(394, 46);
+            this.activitylevel_veryvigorous_time.Name = "activitylevel_veryvigorous_time";
+            this.activitylevel_veryvigorous_time.Size = new System.Drawing.Size(34, 13);
+            this.activitylevel_veryvigorous_time.TabIndex = 40;
+            this.activitylevel_veryvigorous_time.Text = "00:00";
+            // 
+            // activitylevel_vigorous_time
+            // 
+            this.activitylevel_vigorous_time.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_vigorous_time.AutoSize = true;
+            this.activitylevel_vigorous_time.Location = new System.Drawing.Point(394, 69);
+            this.activitylevel_vigorous_time.Name = "activitylevel_vigorous_time";
+            this.activitylevel_vigorous_time.Size = new System.Drawing.Size(34, 13);
+            this.activitylevel_vigorous_time.TabIndex = 39;
+            this.activitylevel_vigorous_time.Text = "00:00";
+            // 
+            // activitylevel_moderate_time
+            // 
+            this.activitylevel_moderate_time.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_moderate_time.AutoSize = true;
+            this.activitylevel_moderate_time.Location = new System.Drawing.Point(394, 92);
+            this.activitylevel_moderate_time.Name = "activitylevel_moderate_time";
+            this.activitylevel_moderate_time.Size = new System.Drawing.Size(34, 13);
+            this.activitylevel_moderate_time.TabIndex = 38;
+            this.activitylevel_moderate_time.Text = "00:00";
+            // 
+            // activitylevel_light_time
+            // 
+            this.activitylevel_light_time.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_light_time.AutoSize = true;
+            this.activitylevel_light_time.Location = new System.Drawing.Point(394, 115);
+            this.activitylevel_light_time.Name = "activitylevel_light_time";
+            this.activitylevel_light_time.Size = new System.Drawing.Size(34, 13);
+            this.activitylevel_light_time.TabIndex = 36;
+            this.activitylevel_light_time.Text = "00:00";
+            // 
+            // activitylevel_sedentary_time
+            // 
+            this.activitylevel_sedentary_time.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_sedentary_time.AutoSize = true;
+            this.activitylevel_sedentary_time.Location = new System.Drawing.Point(394, 139);
+            this.activitylevel_sedentary_time.Name = "activitylevel_sedentary_time";
+            this.activitylevel_sedentary_time.Size = new System.Drawing.Size(34, 13);
+            this.activitylevel_sedentary_time.TabIndex = 37;
+            this.activitylevel_sedentary_time.Text = "00:00";
+            // 
+            // activitylevels_collabel_perc
+            // 
+            this.activitylevels_collabel_perc.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.activitylevels_collabel_perc.AutoSize = true;
+            this.activitylevels_collabel_perc.Location = new System.Drawing.Point(297, 14);
+            this.activitylevels_collabel_perc.Name = "activitylevels_collabel_perc";
+            this.activitylevels_collabel_perc.Size = new System.Drawing.Size(62, 13);
+            this.activitylevels_collabel_perc.TabIndex = 62;
+            this.activitylevels_collabel_perc.Text = "Percentage";
+            // 
+            // activitylevel_veryvigorous_perc
+            // 
+            this.activitylevel_veryvigorous_perc.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_veryvigorous_perc.AutoSize = true;
+            this.activitylevel_veryvigorous_perc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.activitylevel_veryvigorous_perc.Location = new System.Drawing.Point(332, 46);
+            this.activitylevel_veryvigorous_perc.Name = "activitylevel_veryvigorous_perc";
+            this.activitylevel_veryvigorous_perc.Size = new System.Drawing.Size(27, 13);
+            this.activitylevel_veryvigorous_perc.TabIndex = 42;
+            this.activitylevel_veryvigorous_perc.Text = "0 %";
+            // 
+            // activitylevel_vigorous_perc
+            // 
+            this.activitylevel_vigorous_perc.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_vigorous_perc.AutoSize = true;
+            this.activitylevel_vigorous_perc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.activitylevel_vigorous_perc.Location = new System.Drawing.Point(332, 69);
+            this.activitylevel_vigorous_perc.Name = "activitylevel_vigorous_perc";
+            this.activitylevel_vigorous_perc.Size = new System.Drawing.Size(27, 13);
+            this.activitylevel_vigorous_perc.TabIndex = 43;
+            this.activitylevel_vigorous_perc.Text = "0 %";
+            // 
+            // activitylevel_moderate_perc
+            // 
+            this.activitylevel_moderate_perc.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_moderate_perc.AutoSize = true;
+            this.activitylevel_moderate_perc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.activitylevel_moderate_perc.Location = new System.Drawing.Point(332, 92);
+            this.activitylevel_moderate_perc.Name = "activitylevel_moderate_perc";
+            this.activitylevel_moderate_perc.Size = new System.Drawing.Size(27, 13);
+            this.activitylevel_moderate_perc.TabIndex = 44;
+            this.activitylevel_moderate_perc.Text = "0 %";
+            // 
+            // activitylevel_light_perc
+            // 
+            this.activitylevel_light_perc.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_light_perc.AutoSize = true;
+            this.activitylevel_light_perc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.activitylevel_light_perc.Location = new System.Drawing.Point(332, 115);
+            this.activitylevel_light_perc.Name = "activitylevel_light_perc";
+            this.activitylevel_light_perc.Size = new System.Drawing.Size(27, 13);
+            this.activitylevel_light_perc.TabIndex = 45;
+            this.activitylevel_light_perc.Text = "0 %";
+            // 
+            // activitylevel_sedentary_perc
+            // 
+            this.activitylevel_sedentary_perc.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_sedentary_perc.AutoSize = true;
+            this.activitylevel_sedentary_perc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.activitylevel_sedentary_perc.Location = new System.Drawing.Point(332, 139);
+            this.activitylevel_sedentary_perc.Name = "activitylevel_sedentary_perc";
+            this.activitylevel_sedentary_perc.Size = new System.Drawing.Size(27, 13);
+            this.activitylevel_sedentary_perc.TabIndex = 46;
+            this.activitylevel_sedentary_perc.Text = "0 %";
+            // 
+            // activitylevels_collabel_count
+            // 
+            this.activitylevels_collabel_count.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.activitylevels_collabel_count.AutoSize = true;
+            this.activitylevels_collabel_count.Location = new System.Drawing.Point(183, 8);
+            this.activitylevels_collabel_count.Name = "activitylevels_collabel_count";
+            this.activitylevels_collabel_count.Size = new System.Drawing.Size(89, 26);
+            this.activitylevels_collabel_count.TabIndex = 61;
+            this.activitylevels_collabel_count.Text = "Grouped count / Absolute count";
+            // 
+            // activitylevel_veryvigorous_values
+            // 
+            this.activitylevel_veryvigorous_values.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_veryvigorous_values.AutoSize = true;
+            this.activitylevel_veryvigorous_values.Location = new System.Drawing.Point(260, 46);
+            this.activitylevel_veryvigorous_values.Name = "activitylevel_veryvigorous_values";
+            this.activitylevel_veryvigorous_values.Size = new System.Drawing.Size(30, 13);
+            this.activitylevel_veryvigorous_values.TabIndex = 55;
+            this.activitylevel_veryvigorous_values.Text = "0 / 0";
+            this.activitylevel_veryvigorous_values.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // activitylevel_vigorous_values
+            // 
+            this.activitylevel_vigorous_values.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_vigorous_values.AutoSize = true;
+            this.activitylevel_vigorous_values.Location = new System.Drawing.Point(260, 69);
+            this.activitylevel_vigorous_values.Name = "activitylevel_vigorous_values";
+            this.activitylevel_vigorous_values.Size = new System.Drawing.Size(30, 13);
+            this.activitylevel_vigorous_values.TabIndex = 56;
+            this.activitylevel_vigorous_values.Text = "0 / 0";
+            this.activitylevel_vigorous_values.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // activitylevel_moderate_values
+            // 
+            this.activitylevel_moderate_values.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_moderate_values.AutoSize = true;
+            this.activitylevel_moderate_values.Location = new System.Drawing.Point(260, 92);
+            this.activitylevel_moderate_values.Name = "activitylevel_moderate_values";
+            this.activitylevel_moderate_values.Size = new System.Drawing.Size(30, 13);
+            this.activitylevel_moderate_values.TabIndex = 57;
+            this.activitylevel_moderate_values.Text = "0 / 0";
+            this.activitylevel_moderate_values.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // activitylevel_light_values
+            // 
+            this.activitylevel_light_values.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_light_values.AutoSize = true;
+            this.activitylevel_light_values.Location = new System.Drawing.Point(260, 115);
+            this.activitylevel_light_values.Name = "activitylevel_light_values";
+            this.activitylevel_light_values.Size = new System.Drawing.Size(30, 13);
+            this.activitylevel_light_values.TabIndex = 58;
+            this.activitylevel_light_values.Text = "0 / 0";
+            this.activitylevel_light_values.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // activitylevel_sedentary_values
+            // 
+            this.activitylevel_sedentary_values.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_sedentary_values.AutoSize = true;
+            this.activitylevel_sedentary_values.Location = new System.Drawing.Point(260, 139);
+            this.activitylevel_sedentary_values.Name = "activitylevel_sedentary_values";
+            this.activitylevel_sedentary_values.Size = new System.Drawing.Size(30, 13);
+            this.activitylevel_sedentary_values.TabIndex = 59;
+            this.activitylevel_sedentary_values.Text = "0 / 0";
+            this.activitylevel_sedentary_values.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // activitylevel_veryvigorous_limit
+            // 
+            this.activitylevel_veryvigorous_limit.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_veryvigorous_limit.AutoSize = true;
+            this.activitylevel_veryvigorous_limit.Location = new System.Drawing.Point(128, 46);
+            this.activitylevel_veryvigorous_limit.Name = "activitylevel_veryvigorous_limit";
+            this.activitylevel_veryvigorous_limit.Size = new System.Drawing.Size(31, 13);
+            this.activitylevel_veryvigorous_limit.TabIndex = 64;
+            this.activitylevel_veryvigorous_limit.Text = "7500";
+            // 
+            // activitylevel_vigorous_limit
+            // 
+            this.activitylevel_vigorous_limit.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_vigorous_limit.AutoSize = true;
+            this.activitylevel_vigorous_limit.Location = new System.Drawing.Point(128, 69);
+            this.activitylevel_vigorous_limit.Name = "activitylevel_vigorous_limit";
+            this.activitylevel_vigorous_limit.Size = new System.Drawing.Size(31, 13);
+            this.activitylevel_vigorous_limit.TabIndex = 65;
+            this.activitylevel_vigorous_limit.Text = "5750";
+            // 
+            // activitylevel_moderate_limit
+            // 
+            this.activitylevel_moderate_limit.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_moderate_limit.AutoSize = true;
+            this.activitylevel_moderate_limit.Location = new System.Drawing.Point(128, 92);
+            this.activitylevel_moderate_limit.Name = "activitylevel_moderate_limit";
+            this.activitylevel_moderate_limit.Size = new System.Drawing.Size(31, 13);
+            this.activitylevel_moderate_limit.TabIndex = 66;
+            this.activitylevel_moderate_limit.Text = "2000";
+            // 
+            // activitylevel_light_limit
+            // 
+            this.activitylevel_light_limit.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_light_limit.AutoSize = true;
+            this.activitylevel_light_limit.Location = new System.Drawing.Point(134, 115);
+            this.activitylevel_light_limit.Name = "activitylevel_light_limit";
+            this.activitylevel_light_limit.Size = new System.Drawing.Size(25, 13);
+            this.activitylevel_light_limit.TabIndex = 67;
+            this.activitylevel_light_limit.Text = "100";
+            // 
+            // activitylevel_sedentary_limit
+            // 
+            this.activitylevel_sedentary_limit.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.activitylevel_sedentary_limit.AutoSize = true;
+            this.activitylevel_sedentary_limit.Location = new System.Drawing.Point(146, 139);
+            this.activitylevel_sedentary_limit.Name = "activitylevel_sedentary_limit";
+            this.activitylevel_sedentary_limit.Size = new System.Drawing.Size(13, 13);
+            this.activitylevel_sedentary_limit.TabIndex = 68;
+            this.activitylevel_sedentary_limit.Text = "0";
+            // 
+            // activitylevels_collabel_limits
+            // 
+            this.activitylevels_collabel_limits.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.activitylevels_collabel_limits.AutoSize = true;
+            this.activitylevels_collabel_limits.Location = new System.Drawing.Point(99, 14);
+            this.activitylevels_collabel_limits.Name = "activitylevels_collabel_limits";
+            this.activitylevels_collabel_limits.Size = new System.Drawing.Size(56, 13);
+            this.activitylevels_collabel_limits.TabIndex = 69;
+            this.activitylevels_collabel_limits.Text = "Lower limit";
             // 
             // tabPage3
             // 
@@ -682,7 +839,7 @@
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(787, 198);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "File filters";
+            this.tabPage3.Text = "Cut data";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // filter_apply
@@ -692,7 +849,7 @@
             this.filter_apply.Name = "filter_apply";
             this.filter_apply.Size = new System.Drawing.Size(100, 23);
             this.filter_apply.TabIndex = 23;
-            this.filter_apply.Text = "Apply filter";
+            this.filter_apply.Text = "Apply";
             this.filter_apply.UseVisualStyleBackColor = true;
             this.filter_apply.Click += new System.EventHandler(this.filter_apply_Click);
             // 
@@ -879,12 +1036,12 @@
             this.export_r_box.Controls.Add(this.export_r_path_browse_button);
             this.export_r_box.Controls.Add(this.export_r_path_box);
             this.export_r_box.Controls.Add(this.export_r_path_label);
-            this.export_r_box.Location = new System.Drawing.Point(405, 7);
+            this.export_r_box.Location = new System.Drawing.Point(430, 7);
             this.export_r_box.Name = "export_r_box";
             this.export_r_box.Size = new System.Drawing.Size(200, 188);
             this.export_r_box.TabIndex = 2;
             this.export_r_box.TabStop = false;
-            this.export_r_box.Text = "R";
+            this.export_r_box.Text = "R-Statistics options";
             // 
             // export_r_console_checkbox
             // 
@@ -900,9 +1057,9 @@
             this.export_r_console_label.AutoSize = true;
             this.export_r_console_label.Location = new System.Drawing.Point(6, 58);
             this.export_r_console_label.Name = "export_r_console_label";
-            this.export_r_console_label.Size = new System.Drawing.Size(76, 13);
+            this.export_r_console_label.Size = new System.Drawing.Size(117, 13);
             this.export_r_console_label.TabIndex = 3;
-            this.export_r_console_label.Text = "Save R output";
+            this.export_r_console_label.Text = "Save R output (Debug)";
             // 
             // export_r_path_browse_button
             // 
@@ -946,15 +1103,15 @@
             this.export_output_box.Controls.Add(this.export_output_width_label);
             this.export_output_box.Location = new System.Drawing.Point(195, 7);
             this.export_output_box.Name = "export_output_box";
-            this.export_output_box.Size = new System.Drawing.Size(204, 188);
+            this.export_output_box.Size = new System.Drawing.Size(229, 188);
             this.export_output_box.TabIndex = 1;
             this.export_output_box.TabStop = false;
-            this.export_output_box.Text = "Output";
+            this.export_output_box.Text = "Graph options";
             // 
             // export_output_copyall_checkbox
             // 
             this.export_output_copyall_checkbox.AutoSize = true;
-            this.export_output_copyall_checkbox.Location = new System.Drawing.Point(150, 144);
+            this.export_output_copyall_checkbox.Location = new System.Drawing.Point(172, 144);
             this.export_output_copyall_checkbox.Name = "export_output_copyall_checkbox";
             this.export_output_copyall_checkbox.Size = new System.Drawing.Size(15, 14);
             this.export_output_copyall_checkbox.TabIndex = 10;
@@ -971,7 +1128,7 @@
             // 
             // export_output_directorybrowse_button
             // 
-            this.export_output_directorybrowse_button.Location = new System.Drawing.Point(171, 116);
+            this.export_output_directorybrowse_button.Location = new System.Drawing.Point(193, 116);
             this.export_output_directorybrowse_button.Name = "export_output_directorybrowse_button";
             this.export_output_directorybrowse_button.Size = new System.Drawing.Size(26, 23);
             this.export_output_directorybrowse_button.TabIndex = 8;
@@ -984,20 +1141,20 @@
             this.export_output_directory_label.AutoSize = true;
             this.export_output_directory_label.Location = new System.Drawing.Point(6, 121);
             this.export_output_directory_label.Name = "export_output_directory_label";
-            this.export_output_directory_label.Size = new System.Drawing.Size(49, 13);
+            this.export_output_directory_label.Size = new System.Drawing.Size(82, 13);
             this.export_output_directory_label.TabIndex = 7;
-            this.export_output_directory_label.Text = "Directory";
+            this.export_output_directory_label.Text = "Output directory";
             // 
             // export_ouput_directory_box
             // 
-            this.export_ouput_directory_box.Location = new System.Drawing.Point(65, 118);
+            this.export_ouput_directory_box.Location = new System.Drawing.Point(87, 118);
             this.export_ouput_directory_box.Name = "export_ouput_directory_box";
             this.export_ouput_directory_box.Size = new System.Drawing.Size(100, 20);
             this.export_ouput_directory_box.TabIndex = 6;
             // 
             // export_output_prefix_box
             // 
-            this.export_output_prefix_box.Location = new System.Drawing.Point(65, 94);
+            this.export_output_prefix_box.Location = new System.Drawing.Point(87, 94);
             this.export_output_prefix_box.Name = "export_output_prefix_box";
             this.export_output_prefix_box.Size = new System.Drawing.Size(100, 20);
             this.export_output_prefix_box.TabIndex = 5;
@@ -1007,13 +1164,13 @@
             this.export_output_prefix_label.AutoSize = true;
             this.export_output_prefix_label.Location = new System.Drawing.Point(6, 97);
             this.export_output_prefix_label.Name = "export_output_prefix_label";
-            this.export_output_prefix_label.Size = new System.Drawing.Size(33, 13);
+            this.export_output_prefix_label.Size = new System.Drawing.Size(51, 13);
             this.export_output_prefix_label.TabIndex = 4;
-            this.export_output_prefix_label.Text = "Prefix";
+            this.export_output_prefix_label.Text = "File prefix";
             // 
             // export_output_height_box
             // 
-            this.export_output_height_box.Location = new System.Drawing.Point(65, 55);
+            this.export_output_height_box.Location = new System.Drawing.Point(87, 55);
             this.export_output_height_box.Name = "export_output_height_box";
             this.export_output_height_box.Size = new System.Drawing.Size(100, 20);
             this.export_output_height_box.TabIndex = 3;
@@ -1021,7 +1178,7 @@
             // 
             // export_output_width_box
             // 
-            this.export_output_width_box.Location = new System.Drawing.Point(65, 29);
+            this.export_output_width_box.Location = new System.Drawing.Point(87, 29);
             this.export_output_width_box.Name = "export_output_width_box";
             this.export_output_width_box.Size = new System.Drawing.Size(100, 20);
             this.export_output_width_box.TabIndex = 2;
@@ -1032,18 +1189,18 @@
             this.export_output_height_label.AutoSize = true;
             this.export_output_height_label.Location = new System.Drawing.Point(6, 58);
             this.export_output_height_label.Name = "export_output_height_label";
-            this.export_output_height_label.Size = new System.Drawing.Size(38, 13);
+            this.export_output_height_label.Size = new System.Drawing.Size(68, 13);
             this.export_output_height_label.TabIndex = 1;
-            this.export_output_height_label.Text = "Height";
+            this.export_output_height_label.Text = "Graph height";
             // 
             // export_output_width_label
             // 
             this.export_output_width_label.AutoSize = true;
             this.export_output_width_label.Location = new System.Drawing.Point(6, 32);
             this.export_output_width_label.Name = "export_output_width_label";
-            this.export_output_width_label.Size = new System.Drawing.Size(35, 13);
+            this.export_output_width_label.Size = new System.Drawing.Size(64, 13);
             this.export_output_width_label.TabIndex = 0;
-            this.export_output_width_label.Text = "Width";
+            this.export_output_width_label.Text = "Graph width";
             // 
             // export_function_box
             // 
@@ -1136,35 +1293,35 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.parsedFilesGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.parsedFilesGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.parsedFilesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.parsedFilesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.parsedFilesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.parsedFilesGridView.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.parsedFilesGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.parsedFilesGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.parsedFilesGridView.Location = new System.Drawing.Point(3, 233);
             this.parsedFilesGridView.Name = "parsedFilesGridView";
             this.parsedFilesGridView.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.parsedFilesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.parsedFilesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.parsedFilesGridView.RowHeadersWidth = 43;
             this.parsedFilesGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.parsedFilesGridView.Size = new System.Drawing.Size(798, 58);
@@ -1252,7 +1409,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.activitylevel_groupbox.ResumeLayout(false);
-            this.activitylevel_groupbox.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.filter_method_panel.ResumeLayout(false);
@@ -1379,6 +1537,16 @@
         private System.Windows.Forms.GroupBox export_parameter_box;
         private System.Windows.Forms.FlowLayoutPanel export_parameter_flowlayoutpanel;
         private System.Windows.Forms.DataGridView processGridView;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label activitylevels_collabel_count;
+        private System.Windows.Forms.Label activitylevels_collabel_perc;
+        private System.Windows.Forms.Label activitylevels_collabel_totaltime;
+        private System.Windows.Forms.Label activitylevel_veryvigorous_limit;
+        private System.Windows.Forms.Label activitylevel_vigorous_limit;
+        private System.Windows.Forms.Label activitylevel_moderate_limit;
+        private System.Windows.Forms.Label activitylevel_light_limit;
+        private System.Windows.Forms.Label activitylevel_sedentary_limit;
+        private System.Windows.Forms.Label activitylevels_collabel_limits;
     }
 }
 

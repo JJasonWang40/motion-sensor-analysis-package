@@ -12,27 +12,19 @@ using ActigraphAuswertung.Model.Calculators;
 
 namespace ActigraphAuswertung
 {
-    /// <summary>
-    /// Delegate to start the export (callback from the SelectDataCells form).
-    /// </summary>
-    /// <param name="modelCellSelection"></param>
     public delegate void FunctionStartExport(Dictionary<CsvModel, SensorData> modelCellSelection);
 
     public partial class Form1 : Form
     {
-        // All imported models
-        private  BindingList<CsvModel> parsedFiles = new BindingList<CsvModel>();
-
-        // Command manager
-        private CommandManager.Manager commandManager = new CommandManager.Manager();
-
+        BindingList<CsvModel> parsedFiles = new BindingList<CsvModel>();
+        CommandManager.Manager commandManager = new CommandManager.Manager();
         /// <summary>
         /// Absolute path to the application directory.
         /// </summary>
         public static string APP_PATH = "";
 
         /// <summary>
-        /// Constructor
+        /// Constructor.
         /// </summary>
         public Form1()
         {
@@ -162,29 +154,34 @@ namespace ActigraphAuswertung
             ActivityLevelsCalculator.ActivityLevel alevel;
             int alevelSteps = data.ActivityLevelCalculator.Steps;
             alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.VERYVIGOROUS);
-            this.activitylevel_veryvigorous_perc.Text = Math.Round(alevel.Percent, 2).ToString() + " %";
+            this.activitylevel_veryvigorous_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
             this.activitylevel_veryvigorous_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
             this.activitylevel_veryvigorous_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
+            this.activitylevel_veryvigorous_limit.Text = data.ActivityLevelCalculator.MinVeryheavy.ToString();
 
             alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.VIGOROUS);
-            this.activitylevel_vigorous_perc.Text = Math.Round(alevel.Percent,2 ).ToString() + " %";
+            this.activitylevel_vigorous_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent,2 ));
             this.activitylevel_vigorous_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
             this.activitylevel_vigorous_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
+            this.activitylevel_vigorous_limit.Text = data.ActivityLevelCalculator.MinHeavy.ToString();
 
             alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.MODERATE);
-            this.activitylevel_moderate_perc.Text = Math.Round(alevel.Percent, 2).ToString() + " %";
+            this.activitylevel_moderate_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
             this.activitylevel_moderate_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
             this.activitylevel_moderate_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
+            this.activitylevel_moderate_limit.Text = data.ActivityLevelCalculator.MinModerate.ToString();
 
             alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.LIGHT);
-            this.activitylevel_light_perc.Text = Math.Round(alevel.Percent, 2).ToString() + " %";
+            this.activitylevel_light_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
             this.activitylevel_light_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
             this.activitylevel_light_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
+            this.activitylevel_light_limit.Text = data.ActivityLevelCalculator.MinLight.ToString();
 
             alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.SEDENTARY);
-            this.activitylevel_sedentary_perc.Text = Math.Round(alevel.Percent, 2).ToString() + " %";
+            this.activitylevel_sedentary_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
             this.activitylevel_sedentary_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
             this.activitylevel_sedentary_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
+            this.activitylevel_sedentary_limit.Text = data.ActivityLevelCalculator.MinSedantary.ToString();
 
             // set filter options
             this.filter_method_all.Checked = true;
@@ -320,7 +317,11 @@ namespace ActigraphAuswertung
             this.commandManager.addCommand(new FilterCommand(data, filterCollection, filterMethod, this.filter_command_callback));
         }
 
-        private void filter_command_callback(Object result)
+        /// <summary>
+        /// Callback function for filter command.
+        /// </summary>
+        /// <param name="result"></param>
+        public void filter_command_callback(Object result)
         {
             this.parsedFiles.Add(result as CsvModel);
         }
@@ -367,7 +368,7 @@ namespace ActigraphAuswertung
             }
         }
 
-        private void import_task_finished(object result)
+        public void import_task_finished(object result)
         {
             CsvModel model = (CsvModel)result;
             if (model != null)
@@ -442,7 +443,7 @@ namespace ActigraphAuswertung
             }
         }
 
-        private void export_command_callback(object result)
+        public void export_command_callback(object result)
         { 
             RExport.Abstract exportClass = (RExport.Abstract) result;
             ShowDirectoryContent imageBrowser = new ShowDirectoryContent(exportClass.RSettings.PathToOutput);
