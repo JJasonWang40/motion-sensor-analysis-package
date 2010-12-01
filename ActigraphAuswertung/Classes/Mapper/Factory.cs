@@ -57,6 +57,7 @@ namespace ActigraphAuswertung.Mapper
                 String line;
                 CsvModel model = new CsvModel();
                 // set limits for the activitylevel calculator
+
                 model.ActivityLevelCalculator.MinSedantary = minSedantary;
                 model.ActivityLevelCalculator.MinLight = minLight;
                 model.ActivityLevelCalculator.MinModerate = minModerate;

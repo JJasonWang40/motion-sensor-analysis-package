@@ -16,7 +16,7 @@
     <ManifestCertificateThumbprint>36D3ED8E7672F2C87A9EDA74016374E1AF1258D6</ManifestCertificateThumbprint>
     <ManifestKeyFile>ActigraphAuswertung_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <PublishUrl>C:\Users\Fritz\Desktop\ActiGraphAuswertung V3.0\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -203,6 +203,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram2.cd" />
     <None Include="Properties\DataSources\ActigraphAuswertung.Model.CsvModel.datasource" />
   </ItemGroup>
   <ItemGroup>
