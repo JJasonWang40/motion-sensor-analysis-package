@@ -63,7 +63,7 @@ namespace ActigraphAuswertung.Model.Calculators
             double minVeloc;
             if (this.model.SupportedValues.Contains(SensorData.Activity))
             {
-                minVeloc = this.avarageBuffer.AsQueryable().Min<RowEntry>(s => s.ActivityX);
+                minVeloc = this.avarageBuffer.AsQueryable().Min<RowEntry>(s => s.Activity);
             }
             else if (this.model.SupportedValues.Contains(SensorData.Vmu))
             {

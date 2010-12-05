@@ -44,7 +44,7 @@ namespace ActigraphAuswertung.Mapper.LineParser
             {
                 RowEntry entry = new RowEntry();
                 entry.Date = this.entryTime;
-                entry.ActivityX = int.Parse(match.Groups[3].Value);
+                entry.Activity = int.Parse(match.Groups[3].Value);
                 entry.Steps = int.Parse(match.Groups[4].Value);
                 this.entryTime += this.epochPeriod;
                 return entry;

@@ -59,7 +59,7 @@ namespace ActigraphAuswertung.Mapper.LineParser
             {
                 RowEntry entry = new RowEntry();
                 entry.Date = this.entryTime;
-                entry.ActivityX = int.Parse(match.Groups[3].Value);
+                entry.Activity = int.Parse(match.Groups[3].Value);
                 entry.ActivityY = int.Parse(match.Groups[4].Value);
                 entry.ActivityZ = int.Parse(match.Groups[5].Value);
                 entry.Vmu = (int)float.Parse(match.Groups[6].Value);

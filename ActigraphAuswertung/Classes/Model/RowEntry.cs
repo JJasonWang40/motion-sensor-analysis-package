@@ -18,15 +18,15 @@ namespace ActigraphAuswertung.Model
             set { this.date = value; }
         }
 
-        private int activityX = 0;
+        private int activity = 0;
 
         /// <summary>
         /// The activity(X) of the entry.
         /// </summary>
-        public int ActivityX
+        public int Activity
         {
-            get { return this.activityX; }
-            set { this.activityX = value; }
+            get { return this.activity; }
+            set { this.activity = value; }
         }
 
         private int activityY = 0;
@@ -121,7 +121,7 @@ namespace ActigraphAuswertung.Model
                     break;
 
                 case SensorData.Activity:
-                    this.ActivityX = int.Parse(value);
+                    this.Activity = int.Parse(value);
                     break;
 
                 case SensorData.ActivityY:
@@ -167,7 +167,7 @@ namespace ActigraphAuswertung.Model
             switch (entry)
             {
                 case SensorData.Activity:
-                    return this.ActivityX;
+                    return this.Activity;
 
                 case SensorData.ActivityY:
                     return this.ActivityY;

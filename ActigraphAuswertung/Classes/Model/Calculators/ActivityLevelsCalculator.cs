@@ -115,7 +115,7 @@ namespace ActigraphAuswertung.Model.Calculators
             double avgVeloc;
             if (this.model.SupportedValues.Contains(SensorData.Activity))
             {
-                avgVeloc = this.avarageBuffer.AsQueryable().Average<RowEntry>(s => s.ActivityX);
+                avgVeloc = this.avarageBuffer.AsQueryable().Average<RowEntry>(s => s.Activity);
             }
             else if (this.model.SupportedValues.Contains(SensorData.Vmu))
             {
