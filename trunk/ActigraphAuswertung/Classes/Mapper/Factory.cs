@@ -64,6 +64,9 @@ namespace ActigraphAuswertung.Mapper
                 model.ActivityLevelCalculator.MinHeavy = minHeavy;
                 model.ActivityLevelCalculator.MinVeryheavy = minVeryheavy;
 
+                // we need a buffer to parse the line that is overwritten after testing
+                String bufferline = "";
+
                 // as long as we have lines to read but haven't found a valid format
                 while ((line = reader.ReadLine()) != null && activeLineParser == null)
                 {
@@ -74,6 +77,7 @@ namespace ActigraphAuswertung.Mapper
                         if (parser.test(line) == true)
                         {
                             activeLineParser = parser;
+                            bufferline = line;
                         }
                     }
                 }
@@ -84,10 +88,13 @@ namespace ActigraphAuswertung.Mapper
                     throw new LineparserException("No valid line format found for file " + file);
                 }
 
+                Console.WriteLine("Detected lineparser: " + activeLineParser.ToString());
+
                 // Set supported values and filename
                 model.SupportedValues = activeLineParser.SupportedValues;
                 model.AbsoluteFileName = file;
-                // Add the first line consumed by lineparser testing
+                // Add the two lines consumed by lineparser testing
+                model.Add(activeLineParser.parseLine(bufferline));
                 model.Add(activeLineParser.parseLine(line));
 
                 //iterate over all remaining lines with

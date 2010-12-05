@@ -18,8 +18,8 @@ namespace ActigraphAuswertung.Mapper.LineParser
         {
             // set regex
             this.lineMatcher = new Regex(
-                @"^([0-9][0-9]\.[0-9][0-9]\.[0-9][0-9][0-9][0-9]);"
-                + "([0-9][0-9]:[0-9][0-9]:[0-9][0-9]);"
+                @"^([0-9]+\.[0-9]+\.[0-9]+);"
+                + "([0-9]+:[0-9]+:[0-9]+);"
                 + "([0-9]+);([0-9]+);([0-9]+);([0-9]+)$",
                 RegexOptions.IgnoreCase | RegexOptions.Compiled
             );
@@ -48,7 +48,7 @@ namespace ActigraphAuswertung.Mapper.LineParser
             {
                 RowEntry entry = new RowEntry();
                 entry.Date = DateTime.Parse(match.Groups[1].Value + " " + match.Groups[2].Value);
-                entry.ActivityX = int.Parse(match.Groups[3].Value);
+                entry.Activity = int.Parse(match.Groups[3].Value);
                 entry.ActivityY = int.Parse(match.Groups[4].Value);
                 entry.ActivityZ = int.Parse(match.Groups[5].Value);
                 entry.Steps = int.Parse(match.Groups[6].Value);

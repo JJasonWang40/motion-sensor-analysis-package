@@ -241,4 +241,11 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>if exist "%25CD%25\Temp" ( rmdir "%25CD%25\Temp" /S /Q )
+mkdir "%25CD%25\Temp"
+if exist "%25CD%25\RScripts" ( rmdir "%25CD%25\RScripts" /S /Q )
+mkdir "%25CD%25\RScripts"
+xcopy "$(ProjectDir)\RScripts" "%25CD%25\RScripts" /s</PostBuildEvent>
+  </PropertyGroup>
 </Project>

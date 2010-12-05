@@ -19,9 +19,12 @@ namespace ActigraphAuswertung.Mapper.LineParser
         {
             // set regex
             this.lineMatcher = new Regex(
-                @"([0-9]+\.[0-9]+\.[0-9][0-9][0-9][0-9]);"
-                + "([0-9]+:[0-9]+:[0-9]+);"
-                + "([0-9]+)",
+                // (1: Date)(2: Seperator)
+                @"^([0-9]+\.[0-9]+\.[0-9][0-9][0-9][0-9])(;|,)"
+                // (3: Time)(4: Seperator)
+                + "([0-9]+:[0-9]+:[0-9]+)(;|,)"
+                // (5: Activity)
+                + "([0-9]+)$",
                 RegexOptions.Compiled
             );
 
@@ -43,8 +46,8 @@ namespace ActigraphAuswertung.Mapper.LineParser
             if (match.Success)
             {
                 RowEntry entry = new RowEntry();
-                entry.Date = DateTime.Parse(match.Groups[1].Value + " " + match.Groups[2].Value, new CultureInfo("DE-de"));
-                entry.ActivityX = int.Parse(match.Groups[3].Value);
+                entry.Date = DateTime.Parse(match.Groups[1].Value + " " + match.Groups[3].Value, new CultureInfo("DE-de"));
+                entry.Activity = int.Parse(match.Groups[5].Value);
                 return entry;
             }
             throw new LineparserException("Invalid line-format: " + line);

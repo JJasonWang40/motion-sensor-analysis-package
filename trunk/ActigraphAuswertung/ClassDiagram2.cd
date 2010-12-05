@@ -1,0 +1,472 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="ActigraphAuswertung.CommandManager.CommandContainer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="36.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEAAAgAAAEACAABAAAgAQAAAAAAAAAIAAAACA=</HashCode>
+      <FileName>Classes\CommandManager\CommandContainer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ActigraphAuswertung.CommandManager.Manager" Collapsed="true">
+    <Position X="34.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIgACAAIAAAAAAAAAAABAAAAAAAABAAAAAQAAAgA=</HashCode>
+      <FileName>Classes\CommandManager\Manager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.CommandManager.Commands.AbstractCommand" Collapsed="true">
+    <Position X="3.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAQgAAAEIAAEAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Classes\CommandManager\Commands\AbstractCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.CommandManager.Commands.ExportCommand" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Classes\CommandManager\Commands\ExportCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.CommandManager.Commands.FilterCommand" Collapsed="true">
+    <Position X="3.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAUAEAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Classes\CommandManager\Commands\FilterCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.CommandManager.Commands.ImportCommand" Collapsed="true">
+    <Position X="1.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAEAAAAAACAAAAAAAEAAAAAAAAAAAABAAAAMAAAAA=</HashCode>
+      <FileName>Classes\CommandManager\Commands\ImportCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Filter.FilterCollection" Collapsed="true">
+    <Position X="38" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Filter\Collection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Filter.Filters.Day" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="31" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Classes\Filter\Filters\Day.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ActigraphAuswertung.Filter.Filters.Time" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="38" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgACAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Filter\Filters\Time.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ActigraphAuswertung.Mapper.Factory" Collapsed="true">
+    <Position X="36.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Classes\Mapper\Factory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Mapper.LineParser.AbstractGT3XLineParser" Collapsed="true">
+    <Position X="12.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAQAAAAAAAAACAAAIAAQAAAAAAAA=</HashCode>
+      <FileName>Classes\Mapper\LineParser\AbstractGT3XLineParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Mapper.LineParser.AbstractLineParser" Collapsed="true">
+    <Position X="10.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAASAAAAAAAAAAAAAAAAAAAAIACAAAAAAAEA=</HashCode>
+      <FileName>Classes\Mapper\LineParser\AbstractLineParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Mapper.LineParser.Activity2dVMULineParser" Collapsed="true">
+    <Position X="14.5" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Mapper\LineParser\Activity2dVMULineParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Mapper.LineParser.Activity3dVMULineParser" Collapsed="true">
+    <Position X="14.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Mapper\LineParser\Activity3dVMULineParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Mapper.LineParser.ActivityUnknownLineParser" Collapsed="true">
+    <Position X="14.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Mapper\LineParser\ActivityUnknownLineParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Mapper.LineParser.DateTime3dActivityStepsLineParser" Collapsed="true">
+    <Position X="7.5" Y="9.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Mapper\LineParser\DateTime3dActivityStepsLineParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Mapper.LineParser.DateTimeActivity2dVMUStepsInclLineParser" Collapsed="true">
+    <Position X="14.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Mapper\LineParser\DateTimeActivity2dVMUStepsInclLineParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Mapper.LineParser.DateTimeActivity3dVMUStepsInclLineParser" Collapsed="true">
+    <Position X="14.5" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Mapper\LineParser\DateTimeActivity3dVMUStepsInclLineParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Mapper.LineParser.DateTimeActivityLineParser" Collapsed="true">
+    <Position X="8.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Mapper\LineParser\DateTimeActivityLineParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Mapper.LineParser.DateTimeActivityStepsLineParser" Collapsed="true">
+    <Position X="14.5" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Mapper\LineParser\DateTimeActivityStepsLineParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Mapper.LineParser.LineparserException" Collapsed="true">
+    <Position X="32.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Mapper\LineParser\LineparserException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Mapper.LineParser.NoDate3dActivityStepsLineParser" Collapsed="true">
+    <Position X="14.5" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Mapper\LineParser\NoDate3dActivityStepsLineParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Mapper.LineParser.RExportedLineParser" Collapsed="true">
+    <Position X="8.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAARAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Mapper\LineParser\RExportedLineParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Mapper.LineParser.RT3LineParser" Collapsed="true">
+    <Position X="8.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Mapper\LineParser\RT3LineParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Mapper.LineParser.RT3SemicolomSepLineParser" Collapsed="true">
+    <Position X="8.75" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Mapper\LineParser\RT3SemicolomSepLineParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Mapper.LineParser.SingleEntryLineParser" Collapsed="true">
+    <Position X="14.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Mapper\LineParser\SingleEntryLineParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Model.CsvModel">
+    <Position X="23.5" Y="0.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>oAAAAYBAAAADOAAAAAAAGAAgEAIAAAAAAEAEAGBABAA=</HashCode>
+      <FileName>Classes\Model\CsvModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Model.RowEntry">
+    <Position X="27" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAABACAAAQAgACAQAAIAEAAACAEAAAgBQAAAAUAAAAA=</HashCode>
+      <FileName>Classes\Model\RowEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Model.SensorStartEndWearing" Collapsed="true">
+    <Position X="38" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAACAAAAAAIAAgAAABAAAAAwAAAAA=</HashCode>
+      <FileName>Classes\Model\SensorStartEndWearing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Model.Calculators.ActiveTimeCalculator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="31" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAABAAAAAAAAAAAAAAABAEAgAIAEA=</HashCode>
+      <FileName>Classes\Model\Calculators\ActiveTimeCalculator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ActigraphAuswertung.Model.Calculators.ActivityLevelsCalculator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="32.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIBAAIAEAAAAAAAgBAAAAAAIAAAAAAAwAAAAAAJABA=</HashCode>
+      <FileName>Classes\Model\Calculators\ActivityLevelsCalculator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ActigraphAuswertung.Model.Calculators.DayStartEndCalculator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="32.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAQAAAAAAAAAAABAAAAAAAAQAAAAAAAAEAAAIAAQ=</HashCode>
+      <FileName>Classes\Model\Calculators\DayStartEndCalculator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ActigraphAuswertung.RExport.Abstract">
+    <Position X="16" Y="4" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QEAABAEAAAAAAAAAAAAEAWAAQAAAAIAEAIAAAAIAAQQ=</HashCode>
+      <FileName>Classes\RExport\Abstract.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.RExport.ExportCrossCorrelation">
+    <Position X="16.25" Y="7" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAIAAAAAAAAIAAAA=</HashCode>
+      <FileName>Classes\RExport\ExportCrossCorrelation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.RExport.ExportDaily">
+    <Position X="18.75" Y="7" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAIAAAAAAAAIAAAA=</HashCode>
+      <FileName>Classes\RExport\ExportDaily.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.RExport.ExportDailyAvg">
+    <Position X="16.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAIAAAAAAAAIAAAA=</HashCode>
+      <FileName>Classes\RExport\ExportDailyAvg.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.RExport.ExportHourlyAvg">
+    <Position X="18.5" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAIAAAAAAAAIAAAA=</HashCode>
+      <FileName>Classes\RExport\ExportHourlyAvg.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.RExport.ExportLevels" Collapsed="true">
+    <Position X="13.75" Y="4" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAIAAAAAAAAIAAAA=</HashCode>
+      <FileName>Classes\RExport\ExportLevels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.RExport.ExportRegressionLinear" Collapsed="true">
+    <Position X="13.75" Y="2.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAIAAAAAAAAIAAAA=</HashCode>
+      <FileName>Classes\RExport\ExportRegressionLinear.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.RExport.ExportScatter" Collapsed="true">
+    <Position X="13.75" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAIAAAAAAAAIAAAA=</HashCode>
+      <FileName>Classes\RExport\ExportScatter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.RExport.ClassAttribute" Collapsed="true">
+    <Position X="34.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAABAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Classes\RExport\ExportScriptsEnum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.RExport.ExportScriptsExtensions" Collapsed="true">
+    <Position X="34.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAQAAIgAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Classes\RExport\ExportScriptsEnum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.RExport.ExportSteps">
+    <Position X="14.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAIAAAAAAAAIAAAA=</HashCode>
+      <FileName>Classes\RExport\ExportSteps.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.RExport.ExportUnknown">
+    <Position X="18.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\RExport\ExportUnknown.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.RExport.ExportWorn">
+    <Position X="18.5" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAIAAAAAAAAIAAAA=</HashCode>
+      <FileName>Classes\RExport\ExportWorn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.RExport.RExportException" Collapsed="true">
+    <Position X="31" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\RExport\RExportException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.RExport.RSettings" Collapsed="true">
+    <Position X="34.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAApAgAAAAAAAAAAGAAAAAAAAAAAMAACAAAAAAAAAA=</HashCode>
+      <FileName>Classes\RExport\RSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Form1" Collapsed="true">
+    <Position X="31" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YyCTYGUwhvgEaJIgGAbLQUC+/UhEhKRG4fHURQlxUnk=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Program" Collapsed="true">
+    <Position X="36.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.SelectDataCells" Collapsed="true">
+    <Position X="36.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAADAAAAAAAACABAACABAAEAAAgAAABAAAAAA=</HashCode>
+      <FileName>SelectDataCells.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.ShowDirectoryContent" Collapsed="true">
+    <Position X="32.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQCAQAAAAAACAAAACACAAAUAAAAAAAAAAAAA=</HashCode>
+      <FileName>ShowDirectoryContent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.ShowParsedFileContent" Collapsed="true">
+    <Position X="34.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAiAAAAAAAACAAAACAAAAAAAAAAAQAQAAAAA=</HashCode>
+      <FileName>ShowParsedFileContent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.ShowParsedFileDailyStartEndTimes" Collapsed="true">
+    <Position X="36.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAiAAAAAAAACAAAACAAAAAAAAAAAQAQAAAAA=</HashCode>
+      <FileName>ShowParsedFileDailyStartEndTimes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Properties.Resources" Collapsed="true">
+    <Position X="38" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActigraphAuswertung.Properties.Settings" Collapsed="true">
+    <Position X="31" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ActigraphAuswertung.Filter.FilterInterface" Collapsed="true">
+    <Position X="32.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Filter\Interface.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ActigraphAuswertung.Model.Calculators.CalculatorInterface" Collapsed="true">
+    <Position X="31" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Model\Calculators\CalculatorInterface.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="ActigraphAuswertung.CommandManager.Priority" Collapsed="true">
+    <Position X="36.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAgAAAAAACAgAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Classes\CommandManager\Priorities.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ActigraphAuswertung.CommandManager.Status" Collapsed="true">
+    <Position X="31" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAQAAAAQAAAAAAAAAAAAIAAAAQAAAAAA=</HashCode>
+      <FileName>Classes\CommandManager\Status.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ActigraphAuswertung.Filter.FilterMethod" Collapsed="true">
+    <Position X="34.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAQAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Classes\Filter\Collection.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ActigraphAuswertung.Model.ActivityLevels" Collapsed="true">
+    <Position X="31" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEAAAEAAAABAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Model\ActivityLevels.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ActigraphAuswertung.Model.SensorData">
+    <Position X="29" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABACAAAAAAAAAQAAAAAAAAAAEAAAgBAAAAAEAAAAA=</HashCode>
+      <FileName>Classes\Model\SensorData.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ActigraphAuswertung.RExport.ExportScripts">
+    <Position X="32.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEBBAAAAAAAAAAAAAAAAAAQAAAAAAAARCAAEIAAAABA=</HashCode>
+      <FileName>Classes\RExport\ExportScriptsEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="ActigraphAuswertung.CommandManager.Commands.CommandFinishedDelegate" Collapsed="true">
+    <Position X="31" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\CommandManager\Commands\AbstractCommand.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="ActigraphAuswertung.FunctionStartExport" Collapsed="true">
+    <Position X="34.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
