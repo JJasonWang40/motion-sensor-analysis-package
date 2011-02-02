@@ -148,6 +148,12 @@
             this.displayDailyStartEndtimesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectPathToRDialog = new System.Windows.Forms.OpenFileDialog();
             this.exportOutputDirectoryDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.quickoptions.SuspendLayout();
@@ -169,6 +175,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.parsedFilesGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.processGridView)).BeginInit();
             this.parsedFileContextMenu.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -182,11 +189,11 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 230F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 262F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 13F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 138F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(804, 445);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 103F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(804, 475);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel1
@@ -195,7 +202,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(798, 224);
+            this.panel1.Size = new System.Drawing.Size(798, 256);
             this.panel1.TabIndex = 2;
             // 
             // quickoptions
@@ -209,10 +216,10 @@
             this.quickoptions.Controls.Add(this.quickoptions_export_tab);
             this.quickoptions.Controls.Add(this.quickoptions_about_tab);
             this.quickoptions.HotTrack = true;
-            this.quickoptions.Location = new System.Drawing.Point(3, 0);
+            this.quickoptions.Location = new System.Drawing.Point(3, 24);
             this.quickoptions.Name = "quickoptions";
             this.quickoptions.SelectedIndex = 0;
-            this.quickoptions.Size = new System.Drawing.Size(795, 224);
+            this.quickoptions.Size = new System.Drawing.Size(795, 232);
             this.quickoptions.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.quickoptions.TabIndex = 24;
             // 
@@ -223,7 +230,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(787, 198);
+            this.tabPage1.Size = new System.Drawing.Size(787, 206);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Import";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -388,7 +395,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(787, 198);
+            this.tabPage2.Size = new System.Drawing.Size(787, 206);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "File summary";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -837,7 +844,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(787, 198);
+            this.tabPage3.Size = new System.Drawing.Size(787, 206);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Cut data";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1005,7 +1012,7 @@
             this.quickoptions_export_tab.Location = new System.Drawing.Point(4, 22);
             this.quickoptions_export_tab.Name = "quickoptions_export_tab";
             this.quickoptions_export_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.quickoptions_export_tab.Size = new System.Drawing.Size(787, 198);
+            this.quickoptions_export_tab.Size = new System.Drawing.Size(787, 206);
             this.quickoptions_export_tab.TabIndex = 3;
             this.quickoptions_export_tab.Text = "Export";
             this.quickoptions_export_tab.UseVisualStyleBackColor = true;
@@ -1242,7 +1249,7 @@
             this.quickoptions_about_tab.Location = new System.Drawing.Point(4, 22);
             this.quickoptions_about_tab.Name = "quickoptions_about_tab";
             this.quickoptions_about_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.quickoptions_about_tab.Size = new System.Drawing.Size(787, 198);
+            this.quickoptions_about_tab.Size = new System.Drawing.Size(787, 206);
             this.quickoptions_about_tab.TabIndex = 4;
             this.quickoptions_about_tab.Text = "About";
             this.quickoptions_about_tab.UseVisualStyleBackColor = true;
@@ -1311,7 +1318,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.parsedFilesGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.parsedFilesGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
-            this.parsedFilesGridView.Location = new System.Drawing.Point(3, 233);
+            this.parsedFilesGridView.Location = new System.Drawing.Point(3, 265);
             this.parsedFilesGridView.Name = "parsedFilesGridView";
             this.parsedFilesGridView.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1324,7 +1331,7 @@
             this.parsedFilesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.parsedFilesGridView.RowHeadersWidth = 43;
             this.parsedFilesGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.parsedFilesGridView.Size = new System.Drawing.Size(798, 58);
+            this.parsedFilesGridView.Size = new System.Drawing.Size(798, 86);
             this.parsedFilesGridView.TabIndex = 1;
             this.parsedFilesGridView.CellContextMenuStripNeeded += new System.Windows.Forms.DataGridViewCellContextMenuStripNeededEventHandler(this.parsedFilesGridView_showContextMenu);
             this.parsedFilesGridView.SelectionChanged += new System.EventHandler(this.parsedFilesGridView_selectionChanged);
@@ -1339,11 +1346,11 @@
             this.processGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.processGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
             this.processGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.processGridView.Location = new System.Drawing.Point(3, 310);
+            this.processGridView.Location = new System.Drawing.Point(3, 375);
             this.processGridView.Name = "processGridView";
             this.processGridView.ReadOnly = true;
             this.processGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.processGridView.Size = new System.Drawing.Size(798, 132);
+            this.processGridView.Size = new System.Drawing.Size(798, 97);
             this.processGridView.TabIndex = 3;
             // 
             // openFileDialog
@@ -1388,12 +1395,62 @@
             this.exportOutputDirectoryDialog.Description = "Output directory for R";
             this.exportOutputDirectoryDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(804, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadToolStripMenuItem,
+            this.saveAsToolStripMenuItem,
+            this.saveToolStripMenuItem,
+            this.quitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // loadToolStripMenuItem
+            // 
+            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Text = "Load";
+            this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsToolStripMenuItem.Text = "Save as";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            // 
+            // quitToolStripMenuItem
+            // 
+            this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.quitToolStripMenuItem.Text = "Quit";
+            this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 445);
+            this.ClientSize = new System.Drawing.Size(804, 475);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "ActigraphAuswertung";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -1428,7 +1485,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.parsedFilesGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.processGridView)).EndInit();
             this.parsedFileContextMenu.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1547,6 +1607,12 @@
         private System.Windows.Forms.Label activitylevel_light_limit;
         private System.Windows.Forms.Label activitylevel_sedentary_limit;
         private System.Windows.Forms.Label activitylevels_collabel_limits;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
     }
 }
 
