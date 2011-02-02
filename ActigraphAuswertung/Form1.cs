@@ -497,5 +497,27 @@ namespace ActigraphAuswertung
             catch { }
         }
         #endregion
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog loadDialog = new OpenFileDialog();
+            loadDialog.InitialDirectory = "Desktop";
+            loadDialog.Filter = "XML File|*.xml";
+            loadDialog.Title = "Save XML";
+            loadDialog.ShowDialog();
+        }
+
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog SaveAs = new SaveFileDialog();
+            SaveAs.Filter = "XML|*.xml";
+            SaveAs.Title = "Daten speichern unter:";
+            SaveAs.ShowDialog();
+        }
     }
 }
