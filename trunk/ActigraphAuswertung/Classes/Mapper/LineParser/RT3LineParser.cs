@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using ActigraphAuswertung.Model;
-using System.Globalization;
 
 namespace ActigraphAuswertung.Mapper.LineParser
 {
@@ -59,7 +58,7 @@ namespace ActigraphAuswertung.Mapper.LineParser
             {
                 RowEntry entry = new RowEntry();
                 // rt3 saves in us date format
-                entry.Date = DateTime.Parse(match.Groups[2].Value + " " + match.Groups[3].Value, new CultureInfo("EN-us"));
+                entry.Date = DateTime.Parse(match.Groups[2].Value + " " + match.Groups[3].Value, CultureInfoEN);
                 entry.CaloriesTotal = float.Parse(match.Groups[4].Value);
                 entry.CaloriesActivity = float.Parse(match.Groups[6].Value);
                 entry.Vmu = int.Parse(match.Groups[8].Value);

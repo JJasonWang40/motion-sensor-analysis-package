@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using ActigraphAuswertung.Model;
-using System.Globalization;
 
 namespace ActigraphAuswertung.Mapper.LineParser
 {
@@ -46,7 +45,7 @@ namespace ActigraphAuswertung.Mapper.LineParser
             if (match.Success)
             {
                 RowEntry entry = new RowEntry();
-                entry.Date = DateTime.Parse(match.Groups[1].Value + " " + match.Groups[3].Value, new CultureInfo("DE-de"));
+                entry.Date = DateTime.Parse(match.Groups[1].Value + " " + match.Groups[3].Value, CultureInfoDE);
                 entry.Activity = int.Parse(match.Groups[5].Value);
                 return entry;
             }
