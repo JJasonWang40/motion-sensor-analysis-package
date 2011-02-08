@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using ActigraphAuswertung.Model;
+using System.Globalization;
 
 namespace ActigraphAuswertung.Mapper.LineParser
 {
@@ -50,5 +51,7 @@ namespace ActigraphAuswertung.Mapper.LineParser
             Match test = this.lineMatcher.Match(line);
             return test.Success;
         }
+        public CultureInfo CultureInfoEN = new CultureInfo("EN-us");
+        public CultureInfo CultureInfoDE = new CultureInfo("DE-de");
     }
 }

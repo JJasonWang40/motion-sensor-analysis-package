@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace ActigraphAuswertung.Mapper.LineParser
@@ -69,7 +68,7 @@ namespace ActigraphAuswertung.Mapper.LineParser
                 if (timeMatches.Success)
                 {
                     // force dd.mm.YYYY parsing
-                    DateTime time = DateTime.Parse(timeMatches.Groups[1].Value, new CultureInfo("de-DE"));
+                    DateTime time = DateTime.Parse(timeMatches.Groups[1].Value, CultureInfoDE);
                     this.entryoffSetTime = new TimeSpan(time.Hour, time.Minute, time.Second);
                 }
                 else
@@ -85,7 +84,7 @@ namespace ActigraphAuswertung.Mapper.LineParser
                 if (dateMatches.Success)
                 {
                     // force dd.mm.YYYY parsing
-                    DateTime date = DateTime.Parse(dateMatches.Groups[1].Value, new CultureInfo("de-DE"));
+                    DateTime date = DateTime.Parse(dateMatches.Groups[1].Value, CultureInfoDE);
                     // add start time to start date
                     entryTime = date + entryoffSetTime;
                 }
