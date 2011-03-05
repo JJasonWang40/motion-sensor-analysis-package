@@ -78,6 +78,7 @@ namespace ActigraphAuswertung.Mapper
                         {
                             activeLineParser = parser;
                             bufferline = line;
+                            break;
                         }
                     }
                 }
