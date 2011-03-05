@@ -95,7 +95,6 @@
     <Compile Include="Classes\Mapper\LineParser\Activity2dVMULineParser.cs" />
     <Compile Include="Classes\Mapper\LineParser\Activity3dVMULineParser.cs" />
     <Compile Include="Classes\Mapper\LineParser\ActivityUnknownLineParser.cs" />
-    <Compile Include="Classes\Mapper\LineParser\StandardRawParser.cs" />
     <Compile Include="Classes\Mapper\LineParser\DateTime3dActivityStepsLineParser.cs" />
     <Compile Include="Classes\Mapper\LineParser\DateTimeActivity2dVMUStepsInclLineParser.cs" />
     <Compile Include="Classes\Mapper\LineParser\DateTimeActivity3dVMUStepsInclLineParser.cs" />
