@@ -55,15 +55,7 @@ namespace ActigraphAuswertung.Mapper
             using (StreamReader reader = new StreamReader(file))
             {
                 String line;
-                CsvModel model = new CsvModel();
-                // set limits for the activitylevel calculator
-
-                model.ActivityLevelCalculator.MinSedantary = minSedantary;
-                model.ActivityLevelCalculator.MinLight = minLight;
-                model.ActivityLevelCalculator.MinModerate = minModerate;
-                model.ActivityLevelCalculator.MinHeavy = minHeavy;
-                model.ActivityLevelCalculator.MinVeryheavy = minVeryheavy;
-
+                
                 // we need a buffer to parse the line that is overwritten after testing
                 String bufferline = "";
 
@@ -91,8 +83,18 @@ namespace ActigraphAuswertung.Mapper
 
                 Console.WriteLine("Detected lineparser: " + activeLineParser.ToString());
 
-                // Set supported values and filename
-                model.SupportedValues = activeLineParser.SupportedValues;
+                // construct model with supported values
+                CsvModel model = new CsvModel(activeLineParser.SupportedValues);
+                // set limits for the activitylevel calculator
+
+                model.ActivityLevelCalculator.MinSedantary = minSedantary;
+                model.ActivityLevelCalculator.MinLight = minLight;
+                model.ActivityLevelCalculator.MinModerate = minModerate;
+                model.ActivityLevelCalculator.MinHeavy = minHeavy;
+                model.ActivityLevelCalculator.MinVeryheavy = minVeryheavy;
+
+
+                // Set filename
                 model.AbsoluteFileName = file;
                 // Add the two lines consumed by lineparser testing
                 model.Add(activeLineParser.parseLine(bufferline));
@@ -127,7 +129,7 @@ namespace ActigraphAuswertung.Mapper
             Filter.FilterMethod method
         )
         {
-            CsvModel model = new CsvModel();
+            CsvModel model = new CsvModel(data.SupportedValues);
 
             // set limits of the activitylevel calculator of the new model
             model.ActivityLevelCalculator.MinVeryheavy = data.ActivityLevelCalculator.MinVeryheavy;
