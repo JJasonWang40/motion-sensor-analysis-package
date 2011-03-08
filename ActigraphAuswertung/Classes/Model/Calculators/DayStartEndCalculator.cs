@@ -16,7 +16,7 @@ namespace ActigraphAuswertung.Model.Calculators
 
         // queue buffer for saving the last elements we take into consideration
         // when calculating the start- and enddate
-        private Queue<RowEntry> avarageBuffer = new Queue<RowEntry>();
+        private Queue<RowEntry> averageBuffer = new Queue<RowEntry>();
 
         // list saving the start and endtime of activity for each day in this dataset
         private BindingList<SensorStartEndWearing> dayStartEndList = new BindingList<SensorStartEndWearing>();
@@ -26,6 +26,15 @@ namespace ActigraphAuswertung.Model.Calculators
 
         // helper variable to see if a date already has been changed
         private DateTime nullDate = new DateTime();
+
+        //variables for Add()
+        double minVeloc = 0;
+        int[] averageBufferArray = new int[5];
+        int arrayCount = 0;
+        int entryCount = 0;
+        int Step = 5;
+        bool activityValueSupported;
+        bool vmuValueSupported;
 
         /// <summary>
         /// List of all days and their start and end times of activity.
@@ -42,6 +51,8 @@ namespace ActigraphAuswertung.Model.Calculators
         public DayStartEndCalculator(CsvModel model)
         {
             this.model = model;
+            this.activityValueSupported = this.model.SupportedValues.Contains(SensorData.Activity);
+            this.vmuValueSupported = this.model.SupportedValues.Contains(SensorData.Vmu);
         }
 
         /// <summary>
@@ -50,35 +61,50 @@ namespace ActigraphAuswertung.Model.Calculators
         /// <param name="entry">The entry to be added</param>
         public void Add(RowEntry entry)
         {
-            this.avarageBuffer.Enqueue(entry);
 
-            // Keep lookback to max. 5. This is the place to change if you want 
-            // less or stronger randoms correction.
-            if (this.avarageBuffer.Count >= 6)
-            {
-                this.avarageBuffer.Dequeue();
-            }
 
-            // Get lowest value of last 5 entries
-            double minVeloc;
-            if (this.model.SupportedValues.Contains(SensorData.Activity))
+            this.averageBuffer.Enqueue(entry);
+
+            //arrayCount reset after the maximum number of steps. Preventing array overflow.
+            this.arrayCount = this.entryCount % this.Step;
+
+
+            // Add values to averageBufferArray
+            if (activityValueSupported)
             {
-                minVeloc = this.avarageBuffer.AsQueryable().Min<RowEntry>(s => s.Activity);
+                this.averageBufferArray[this.arrayCount] = entry.Activity;
             }
-            else if (this.model.SupportedValues.Contains(SensorData.Vmu))
+            else if (vmuValueSupported)
             {
-                minVeloc = this.avarageBuffer.AsQueryable().Min<RowEntry>(s => s.Vmu);
+                this.averageBufferArray[this.arrayCount] = entry.Vmu;
             }
             else
             {
                 return;
             }
 
+            this.entryCount++;
+
+            if (entryCount < (this.Step))
+            {
+                return;
+            }
+
+            // Keep lookback to max. of the variable Step. This is the place to change if you want 
+            // less or stronger randoms correction.
+            if (this.averageBuffer.Count > this.Step)
+            {
+                this.averageBuffer.Dequeue();
+            }
+
+            // Get minimum of the Buffer
+            this.minVeloc = this.averageBufferArray.Min();
+
             // If all values are bigger then 5.0 and start-date hasn't been set yet,
             // set new start-date
             if (minVeloc >= 5.0 && this.currentDay.StartTime.Equals(this.nullDate))
             {
-                this.currentDay.StartTime = this.avarageBuffer.First().Date;
+                this.currentDay.StartTime = this.averageBuffer.First().Date;
             }
 
             // If all values are bigger then 5.0 and start-date has already been set,
@@ -89,13 +115,15 @@ namespace ActigraphAuswertung.Model.Calculators
             }
         }
 
+
         /// <summary>
         /// Called by the model on a new day.
         /// </summary>
         public void NewDay()
         {
-            // reset buffer
-            this.avarageBuffer.Clear();
+            // reset buffer and entryCount
+            this.averageBuffer.Clear();
+            this.entryCount = 0;
 
             // add current day to the resultlist
             if (this.currentDay.StartTime.Equals(this.nullDate))

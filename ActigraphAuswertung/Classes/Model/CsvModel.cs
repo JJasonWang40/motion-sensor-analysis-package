@@ -127,8 +127,9 @@ namespace ActigraphAuswertung.Model
         /// <summary>
         /// Constructor.
         /// </summary>
-        public CsvModel()
+        public CsvModel(SensorData[] SupportedValues)
         {
+            this.SupportedValues = SupportedValues;
             this.dayStartEndCalculator = new DayStartEndCalculator(this);
             this.activeTimeCalculator = new ActiveTimeCalculator(this);
             this.activityLevelCalculator = new ActivityLevelsCalculator(this);

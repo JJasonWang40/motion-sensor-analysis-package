@@ -70,7 +70,17 @@ namespace ActigraphAuswertung.Model.Calculators
 
         // queue buffer for saving the last elements we take into consideration
         // when calculating the activity levels
-        private Queue<RowEntry> avarageBuffer = new Queue<RowEntry>();
+        private Queue<RowEntry> averageBuffer = new Queue<RowEntry>();
+
+        //counter, which indicates the number of values added to the average calculation
+        private int averageCount = 0;
+
+        //average variable
+        double avgVeloc = 0;
+
+        // supported values
+        bool activityValueSupported;
+        bool vmuValueSupported;
 
         /// <summary>
         /// Constructor
@@ -79,6 +89,8 @@ namespace ActigraphAuswertung.Model.Calculators
         public ActivityLevelsCalculator(CsvModel model)
         {
             this.model = model;
+            this.activityValueSupported = this.model.SupportedValues.Contains(SensorData.Activity);
+            this.vmuValueSupported = this.model.SupportedValues.Contains(SensorData.Vmu);
             
             // set array of activity levels depending of the enum
             this.activityLevels = new ActivityLevel[Enum.GetNames(typeof(ActivityLevels)).Length];
@@ -100,30 +112,32 @@ namespace ActigraphAuswertung.Model.Calculators
         /// <summary>
         /// Called by the model on a new entry.
         /// </summary>
-        /// <param name="entry">The new entry</param>
+        /// <param name="entry">The entry to be added</param>
         public void Add(RowEntry entry)
         {
-            this.avarageBuffer.Enqueue(entry);
 
-            // Calculate every 5th. entry
-            if (this.avarageBuffer.Count < this.Steps)
+            // Add activity value to average variable
+            if (activityValueSupported)
             {
-                return;
+                this.avgVeloc += entry.Activity;
             }
-
-            // Get Avg of these values
-            double avgVeloc;
-            if (this.model.SupportedValues.Contains(SensorData.Activity))
+            else if (vmuValueSupported)
             {
-                avgVeloc = this.avarageBuffer.AsQueryable().Average<RowEntry>(s => s.Activity);
-            }
-            else if (this.model.SupportedValues.Contains(SensorData.Vmu))
-            {
-                avgVeloc = this.avarageBuffer.AsQueryable().Average<RowEntry>(s => s.Vmu);
+                this.avgVeloc += entry.Vmu;
             }
             else
             {
                 return;
+            }
+            this.averageCount++;
+
+            if (averageCount < this.Steps)
+            {
+                return;
+            }
+            else
+            {
+                avgVeloc /= this.Steps;
             }
 
             if (this.MinSedantary <= avgVeloc && avgVeloc < this.MinLight)
@@ -147,8 +161,11 @@ namespace ActigraphAuswertung.Model.Calculators
                 this.addCount(ActivityLevels.VERYVIGOROUS);
             }
 
-            this.avarageBuffer.Clear();
+            this.avgVeloc = 0;
+            this.averageCount = 0;
         }
+
+
 
         /// <summary>
         /// Called by the model on a new day. Unused.
