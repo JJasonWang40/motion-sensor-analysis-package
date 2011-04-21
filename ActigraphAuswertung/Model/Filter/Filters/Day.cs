@@ -30,5 +30,10 @@ namespace ActigraphAuswertung.Filter.Filters
             // Func: return true if the row's date is within (this.)days
             return new Func<RowEntry, bool>(s => this.days.Contains(s.Date.Date));
         }
+
+        public bool filter(RowEntry entry)
+        {
+            return this.days.Contains(entry.Date.Date);
+        }
     }
 }

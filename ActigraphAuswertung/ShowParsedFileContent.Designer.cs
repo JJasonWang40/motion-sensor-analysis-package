@@ -47,10 +47,7 @@
             // 
             this.fileContentDataGrid.AllowUserToAddRows = false;
             this.fileContentDataGrid.AllowUserToDeleteRows = false;
-            this.fileContentDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.fileContentDataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
             this.fileContentDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.fileContentDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.fileContentDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fileContentDataGrid.Location = new System.Drawing.Point(0, 0);
             this.fileContentDataGrid.MultiSelect = false;
