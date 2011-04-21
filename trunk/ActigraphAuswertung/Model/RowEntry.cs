@@ -5,7 +5,7 @@ namespace ActigraphAuswertung.Model
     /// <summary>
     /// Represents one row entry of the model.
     /// </summary>
-    public class RowEntry
+    public class RowEntry : IDataRow
     {
         private DateTime date;
 

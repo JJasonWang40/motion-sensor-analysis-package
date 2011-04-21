@@ -77,65 +77,70 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\CommandManager\CommandContainer.cs" />
-    <Compile Include="Classes\CommandManager\Commands\AbstractCommand.cs" />
-    <Compile Include="Classes\CommandManager\Commands\ExportCommand.cs" />
-    <Compile Include="Classes\CommandManager\Commands\FilterCommand.cs" />
-    <Compile Include="Classes\CommandManager\Commands\ImportCommand.cs" />
-    <Compile Include="Classes\CommandManager\Manager.cs" />
-    <Compile Include="Classes\CommandManager\Priorities.cs" />
-    <Compile Include="Classes\CommandManager\Status.cs" />
-    <Compile Include="Classes\Filter\Collection.cs" />
-    <Compile Include="Classes\Filter\Filters\Day.cs" />
-    <Compile Include="Classes\Filter\Filters\Time.cs" />
-    <Compile Include="Classes\Filter\Interface.cs" />
-    <Compile Include="Classes\Mapper\Factory.cs" />
-    <Compile Include="Classes\Mapper\LineParser\AbstractGT3XLineParser.cs" />
-    <Compile Include="Classes\Mapper\LineParser\AbstractLineParser.cs" />
-    <Compile Include="Classes\Mapper\LineParser\Activity2dVMULineParser.cs" />
-    <Compile Include="Classes\Mapper\LineParser\Activity3dVMULineParser.cs" />
-    <Compile Include="Classes\Mapper\LineParser\ActivityUnknownLineParser.cs" />
-    <Compile Include="Classes\Mapper\LineParser\DateTime3dActivityStepsLineParser.cs" />
-    <Compile Include="Classes\Mapper\LineParser\DateTimeActivity2dVMUStepsInclLineParser.cs" />
-    <Compile Include="Classes\Mapper\LineParser\DateTimeActivity3dVMUStepsInclLineParser.cs" />
-    <Compile Include="Classes\Mapper\LineParser\DateTimeActivityLineParser.cs" />
-    <Compile Include="Classes\Mapper\LineParser\DateTimeActivityStepsLineParser.cs" />
-    <Compile Include="Classes\Mapper\LineParser\LineparserException.cs" />
-    <Compile Include="Classes\Mapper\LineParser\NoDate3dActivityStepsLineParser.cs" />
-    <Compile Include="Classes\Mapper\LineParser\RExportedLineParser.cs" />
-    <Compile Include="Classes\Mapper\LineParser\RT3LineParser.cs" />
-    <Compile Include="Classes\Mapper\LineParser\RT3SemicolomSepLineParser.cs" />
-    <Compile Include="Classes\Mapper\LineParser\SingleEntryLineParser.cs" />
+    <Compile Include="CommandManager\CommandContainer.cs" />
+    <Compile Include="CommandManager\Commands\AbstractCommand.cs" />
+    <Compile Include="CommandManager\Commands\ExportCommand.cs" />
+    <Compile Include="CommandManager\Commands\FilterCommand.cs" />
+    <Compile Include="CommandManager\Commands\ImportCommand.cs" />
+    <Compile Include="CommandManager\Manager.cs" />
+    <Compile Include="CommandManager\Priorities.cs" />
+    <Compile Include="CommandManager\Status.cs" />
+    <Compile Include="Model\CsvModelList.cs" />
+    <Compile Include="Model\Filter\Collection.cs" />
+    <Compile Include="Model\Filter\Filters\Day.cs" />
+    <Compile Include="Model\Filter\Filters\Time.cs" />
+    <Compile Include="Model\Filter\Interface.cs" />
+    <Compile Include="Model\IDataRow.cs" />
+    <Compile Include="Model\IDataSet.cs" />
+    <Compile Include="Model\Mapper\Factory.cs" />
+    <Compile Include="Model\Mapper\FileImportMapper.cs" />
+    <Compile Include="Model\Mapper\LineParser\AbstractGT3XLineParser.cs" />
+    <Compile Include="Model\Mapper\LineParser\AbstractLineParser.cs" />
+    <Compile Include="Model\Mapper\LineParser\Activity2dVMULineParser.cs" />
+    <Compile Include="Model\Mapper\LineParser\Activity3dVMULineParser.cs" />
+    <Compile Include="Model\Mapper\LineParser\ActivityUnknownLineParser.cs" />
+    <Compile Include="Model\Mapper\LineParser\DateTime3dActivityStepsLineParser.cs" />
+    <Compile Include="Model\Mapper\LineParser\DateTimeActivity2dVMUStepsInclLineParser.cs" />
+    <Compile Include="Model\Mapper\LineParser\DateTimeActivity3dVMUStepsInclLineParser.cs" />
+    <Compile Include="Model\Mapper\LineParser\DateTimeActivityLineParser.cs" />
+    <Compile Include="Model\Mapper\LineParser\DateTimeActivityStepsLineParser.cs" />
+    <Compile Include="Model\Mapper\LineParser\LineparserException.cs" />
+    <Compile Include="Model\Mapper\LineParser\NoDate3dActivityStepsLineParser.cs" />
+    <Compile Include="Model\Mapper\LineParser\RExportedLineParser.cs" />
+    <Compile Include="Model\Mapper\LineParser\RT3LineParser.cs" />
+    <Compile Include="Model\Mapper\LineParser\RT3SemicolomSepLineParser.cs" />
+    <Compile Include="Model\Mapper\LineParser\SingleEntryLineParser.cs" />
+    <Compile Include="Model\Storage\IStorage.cs" />
     <Compile Include="Standard_Raw_Parser.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Standard_Raw_Parser.Designer.cs">
       <DependentUpon>Standard_Raw_Parser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Model\Calculators\ActiveTimeCalculator.cs" />
-    <Compile Include="Classes\Model\Calculators\ActivityLevelsCalculator.cs" />
-    <Compile Include="Classes\Model\Calculators\CalculatorInterface.cs" />
-    <Compile Include="Classes\Model\Calculators\DayStartEndCalculator.cs" />
-    <Compile Include="Classes\Model\CsvModel.cs">
+    <Compile Include="Model\Calculators\ActiveTimeCalculator.cs" />
+    <Compile Include="Model\Calculators\ActivityLevelsCalculator.cs" />
+    <Compile Include="Model\Calculators\CalculatorInterface.cs" />
+    <Compile Include="Model\Calculators\DayStartEndCalculator.cs" />
+    <Compile Include="Model\CsvModel.cs">
     </Compile>
-    <Compile Include="Classes\Model\ActivityLevels.cs" />
-    <Compile Include="Classes\Model\RowEntry.cs" />
-    <Compile Include="Classes\Model\SensorData.cs" />
-    <Compile Include="Classes\Model\SensorStartEndWearing.cs" />
-    <Compile Include="Classes\RExport\Abstract.cs" />
-    <Compile Include="Classes\RExport\ExportCrossCorrelation.cs" />
-    <Compile Include="Classes\RExport\ExportDaily.cs" />
-    <Compile Include="Classes\RExport\ExportDailyAvg.cs" />
-    <Compile Include="Classes\RExport\ExportHourlyAvg.cs" />
-    <Compile Include="Classes\RExport\ExportLevels.cs" />
-    <Compile Include="Classes\RExport\ExportRegressionLinear.cs" />
-    <Compile Include="Classes\RExport\ExportScatter.cs" />
-    <Compile Include="Classes\RExport\ExportScriptsEnum.cs" />
-    <Compile Include="Classes\RExport\ExportSteps.cs" />
-    <Compile Include="Classes\RExport\ExportUnknown.cs" />
-    <Compile Include="Classes\RExport\ExportWorn.cs" />
-    <Compile Include="Classes\RExport\RExportException.cs" />
-    <Compile Include="Classes\RExport\RSettings.cs" />
+    <Compile Include="Model\ActivityLevels.cs" />
+    <Compile Include="Model\RowEntry.cs" />
+    <Compile Include="Model\SensorData.cs" />
+    <Compile Include="Model\SensorStartEndWearing.cs" />
+    <Compile Include="RExport\Abstract.cs" />
+    <Compile Include="RExport\ExportCrossCorrelation.cs" />
+    <Compile Include="RExport\ExportDaily.cs" />
+    <Compile Include="RExport\ExportDailyAvg.cs" />
+    <Compile Include="RExport\ExportHourlyAvg.cs" />
+    <Compile Include="RExport\ExportLevels.cs" />
+    <Compile Include="RExport\ExportRegressionLinear.cs" />
+    <Compile Include="RExport\ExportScatter.cs" />
+    <Compile Include="RExport\ExportScriptsEnum.cs" />
+    <Compile Include="RExport\ExportSteps.cs" />
+    <Compile Include="RExport\ExportUnknown.cs" />
+    <Compile Include="RExport\ExportWorn.cs" />
+    <Compile Include="RExport\RExportException.cs" />
+    <Compile Include="RExport\RSettings.cs" />
     <Compile Include="SelectDataCells.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,7 +200,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="ActigraphAuswertung_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -213,7 +217,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram2.cd" />
     <None Include="Properties\DataSources\ActigraphAuswertung.Model.CsvModel.datasource" />
   </ItemGroup>
   <ItemGroup>

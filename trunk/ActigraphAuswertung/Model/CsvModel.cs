@@ -10,8 +10,17 @@ namespace ActigraphAuswertung.Model
     /// Sensor independent represenation of a file. 
     /// </summary>
     /// <remarks>Do not insert index-based. This will screw up all calculations!</remarks>
-    public class CsvModel : BindingList<RowEntry>
+    public class CsvModel : BindingList<RowEntry>,IDataSet
     {
+        private string id;
+
+        public string ID
+        {
+            get { return this.id; }
+            set { this.id = value; }
+        }
+
+
         private String absoluteFileName = null;
 
         /// <summary>
@@ -58,7 +67,13 @@ namespace ActigraphAuswertung.Model
         }
 
         // Model is finished. No further adding possible.
-        private Boolean locked = false;
+        private bool locked = false;
+
+        public bool Locked
+        {
+            get { return this.locked; }
+            set { this.locked = value; }
+        }
 
         /// <summary>
         /// Supported values of the file.
@@ -133,6 +148,13 @@ namespace ActigraphAuswertung.Model
             this.dayStartEndCalculator = new DayStartEndCalculator(this);
             this.activeTimeCalculator = new ActiveTimeCalculator(this);
             this.activityLevelCalculator = new ActivityLevelsCalculator(this);
+        }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public CsvModel()
+        {
         }
 
         /// <summary>

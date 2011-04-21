@@ -13,5 +13,7 @@ namespace ActigraphAuswertung.Filter
         /// </summary>
         /// <returns></returns>
         Func<RowEntry, bool> Filter();
+
+        bool filter(RowEntry entry);
     }
 }

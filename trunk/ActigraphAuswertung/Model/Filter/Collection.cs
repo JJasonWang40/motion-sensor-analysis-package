@@ -52,27 +52,67 @@ namespace ActigraphAuswertung.Filter
             {
                 // All rows where any filter returns true 
                 case FilterMethod.EITHER:
-                    result = queryable.Where(s => this.AsQueryable().Any(f => f.Filter()(s)));
-                break;
+                    {
+                        foreach (RowEntry entry in input)
+                        {
+                            foreach (FilterInterface filterType in this)
+                            {
+                                if (filterType.filter(entry))
+                                {
+                                    target.Add(entry);
+                                    break;
+                                }
+                            }
+
+                        }
+                    }
+                    break;
 
                 // No rows where any filter returns true
                 case FilterMethod.NONE:
-                    result = queryable.Where(s => !this.AsQueryable().Any(f => f.Filter()(s)));
+                {
+                    bool noFilterApplies;
+                    foreach (RowEntry entry in input)
+                    {
+                        noFilterApplies = true;
+                        foreach (FilterInterface filterType in this)
+                        {
+                            if (filterType.filter(entry))
+                            {
+                                noFilterApplies = false;
+                                break;
+                            }
+                        }
+                        if (noFilterApplies) { target.Add(entry); }
+                    }
+                }
                 break;
 
                 // case FilterMethod.All
                 // to ensure result is always set
                 // All rows where all filter return true
                 default:
-                    result = queryable.Where(s => this.AsQueryable().All(f => f.Filter()(s)));
+                {
+                    bool allFilterApply;
+                    foreach (RowEntry entry in input)
+                    {
+                        allFilterApply = true;
+                        foreach (FilterInterface filterType in this)
+                        {
+                            if (!filterType.filter(entry))
+                            {
+                                allFilterApply = false;
+                                break;
+                            }
+                        }
+                        if (allFilterApply) { target.Add(entry); }
+                    }
+                }
                 break;
             }
 
             // add all matching rows to the target
-            foreach(RowEntry t in result)
-            {
-                target.Add(t);
-            }
+            
         }
     }
 }

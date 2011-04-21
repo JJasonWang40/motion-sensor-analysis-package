@@ -16,7 +16,7 @@ namespace ActigraphAuswertung
 
     public partial class Form1 : Form
     {
-        BindingList<CsvModel> parsedFiles = new BindingList<CsvModel>();
+        CsvModelList parsedFiles = new CsvModelList();
         CommandManager.Manager commandManager = new CommandManager.Manager();
         /// <summary>
         /// Absolute path to the application directory.

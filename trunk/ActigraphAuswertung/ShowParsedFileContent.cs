@@ -34,6 +34,7 @@ namespace ActigraphAuswertung
             this.fileContentDataGrid.AutoGenerateColumns = false;
             this.fileContentDataGrid.DataSource = this.data;
 
+
             // add columns supported by data
             foreach (SensorData t in Enum.GetValues(typeof(SensorData)))
             {

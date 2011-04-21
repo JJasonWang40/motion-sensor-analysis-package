@@ -34,5 +34,10 @@ namespace ActigraphAuswertung.Filter.Filters
             // Func: return true if row's TimeOfDay is smaller then endTime and larger then startTime
             return new Func<RowEntry, bool>(s => (s.Date.TimeOfDay > this.startTime) && (s.Date.TimeOfDay < this.endTime));
         }
+
+        public bool filter(RowEntry entry)
+        {
+            return ((entry.Date.TimeOfDay > this.startTime) && (entry.Date.TimeOfDay < this.endTime));
+        }
     }
 }
