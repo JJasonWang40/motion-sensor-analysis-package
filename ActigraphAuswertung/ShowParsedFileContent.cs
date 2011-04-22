@@ -14,6 +14,7 @@ namespace ActigraphAuswertung
     {
         private CsvModel data;
 
+        #region constructor
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -51,5 +52,31 @@ namespace ActigraphAuswertung
 
             #endregion
         }
+        #endregion
+
+        #region datagrid events
+
+        private void fileContentDataGrid_ColumnDividerDoubleClick(Object sender, DataGridViewColumnDividerDoubleClickEventArgs e)
+        {
+            e.Handled = true;
+            //// get mouse coordinates
+            //System.Drawing.Point mousePoint = fileContentDataGrid.PointToClient(Cursor.Position);
+            //DataGridView.HitTestInfo hitTestInfo = fileContentDataGrid.HitTest(mousePoint.X, mousePoint.Y);
+            //// need to use reflection here to get access to the typeInternal field value which is declared as internal
+            //FieldInfo fieldInfo = hitTestInfo.GetType().GetField("typeInternal",
+            //    BindingFlags.Instance | BindingFlags.NonPublic);
+            //string value = fieldInfo.GetValue(hitTestInfo).ToString();
+            //throw new Exception(value);
+            //if (value.Contains("Resize"))
+            //{
+            //    // one of resize areas is double clicked; stop processing here      
+            //    return;
+            //}
+            //else
+            //{
+            //    // continue normal processing of the cell double click event
+            //}
+        }
+        #endregion
     }
 }
