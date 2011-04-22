@@ -43,10 +43,6 @@ namespace ActigraphAuswertung.Filter
                 return;
             }
 
-            // prepare source and result as queryables
-            IQueryable<RowEntry> queryable = input.AsQueryable();
-            IQueryable<RowEntry> result;
-
             // different concatinations for the different filter methods
             switch (method)
             {

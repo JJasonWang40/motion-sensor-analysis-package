@@ -47,6 +47,7 @@
             // 
             this.fileContentDataGrid.AllowUserToAddRows = false;
             this.fileContentDataGrid.AllowUserToDeleteRows = false;
+            this.fileContentDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.fileContentDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.fileContentDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fileContentDataGrid.Location = new System.Drawing.Point(0, 0);
@@ -56,6 +57,7 @@
             this.fileContentDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.fileContentDataGrid.Size = new System.Drawing.Size(649, 486);
             this.fileContentDataGrid.TabIndex = 0;
+            this.fileContentDataGrid.ColumnDividerDoubleClick += new System.Windows.Forms.DataGridViewColumnDividerDoubleClickEventHandler(this.fileContentDataGrid_ColumnDividerDoubleClick);
             // 
             // ShowParsedFileContent
             // 
