@@ -86,6 +86,7 @@
     <Compile Include="CommandManager\Priorities.cs" />
     <Compile Include="CommandManager\Status.cs" />
     <Compile Include="Model\CsvModelList.cs" />
+    <Compile Include="Model\DBCsvModel.cs" />
     <Compile Include="Model\Filter\Collection.cs" />
     <Compile Include="Model\Filter\Filters\Day.cs" />
     <Compile Include="Model\Filter\Filters\Time.cs" />
