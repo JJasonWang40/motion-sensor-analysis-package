@@ -63,6 +63,14 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.SQLite, Version=1.0.71.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.71.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -86,7 +94,10 @@
     <Compile Include="CommandManager\Priorities.cs" />
     <Compile Include="CommandManager\Status.cs" />
     <Compile Include="Model\CsvModelList.cs" />
-    <Compile Include="Model\DBCsvModel.cs" />
+    <Compile Include="Model\Storage\DatabaseRow.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Model\Storage\DBStorage.cs" />
     <Compile Include="Model\Filter\Collection.cs" />
     <Compile Include="Model\Filter\Filters\Day.cs" />
     <Compile Include="Model\Filter\Filters\Time.cs" />
@@ -247,7 +258,13 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="System.Data.SQLite.dll" />
+    <Content Include="System.Data.SQLite.Linq.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
