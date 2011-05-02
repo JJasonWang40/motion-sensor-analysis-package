@@ -18,7 +18,7 @@ namespace ActigraphAuswertung.Model.Storage
             set { this.date = value; }
         }
 
-        private int activity = 0;
+        private int activity;
 
         /// <summary>
         /// The activity(X) of the entry.
@@ -29,7 +29,7 @@ namespace ActigraphAuswertung.Model.Storage
             set { this.activity = value; }
         }
 
-        private int activityY = 0;
+        private int activityY;
 
         /// <summary>
         /// The Y-Activity of the entry.
@@ -40,7 +40,7 @@ namespace ActigraphAuswertung.Model.Storage
             set { this.activityY = value; }
         }
 
-        private int activityZ = 0;
+        private int activityZ;
 
         /// <summary>
         /// The Z-Activity of the entry.
@@ -51,7 +51,7 @@ namespace ActigraphAuswertung.Model.Storage
             set { this.activityZ = value; }
         }
 
-        private int vmu = 0;
+        private int vmu;
 
         /// <summary>
         /// The Vmu of the entry.
@@ -62,7 +62,7 @@ namespace ActigraphAuswertung.Model.Storage
             set { this.vmu = value; }
         }
 
-        private int steps = 0;
+        private int steps;
 
         /// <summary>
         /// The Steps of the entry.
@@ -73,7 +73,7 @@ namespace ActigraphAuswertung.Model.Storage
             set { this.steps = value; }
         }
 
-        private int inclinometer = 0;
+        private int inclinometer;
 
         /// <summary>
         /// The inclinometer of the value.
@@ -84,7 +84,7 @@ namespace ActigraphAuswertung.Model.Storage
             set { this.inclinometer = value; }
         }
 
-        private float caloriesTotal = 0;
+        private float caloriesTotal;
 
         /// <summary>
         /// The total calories of the entry.
@@ -95,7 +95,7 @@ namespace ActigraphAuswertung.Model.Storage
             set { this.caloriesTotal = value; }
         }
 
-        private float caloriesActivity = 0;
+        private float caloriesActivity;
 
         /// <summary>
         /// The activity calories of the entry.
@@ -104,6 +104,14 @@ namespace ActigraphAuswertung.Model.Storage
         {
             get { return this.caloriesActivity; }
             set { this.caloriesActivity = value; }
+        }
+
+        private int key;
+
+        public int Key
+        {
+            get { return this.key; }
+            set { this.key = value; }
         }
 
     }
