@@ -47,6 +47,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\ActigraphAuswertung.XML</DocumentationFile>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -94,6 +95,7 @@
     <Compile Include="CommandManager\Priorities.cs" />
     <Compile Include="CommandManager\Status.cs" />
     <Compile Include="Model\CsvModelList.cs" />
+    <Compile Include="Model\DatabaseDataSet.cs" />
     <Compile Include="Model\Storage\DatabaseRow.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -260,9 +262,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SQLite.Interop.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="SQLite.Interop.dll" />
     <Content Include="System.Data.SQLite.dll" />
     <Content Include="System.Data.SQLite.Linq.dll" />
   </ItemGroup>

@@ -9,6 +9,7 @@ using ActigraphAuswertung.Model;
 using ActigraphAuswertung.RExport;
 using ActigraphAuswertung.CommandManager.Commands;
 using ActigraphAuswertung.Model.Calculators;
+using ActigraphAuswertung.Model.Storage;
 
 namespace ActigraphAuswertung
 {
@@ -16,14 +17,15 @@ namespace ActigraphAuswertung
 
     public partial class Form1 : Form
     {
-        CsvModelList parsedFiles = new CsvModelList();
+        BindingList<DatabaseDataSet> parsedFiles = new BindingList<DatabaseDataSet>();
+        //CsvModelList parsedFiles = new CsvModelList();
         CommandManager.Manager commandManager = new CommandManager.Manager();
         /// <summary>
         /// Absolute path to the application directory.
         /// </summary>
         public static string APP_PATH = "";
 
-        /// <summary>
+        /// <summary>   
         /// Constructor.
         /// </summary>
         public Form1()
@@ -113,7 +115,7 @@ namespace ActigraphAuswertung
         private void parsedFilesGridView_showParsedFileContent(object sender, EventArgs e)
         {
             int rowIndex = this.parsedFilesGridView.SelectedRows[0].Index;
-            CsvModel data = (CsvModel)this.parsedFilesGridView.Rows[rowIndex].DataBoundItem;
+            DatabaseDataSet data = (DatabaseDataSet)this.parsedFilesGridView.Rows[rowIndex].DataBoundItem;
             ShowParsedFileContent viewCsvForm = new ShowParsedFileContent(data);
             viewCsvForm.Show();
         }
@@ -143,45 +145,45 @@ namespace ActigraphAuswertung
 
             // get selected dataset
             int rowIndex = this.parsedFilesGridView.SelectedRows[0].Index;
-            CsvModel data = (CsvModel)this.parsedFilesGridView.Rows[rowIndex].DataBoundItem;
+            DatabaseDataSet data = (DatabaseDataSet)this.parsedFilesGridView.Rows[rowIndex].DataBoundItem;
 
             // set time calucations
-            this.wearingtotaltimebox.Text = String.Format("{0:([d’.’]hh’:’mm’:’ss)}", data.ActiveTimeCalculator.ActiveTime.ToString());
-            this.wearingstarttimebox.Text = String.Format("{0:([d’.’]hh’:’mm’:’ss)}", data.ActiveTimeCalculator.AvgStartTime.ToString());
-            this.wearingendtimebox.Text = String.Format("{0:([d’.’]hh’:’mm’:’ss)}", data.ActiveTimeCalculator.AvgEndTime.ToString());
+       //     this.wearingtotaltimebox.Text = String.Format("{0:([d’.’]hh’:’mm’:’ss)}", data.ActiveTimeCalculator.ActiveTime.ToString());
+         //   this.wearingstarttimebox.Text = String.Format("{0:([d’.’]hh’:’mm’:’ss)}", data.ActiveTimeCalculator.AvgStartTime.ToString());
+           // this.wearingendtimebox.Text = String.Format("{0:([d’.’]hh’:’mm’:’ss)}", data.ActiveTimeCalculator.AvgEndTime.ToString());
 
             // set activity calculations
-            ActivityLevelsCalculator.ActivityLevel alevel;
-            int alevelSteps = data.ActivityLevelCalculator.Steps;
-            alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.VERYVIGOROUS);
-            this.activitylevel_veryvigorous_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
-            this.activitylevel_veryvigorous_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
-            this.activitylevel_veryvigorous_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
-            this.activitylevel_veryvigorous_limit.Text = data.ActivityLevelCalculator.MinVeryheavy.ToString();
+            //ActivityLevelsCalculator.ActivityLevel alevel;
+            //int alevelSteps = data.ActivityLevelCalculator.Steps;
+            //alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.VERYVIGOROUS);
+            //this.activitylevel_veryvigorous_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
+            //this.activitylevel_veryvigorous_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
+            //this.activitylevel_veryvigorous_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
+            //this.activitylevel_veryvigorous_limit.Text = data.ActivityLevelCalculator.MinVeryheavy.ToString();
 
-            alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.VIGOROUS);
-            this.activitylevel_vigorous_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent,2 ));
-            this.activitylevel_vigorous_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
-            this.activitylevel_vigorous_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
-            this.activitylevel_vigorous_limit.Text = data.ActivityLevelCalculator.MinHeavy.ToString();
+            //alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.VIGOROUS);
+            //this.activitylevel_vigorous_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent,2 ));
+            //this.activitylevel_vigorous_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
+            //this.activitylevel_vigorous_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
+            //this.activitylevel_vigorous_limit.Text = data.ActivityLevelCalculator.MinHeavy.ToString();
 
-            alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.MODERATE);
-            this.activitylevel_moderate_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
-            this.activitylevel_moderate_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
-            this.activitylevel_moderate_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
-            this.activitylevel_moderate_limit.Text = data.ActivityLevelCalculator.MinModerate.ToString();
+            //alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.MODERATE);
+            //this.activitylevel_moderate_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
+            //this.activitylevel_moderate_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
+            //this.activitylevel_moderate_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
+            //this.activitylevel_moderate_limit.Text = data.ActivityLevelCalculator.MinModerate.ToString();
 
-            alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.LIGHT);
-            this.activitylevel_light_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
-            this.activitylevel_light_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
-            this.activitylevel_light_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
-            this.activitylevel_light_limit.Text = data.ActivityLevelCalculator.MinLight.ToString();
+            //alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.LIGHT);
+            //this.activitylevel_light_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
+            //this.activitylevel_light_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
+            //this.activitylevel_light_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
+            //this.activitylevel_light_limit.Text = data.ActivityLevelCalculator.MinLight.ToString();
 
-            alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.SEDENTARY);
-            this.activitylevel_sedentary_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
-            this.activitylevel_sedentary_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
-            this.activitylevel_sedentary_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
-            this.activitylevel_sedentary_limit.Text = data.ActivityLevelCalculator.MinSedantary.ToString();
+            //alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.SEDENTARY);
+            //this.activitylevel_sedentary_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
+            //this.activitylevel_sedentary_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
+            //this.activitylevel_sedentary_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
+            //this.activitylevel_sedentary_limit.Text = data.ActivityLevelCalculator.MinSedantary.ToString();
 
             // set filter options
             this.filter_method_all.Checked = true;
@@ -189,22 +191,22 @@ namespace ActigraphAuswertung
 
             // time based filter
             this.filter_time_enabled.Checked = true;
-            this.filter_time_start.Text = data.ActiveTimeCalculator.AvgStartTime.ToString();
-            this.filter_time_end.Text = data.ActiveTimeCalculator.AvgEndTime.ToString();
+        //    this.filter_time_start.Text = data.ActiveTimeCalculator.AvgStartTime.ToString();
+        //    this.filter_time_end.Text = data.ActiveTimeCalculator.AvgEndTime.ToString();
 
             // day based filter
             this.filter_days_enabled.Checked = true;
             this.filter_days_list.Items.Clear();
-            foreach(SensorStartEndWearing day in data.DayStartEndCalculator.DayStartEndList)
-            {
-                this.filter_days_list.Items.Add(day.Date);
-                if (!day.ActiveTime.Equals(new TimeSpan()))
-                {
-                    this.filter_days_list.SetItemChecked(this.filter_days_list.Items.IndexOf(day.Date), true);
-                }
-            }
-            this.filter_days_list.SetItemChecked(0, false);
-            this.filter_days_list.SetItemChecked(this.filter_days_list.Items.Count-1, false);
+            //foreach(SensorStartEndWearing day in data.DayStartEndCalculator.DayStartEndList)
+            //{
+            //    this.filter_days_list.Items.Add(day.Date);
+            //    if (!day.ActiveTime.Equals(new TimeSpan()))
+            //    {
+            //        this.filter_days_list.SetItemChecked(this.filter_days_list.Items.IndexOf(day.Date), true);
+            //    }
+            //}
+            //this.filter_days_list.SetItemChecked(0, false);
+            //this.filter_days_list.SetItemChecked(this.filter_days_list.Items.Count-1, false);
 
             Application.DoEvents();
         }
@@ -323,7 +325,7 @@ namespace ActigraphAuswertung
         /// <param name="result"></param>
         public void filter_command_callback(Object result)
         {
-            this.parsedFiles.Add(result as CsvModel);
+            this.parsedFiles.Add(result as DatabaseDataSet);
         }
         #endregion
 
@@ -370,10 +372,10 @@ namespace ActigraphAuswertung
 
         public void import_task_finished(object result)
         {
-            CsvModel model = (CsvModel)result;
+            IDataSet model = (DatabaseDataSet)result;
             if (model != null)
             {
-                this.parsedFiles.Add((CsvModel)result);
+                this.parsedFiles.Add((DatabaseDataSet)result);
             }
         }
         #endregion
