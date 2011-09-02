@@ -106,12 +106,55 @@ namespace ActigraphAuswertung.Model.Storage
             set { this.caloriesActivity = value; }
         }
 
-        private int key;
-
-        public int Key
+        /// <summary>
+        /// Sets the <paramref name="entry"/> of the entry to <paramref name="value"/>.
+        /// </summary>
+        /// <param name="entry">The key to set</param>
+        /// <param name="value">The value to set the key to</param>
+        /// <exception cref="Exception">If the entry does not support the key.</exception>
+        public void setValue(SensorData entry, String value)
         {
-            get { return this.key; }
-            set { this.key = value; }
+            switch (entry)
+            {
+                case SensorData.Date:
+                    this.Date = DateTime.Parse(value);
+                    break;
+
+                case SensorData.Activity:
+                    this.Activity = int.Parse(value);
+                    break;
+
+                case SensorData.ActivityY:
+                    this.ActivityY = int.Parse(value);
+                    break;
+
+                case SensorData.ActivityZ:
+                    this.ActivityZ = int.Parse(value);
+                    break;
+
+                case SensorData.CaloriesActivity:
+                    this.CaloriesActivity = float.Parse(value);
+                    break;
+
+                case SensorData.CaloriesTotal:
+                    this.CaloriesTotal = float.Parse(value);
+                    break;
+
+                case SensorData.Inclinometer:
+                    this.Inclinometer = int.Parse(value);
+                    break;
+
+                case SensorData.Steps:
+                    this.Steps = int.Parse(value);
+                    break;
+
+                case SensorData.Vmu:
+                    this.Vmu = int.Parse(value);
+                    break;
+
+                default:
+                    throw new Exception("Unsupported value " + entry.ToString());
+            }
         }
 
     }

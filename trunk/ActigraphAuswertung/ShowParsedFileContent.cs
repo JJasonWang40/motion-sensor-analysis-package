@@ -4,25 +4,29 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using ActigraphAuswertung.Model;
+using ActigraphAuswertung.Model.Storage;
+using System.Data;
 
 namespace ActigraphAuswertung
 {
     /// <summary>
     /// Show all entries of the selected model.
     /// </summary>
-    public partial class ShowParsedFileContent : Form
+    partial class ShowParsedFileContent : Form
     {
-        private CsvModel data;
+        private DatabaseDataSet data;
 
         #region constructor
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="data">The model to show all entrys of</param>
-        public ShowParsedFileContent(CsvModel data)
+        public ShowParsedFileContent(DatabaseDataSet data)
         {
             // set bindinglist for gridview
             this.data = data;
+            DataTable dt = new DataTable();
+            dt.Load(data.getData());
 
             InitializeComponent();
 
@@ -33,8 +37,7 @@ namespace ActigraphAuswertung
 
             // prepare for custom data-source and columns
             this.fileContentDataGrid.AutoGenerateColumns = false;
-            this.fileContentDataGrid.DataSource = this.data;
-
+            this.fileContentDataGrid.DataSource = dt;
 
             // add columns supported by data
             foreach (SensorData t in Enum.GetValues(typeof(SensorData)))

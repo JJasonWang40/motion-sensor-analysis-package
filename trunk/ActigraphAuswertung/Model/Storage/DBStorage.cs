@@ -9,77 +9,127 @@ namespace ActigraphAuswertung.Model.Storage
     class DBStorage:IStorage<DatabaseRow>
     {	
         
-        private String databasename = "Actigraph.sqlite";
-        private SQLiteConnection sqllite = new SQLiteConnection();
+        private String databasename;
+        private SQLiteConnection sqlite = new SQLiteConnection();
 
         public DBStorage(){
+            this.databasename = "Actigraph.sqlite";
             if (File.Exists(databasename)){
-                etablisheconection();
+                etablishconnection();
                 
             }
             else {
-                etablisheconection();
+                etablishconnection();
                 generatenewdatabase(); };
         }
 
-        public void etablisheconection()
+        private void etablishconnection()
         {
-            sqllite.ConnectionString = "Data Source="+databasename;
-            sqllite.Open();
+            sqlite.ConnectionString = "Data Source="+databasename;
+            sqlite.Open();
         }
 
-        public void generatenewdatabase(){
-            System.Data.SQLite.SQLiteCommand sql = sqllite.CreateCommand();
-            sql.CommandText="create table files( key integer PRIMARY KEY AUTOINCREMENT, FileHash TEXT not null, Locked BOOLEAN)";
-            sql.ExecuteNonQuery();
-            sql.CommandText = "create table dataset(key integer PRIMARY KEY AUTOINCREMENT, files integer not null, Date DATE, Activity integer, ActivityY integer, ActivityZ integer, Incilometer integer, Steps integer, VMU integer, CaloriesActivity integer, CaloriesTotal integer, FOREIGN KEY(files) REFERENCES files(key))";
-            sql.ExecuteNonQuery();
+        private void generatenewdatabase(){
+            SQLiteCommand sqlCommand = sqlite.CreateCommand();
+            sqlCommand.CommandText = "create table files(key integer PRIMARY KEY AUTOINCREMENT, FileHash String not null, Locked BOOLEAN, Steuercode integer)";
+            sqlCommand.ExecuteNonQuery();
+            sqlCommand.CommandText = "create table dataset(key integer PRIMARY KEY AUTOINCREMENT, files integer not null, Date String, Activity integer, ActivityY integer, ActivityZ integer, Incilometer integer, Steps integer, VMU integer, CaloriesActivity float, CaloriesTotal float, FOREIGN KEY(files) REFERENCES files(key))";
+            sqlCommand.ExecuteNonQuery();
         }
 
-        public void lockData(string id)
+        public DatabaseDataSet getDataSet(String datasetID)
         {
-            System.Data.SQLite.SQLiteCommand sql = sqllite.CreateCommand();
-            sql.CommandText = "update files set Locked=1 where FileHash="+id;
-            sql.ExecuteNonQuery();
+            DatabaseDataSet dataset = new DatabaseDataSet();
+            dataset.ID = datasetID;
+            if (exists(datasetID))
+            {
+                dataset.locked = true;
+            }
+            else
+            {
+                dataset.locked = false;
+            }
+            return dataset;
         }
 
-        public bool exists(string id)
+        public bool exists(string dataSetID)
         {
-            System.Data.SQLite.SQLiteCommand sql = sqllite.CreateCommand();
-            sql.CommandText = "select * from files where FileHash="+id;
-            SQLiteDataReader sqlreader = sql.ExecuteReader();
-            if (id.Equals(sqlreader.GetString(sqlreader.GetOrdinal("FileHash")))) { return true; }
-            else { return false; };
+            SQLiteCommand sqlCommand = sqlite.CreateCommand();           
+            sqlCommand.CommandText = "select * from files where FileHash='" + dataSetID+"'";
+            SQLiteDataReader sqlreader = sqlCommand.ExecuteReader();
+            return sqlreader.HasRows;
+           
         }
 
-        public bool locked(string id)
+        public bool locked(string dataSetID)
         {
-            System.Data.SQLite.SQLiteCommand sql = sqllite.CreateCommand();
-            sql.CommandText = "select * from files where FileHash=" + id+" AND Locked=true";
-            SQLiteDataReader sqlreader = sql.ExecuteReader();
-            if (id.Equals(sqlreader.GetString(sqlreader.GetOrdinal("FileHash")))&&(sqlreader.GetBoolean(sqlreader.GetOrdinal("Locked"))==true)) { return true; }
-            else return false;
+            SQLiteCommand sqlCommand = sqlite.CreateCommand();
+            sqlCommand.CommandText = "select * from files where FileHash='" + dataSetID + "' AND Locked=1";
+            SQLiteDataReader sqlreader = sqlCommand.ExecuteReader();
+            return sqlreader.HasRows;
+        }
+
+        #region executeQuerry
+        public bool executeStatementHashRows(String command)
+        {
+            SQLiteCommand sqlCommand = sqlite.CreateCommand();
+            sqlCommand.CommandText = command;
+            return (sqlCommand.ExecuteReader()).HasRows;
+        }
+
+        public SQLiteDataReader readDataBase(String command)
+        {
+            SQLiteCommand sqlCommand = sqlite.CreateCommand();
+            sqlCommand.CommandText = command;
+            return sqlCommand.ExecuteReader();
+        }
+
+        public void executeSQLCommand (String command)
+        {
+                SQLiteCommand sqlCommand = sqlite.CreateCommand();
+                sqlCommand.CommandText = command;
+                sqlCommand.ExecuteNonQuery();
+        }
+
+        public int calculateRows(String dataSetID)
+        {
+            SQLiteCommand sqlCommand = sqlite.CreateCommand();
+            SQLiteDataReader reader = Program.storage.readDataBase("select * from files where FileHash='"+dataSetID+"'");
+            reader.Read();
+            sqlCommand.CommandText = "select count (*) as count from dataset where files = files=" + reader.GetInt32(reader.GetOrdinal("key"));
+            reader = sqlCommand.ExecuteReader();
+            reader.Read();
+            return reader.GetInt32(reader.GetOrdinal("count"));
+        }
+        #endregion
+
+        public void lockData(string dataSetID)
+        {
+            //SQLiteCommand sqlCommand = sqlite.CreateCommand();
+            //sqlCommand.CommandText = "update files set Locked=1 where FileHash=" + dataSetID;
+            //sqlCommand.ExecuteNonQuery();
         }
 
         public void Add(string dataSetID, DatabaseRow dataRow)
         {
-            System.Data.SQLite.SQLiteCommand sql = sqllite.CreateCommand();
-            if (!locked(dataSetID))
-            {
-                sql.CommandText = "select * from files where FileHash=" + dataSetID;
-                SQLiteDataReader sqlreader = sql.ExecuteReader();
-                dataRow.Key = sqlreader.GetInt32(sqlreader.GetOrdinal("key"));
-                sql.CommandText = "insert into dataset(files, Date, Activity, ActivityY, ActivityZ, Incilometer, Steps, VMU, CaloriesActivity, CaloriesTotal) Values(" + dataRow.Key + ", " + dataRow.Date + ", " + dataRow.Activity + ", " + dataRow.ActivityY + ", " + dataRow.ActivityZ + ", " + dataRow.Inclinometer + ", " + dataRow.Steps + ", " + dataRow.Vmu + ", " + dataRow.CaloriesActivity + ", " + dataRow.CaloriesTotal + ")";
-                sql.ExecuteNonQuery();
-            }
-            else { throw new Exception("Model already finished. Can't add new datasets"); };
+            //SQLiteCommand sqlCommand = sqlite.CreateCommand();
+            //if (!locked(dataSetID))
+            //{
+            //    sqlCommand.CommandText = "select * from files where FileHash=" + dataSetID;
+              //  SQLiteDataReader sqlreader = sqlCommand.ExecuteReader();
+                //sqlCommand.CommandText = "insert into dataset(files, Date, Activity, ActivityY, ActivityZ, Incilometer, Steps, VMU, CaloriesActivity, CaloriesTotal) Values(" + sqlreader.GetInt32(sqlreader.GetOrdinal("key"))+ ", '" + dataRow.Date + "', " + dataRow.Activity + ", " + dataRow.ActivityY + ", " + dataRow.ActivityZ + ", " + dataRow.Inclinometer + ", " + dataRow.Steps + ", " + dataRow.Vmu + ", " + dataRow.CaloriesActivity + ", " + dataRow.CaloriesTotal + ")";
+                //sqlCommand.ExecuteNonQuery();
+            //}
+            //else { throw new Exception("Model already finished. Can't add new datasets"); };
         }
 
-        public void AddNewFile(string id)
+        public void AddNewFile(string dataSetID)
         {
-            System.Data.SQLite.SQLiteCommand sql = sqllite.CreateCommand();
-            sql.CommandText = "insert into files (FileHash, Locked) VALUES('" + id + "', 0)";
-            sql.ExecuteNonQuery();
+            //SQLiteCommand sqlCommand = sqlite.CreateCommand();
+            //System.Data.SQLite.SQLiteCommand sql = sqlite.CreateCommand();
+            //sql.CommandText = "insert into files (FileHash, Locked) VALUES('" + dataSetID + "', 0)";
+            //sql.ExecuteNonQuery();
         }
+
     }
 }

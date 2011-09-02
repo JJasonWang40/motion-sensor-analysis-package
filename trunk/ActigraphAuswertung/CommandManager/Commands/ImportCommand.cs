@@ -48,13 +48,13 @@ namespace ActigraphAuswertung.CommandManager.Commands
         /// <returns>The imported data: <see cref="Model.CsvModel"/></returns>
         public override object execute()
         {
-            return Mapper.Factory.parse(
-                this.file,
-                this.minSedantary,
-                this.minLight,
-                this.minModerate,
-                this.minHeavy,
-                this.minVeryheavy
+            return ActigraphAuswertung.Model.Mapper.FileImportMapper.parse(
+                this.file//,
+                //this.minSedantary,
+                //this.minLight,
+                //this.minModerate,
+                //this.minHeavy,
+                //this.minVeryheavy
             );
         }
     }

@@ -32,7 +32,7 @@ namespace ActigraphAuswertung.Model.Mapper
         /// <param name="storage">The reference to the storage where the imported data is saved to</param>
         /// <param name="file">The absolute filepath to the file to import</param>
         /// <returns>The ID of the imported CsvModel</returns>
-        public static string parse(CsvModelList storage, string file)
+        public static DatabaseDataSet parse(string file)
         {
             // the active line parser
             AbstractLineParser activeLineParser = null;
@@ -72,22 +72,35 @@ namespace ActigraphAuswertung.Model.Mapper
 
                 Console.WriteLine("Detected lineparser: " + activeLineParser.ToString());
 
-                // Add the two lines consumed by lineparser testing
-                storage.Add(fileID, activeLineParser.parseLine(bufferline));
-                storage.Add(fileID, activeLineParser.parseLine(line));
+                DatabaseDataSet dataset = Program.storage.getDataSet(fileID);
+                dataset.AbsoluteFileName = file;
+                dataset.SupportedValues = activeLineParser.SupportedValues;
 
-                //iterate over all remaining lines with
-                while ((line = reader.ReadLine()) != null)
+                if (dataset.locked)
                 {
-                    if (line.Trim().Length > 0)
-                    {
-                        storage.Add(fileID, activeLineParser.parseLine(line));
-                    }
+                    dataset.loadData();
                 }
+                else
+                {
+                    dataset.AddNewFile();
+                    // Add the two lines consumed by lineparser testing
+                    dataset.Add(activeLineParser.parseLine(bufferline));
+                    dataset.Add(activeLineParser.parseLine(line));
 
-                // finish model
-                storage.lockData(fileID);
-                return fileID;
+                    //iterate over all remaining lines with
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        if (line.Trim().Length > 0)
+                        {
+                            dataset.Add(activeLineParser.parseLine(line));
+                        }
+                    }
+
+                    // finish model
+                    dataset.locked = true;
+                    dataset.finishImport();
+                }
+                return dataset;
             }
         }
 
