@@ -124,7 +124,6 @@ namespace ActigraphAuswertung
         // context menu event
         private void parsedFilesGridView_showDailyStartEndTimes(object sender, EventArgs e)
         {
-            //TODO
             int rowIndex = this.parsedFilesGridView.SelectedRows[0].Index;
             DatabaseDataSet data = (DatabaseDataSet)this.parsedFilesGridView.Rows[rowIndex].DataBoundItem;
             ShowParsedFileDailyStartEndTimes viewCsvForm = new ShowParsedFileDailyStartEndTimes(data);
@@ -155,37 +154,38 @@ namespace ActigraphAuswertung
             this.wearingendtimebox.Text = String.Format("{0:([d’.’]hh’:’mm’:’ss)}", timeCalculator.AvgEndTime.ToString());
 
             // set activity calculations
-            ActivityLevelsCalculator.ActivityLevel alevel;
-            //int alevelSteps = data.ActivityLevelCalculator.Steps;
-            //alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.VERYVIGOROUS);
-            //this.activitylevel_veryvigorous_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
-            //this.activitylevel_veryvigorous_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
-            //this.activitylevel_veryvigorous_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
-            //this.activitylevel_veryvigorous_limit.Text = data.ActivityLevelCalculator.MinVeryheavy.ToString();
+            DatabaseActivityLevelsCalculator.ActivityLevel alevel;
+            DatabaseActivityLevelsCalculator calculator = new DatabaseActivityLevelsCalculator(data);
+            int alevelSteps = calculator.Steps;
+            alevel = calculator.getActivityLevel(ActivityLevels.VERYVIGOROUS);
+            this.activitylevel_veryvigorous_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
+            this.activitylevel_veryvigorous_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
+            this.activitylevel_veryvigorous_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
+            this.activitylevel_veryvigorous_limit.Text = calculator.MinVeryheavy.ToString();
 
-            //alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.VIGOROUS);
-            //this.activitylevel_vigorous_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent,2 ));
-            //this.activitylevel_vigorous_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
-            //this.activitylevel_vigorous_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
-            //this.activitylevel_vigorous_limit.Text = data.ActivityLevelCalculator.MinHeavy.ToString();
+            alevel = calculator.getActivityLevel(ActivityLevels.VIGOROUS);
+            this.activitylevel_vigorous_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent,2 ));
+            this.activitylevel_vigorous_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
+            this.activitylevel_vigorous_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
+            this.activitylevel_vigorous_limit.Text = calculator.MinHeavy.ToString();
 
-            //alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.MODERATE);
-            //this.activitylevel_moderate_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
-            //this.activitylevel_moderate_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
-            //this.activitylevel_moderate_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
-            //this.activitylevel_moderate_limit.Text = data.ActivityLevelCalculator.MinModerate.ToString();
+            alevel = calculator.getActivityLevel(ActivityLevels.MODERATE);
+            this.activitylevel_moderate_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
+            this.activitylevel_moderate_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
+            this.activitylevel_moderate_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
+            this.activitylevel_moderate_limit.Text = calculator.MinModerate.ToString();
 
-            //alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.LIGHT);
-            //this.activitylevel_light_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
-            //this.activitylevel_light_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
-            //this.activitylevel_light_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
-            //this.activitylevel_light_limit.Text = data.ActivityLevelCalculator.MinLight.ToString();
+            alevel = calculator.getActivityLevel(ActivityLevels.LIGHT);
+            this.activitylevel_light_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
+            this.activitylevel_light_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
+            this.activitylevel_light_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
+            this.activitylevel_light_limit.Text = calculator.MinLight.ToString();
 
-            //alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.SEDENTARY);
-            //this.activitylevel_sedentary_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
-            //this.activitylevel_sedentary_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
-            //this.activitylevel_sedentary_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
-            //this.activitylevel_sedentary_limit.Text = data.ActivityLevelCalculator.MinSedantary.ToString();
+            alevel = calculator.getActivityLevel(ActivityLevels.SEDENTARY);
+            this.activitylevel_sedentary_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));
+            this.activitylevel_sedentary_time.Text = new TimeSpan(data.EpochPeriod.Ticks * alevel.Count * alevelSteps).ToString();
+            this.activitylevel_sedentary_values.Text = alevel.Count + " / " + alevel.Count * alevelSteps;
+            this.activitylevel_sedentary_limit.Text = calculator.MinSedantary.ToString();
 
             // set filter options
             this.filter_method_all.Checked = true;
