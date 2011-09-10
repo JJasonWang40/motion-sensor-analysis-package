@@ -124,6 +124,7 @@ namespace ActigraphAuswertung
         // context menu event
         private void parsedFilesGridView_showDailyStartEndTimes(object sender, EventArgs e)
         {
+            //TODO
             int rowIndex = this.parsedFilesGridView.SelectedRows[0].Index;
             CsvModel data = (CsvModel)this.parsedFilesGridView.Rows[rowIndex].DataBoundItem;
             ShowParsedFileDailyStartEndTimes viewCsvForm = new ShowParsedFileDailyStartEndTimes(data);
@@ -148,12 +149,13 @@ namespace ActigraphAuswertung
             DatabaseDataSet data = (DatabaseDataSet)this.parsedFilesGridView.Rows[rowIndex].DataBoundItem;
 
             // set time calucations
-       //     this.wearingtotaltimebox.Text = String.Format("{0:([d’.’]hh’:’mm’:’ss)}", data.ActiveTimeCalculator.ActiveTime.ToString());
+            DatabaseActiveTimeCalculator timeCalculator = new DatabaseActiveTimeCalculator(data);
+            this.wearingtotaltimebox.Text = String.Format("{0:([d’.’]hh’:’mm’:’ss)}", timeCalculator.ActiveTime.ToString());
          //   this.wearingstarttimebox.Text = String.Format("{0:([d’.’]hh’:’mm’:’ss)}", data.ActiveTimeCalculator.AvgStartTime.ToString());
            // this.wearingendtimebox.Text = String.Format("{0:([d’.’]hh’:’mm’:’ss)}", data.ActiveTimeCalculator.AvgEndTime.ToString());
 
             // set activity calculations
-            //ActivityLevelsCalculator.ActivityLevel alevel;
+            ActivityLevelsCalculator.ActivityLevel alevel;
             //int alevelSteps = data.ActivityLevelCalculator.Steps;
             //alevel = data.ActivityLevelCalculator.getActivityLevel(ActivityLevels.VERYVIGOROUS);
             //this.activitylevel_veryvigorous_perc.Text = String.Format("{0:00.00} %", Math.Round(alevel.Percent, 2));

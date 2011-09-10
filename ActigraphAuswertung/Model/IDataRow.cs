@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ActigraphAuswertung.Model
 {
-    interface IDataRow
+    public interface IDataRow
     {
         DateTime Date { get; set; }
         int Activity { get; set; }

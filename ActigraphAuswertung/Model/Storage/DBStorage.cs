@@ -90,17 +90,6 @@ namespace ActigraphAuswertung.Model.Storage
                 sqlCommand.CommandText = command;
                 sqlCommand.ExecuteNonQuery();
         }
-
-        public int calculateRows(String dataSetID)
-        {
-            SQLiteCommand sqlCommand = sqlite.CreateCommand();
-            SQLiteDataReader reader = Program.storage.readDataBase("select * from files where FileHash='"+dataSetID+"'");
-            reader.Read();
-            sqlCommand.CommandText = "select count (*) as count from dataset where files = files=" + reader.GetInt32(reader.GetOrdinal("key"));
-            reader = sqlCommand.ExecuteReader();
-            reader.Read();
-            return reader.GetInt32(reader.GetOrdinal("count"));
-        }
         #endregion
 
         public void lockData(string dataSetID)

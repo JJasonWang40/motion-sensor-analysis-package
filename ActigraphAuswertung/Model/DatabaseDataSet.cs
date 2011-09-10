@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace ActigraphAuswertung.Model
 {
-    class DatabaseDataSet:IDataSet
+    public class DatabaseDataSet:IDataSet
     {
 
         #region values
@@ -25,11 +25,17 @@ namespace ActigraphAuswertung.Model
             set { this.id = value; }
         }
 
+        private int count;
+
         public int Count
         {
             get
             {
-                return Program.storage.calculateRows(id);
+                if (count == 0)
+                {
+                    this.count = countRows();
+                }
+                return count;
             }
         }
 
@@ -191,6 +197,10 @@ namespace ActigraphAuswertung.Model
 
         public RowEntry getNextRow()
         {
+            if (tmpReader == null)
+            {
+                startReading();
+            }
             tmpReader.Read();
             RowEntry data = new RowEntry();
             for (int i = 0; i != SupportedValues.Length; i++)
@@ -226,7 +236,52 @@ namespace ActigraphAuswertung.Model
                         break;
                 }
             }
+            if (tmpReader.HasRows != true)
+            {
+                tmpReader = null;
+            }
             return data;
+        }
+
+        public object readData(Boolean newline, SensorData target)
+        {
+            if (tmpReader == null)
+            {
+                tmpReader = getData();
+            }
+            if (newline == true)
+            {
+                tmpReader.Read();
+            }
+            if (tmpReader.HasRows != true)
+            {
+                tmpReader = null;
+            }
+            else
+            {
+                switch (target)
+                {
+                    case SensorData.Activity:
+                        return tmpReader.GetInt32(tmpReader.GetOrdinal("Activity"));
+                    case SensorData.ActivityY:
+                        return tmpReader.GetInt32(tmpReader.GetOrdinal("ActivityY"));
+                    case SensorData.ActivityZ:
+                        return tmpReader.GetInt32(tmpReader.GetOrdinal("ActivityZ"));
+                    case SensorData.CaloriesActivity:
+                        return tmpReader.GetFloat(tmpReader.GetOrdinal("CaloriesActivity"));
+                    case SensorData.CaloriesTotal:
+                        return tmpReader.GetFloat(tmpReader.GetOrdinal("CaloriesTotal"));
+                    case SensorData.Date:
+                        return DateTime.Parse(tmpReader.GetString(tmpReader.GetOrdinal("Date")));
+                    case SensorData.Inclinometer:
+                        return tmpReader.GetInt32(tmpReader.GetOrdinal("Inclinometer"));
+                    case SensorData.Steps:
+                        return tmpReader.GetInt32(tmpReader.GetOrdinal("Steps"));
+                    case SensorData.Vmu:
+                        return tmpReader.GetInt32(tmpReader.GetOrdinal("Vmu"));
+                }
+            }
+            return null;
         }
 
         public SQLiteDataReader getData()
@@ -239,6 +294,19 @@ namespace ActigraphAuswertung.Model
         #endregion
 
         #region operations
+        public int countRows()
+        {
+            tmpReader = getData();
+            int back=-1;
+            while (tmpReader.HasRows)
+            {
+                back +=1;
+                tmpReader.Read();
+            }
+            tmpReader = null;
+            return back;
+        }
+
         public int generateSteuerCode(){
             int code = 0;
             for (int i = 0; i != SupportedValues.Length; i++)
