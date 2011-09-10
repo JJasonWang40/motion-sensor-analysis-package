@@ -126,7 +126,7 @@ namespace ActigraphAuswertung
         {
             //TODO
             int rowIndex = this.parsedFilesGridView.SelectedRows[0].Index;
-            CsvModel data = (CsvModel)this.parsedFilesGridView.Rows[rowIndex].DataBoundItem;
+            DatabaseDataSet data = (DatabaseDataSet)this.parsedFilesGridView.Rows[rowIndex].DataBoundItem;
             ShowParsedFileDailyStartEndTimes viewCsvForm = new ShowParsedFileDailyStartEndTimes(data);
             viewCsvForm.Show();
         }
@@ -151,8 +151,8 @@ namespace ActigraphAuswertung
             // set time calucations
             DatabaseActiveTimeCalculator timeCalculator = new DatabaseActiveTimeCalculator(data);
             this.wearingtotaltimebox.Text = String.Format("{0:([d’.’]hh’:’mm’:’ss)}", timeCalculator.ActiveTime.ToString());
-         //   this.wearingstarttimebox.Text = String.Format("{0:([d’.’]hh’:’mm’:’ss)}", data.ActiveTimeCalculator.AvgStartTime.ToString());
-           // this.wearingendtimebox.Text = String.Format("{0:([d’.’]hh’:’mm’:’ss)}", data.ActiveTimeCalculator.AvgEndTime.ToString());
+            this.wearingstarttimebox.Text = String.Format("{0:([d’.’]hh’:’mm’:’ss)}", timeCalculator.AvgStartTime.ToString());
+            this.wearingendtimebox.Text = String.Format("{0:([d’.’]hh’:’mm’:’ss)}", timeCalculator.AvgEndTime.ToString());
 
             // set activity calculations
             ActivityLevelsCalculator.ActivityLevel alevel;

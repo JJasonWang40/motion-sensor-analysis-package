@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
 using ActigraphAuswertung.Model;
+using ActigraphAuswertung.Model.Calculators;
 
 namespace ActigraphAuswertung
 {
@@ -15,9 +16,9 @@ namespace ActigraphAuswertung
         /// Constructor
         /// </summary>
         /// <param name="data">The model</param>
-        public ShowParsedFileDailyStartEndTimes(CsvModel data)
+        public ShowParsedFileDailyStartEndTimes(DatabaseDataSet data)
         {
-            this.data = data.DayStartEndCalculator.DayStartEndList;
+            this.data = new DatabaseDayStartEndCalculator(data).DayStartEndList;
 
             InitializeComponent();
 

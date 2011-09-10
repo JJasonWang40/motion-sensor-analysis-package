@@ -11,6 +11,9 @@ namespace ActigraphAuswertung.Model.Calculators
         // the model
         private DatabaseDataSet model;
 
+        // the days
+        private DatabaseDayStartEndCalculator days;
+
         /// <summary>
         /// The total time of the sensor.
         /// </summary>
@@ -27,28 +30,11 @@ namespace ActigraphAuswertung.Model.Calculators
             get
             {
                 TimeSpan active = new TimeSpan();
-                DateTime tmpdatetime, actualDayEnd, actualDayStart;
-
-                actualDayStart = (DateTime)model.readData(true, SensorData.Date);
-                actualDayEnd = (DateTime)model.readData(true, SensorData.Date);
-
-                while (model.readData(true, SensorData.Date) != null)
+                
+                foreach (SensorStartEndWearing day in this.days.DayStartEndList)
                 {
-                    tmpdatetime = (DateTime)model.readData(false, SensorData.Date);
-                    if (tmpdatetime.Date != actualDayStart.Date)
-                    {
-                        active += actualDayEnd - actualDayStart;
-                        actualDayStart = tmpdatetime;
-                        actualDayEnd = tmpdatetime;
-                    }
-                    else actualDayEnd = tmpdatetime;
+                    active += day.EndTime - day.StartTime;
                 }
-
-                active += actualDayEnd - actualDayStart;
-                //foreach (SensorStartEndWearing day in this.model.DayStartEndCalculator.DayStartEndList)
-                //{
-                //    active += day.EndTime - day.StartTime;
-                //}
 
                 return active;
             }
@@ -61,9 +47,8 @@ namespace ActigraphAuswertung.Model.Calculators
         {
             get
             {
-                //long ticks = (long)model.DayStartEndCalculator.DayStartEndList.AsQueryable().Average<SensorStartEndWearing>(s => s.StartTime.TimeOfDay.Ticks);
-                //return new TimeSpan(ticks);
-                return new TimeSpan(0);
+                long ticks = (long)this.days.DayStartEndList.AsQueryable().Average<SensorStartEndWearing>(s => s.StartTime.TimeOfDay.Ticks);
+                return new TimeSpan(ticks);
             }
         }
 
@@ -74,9 +59,8 @@ namespace ActigraphAuswertung.Model.Calculators
         {
             get
             {
-                //long ticks = (long)model.DayStartEndCalculator.DayStartEndList.AsQueryable().Average<SensorStartEndWearing>(s => s.EndTime.TimeOfDay.Ticks);
-                //return new TimeSpan(ticks);
-                return new TimeSpan(0);
+                long ticks = (long)this.days.DayStartEndList.AsQueryable().Average<SensorStartEndWearing>(s => s.EndTime.TimeOfDay.Ticks);
+                return new TimeSpan(ticks);
             }
         }
 
@@ -87,6 +71,7 @@ namespace ActigraphAuswertung.Model.Calculators
         public DatabaseActiveTimeCalculator(DatabaseDataSet model)
         {
             this.model = model;
+            this.days = new DatabaseDayStartEndCalculator(this.model);
         }
 
         /// <summary>
