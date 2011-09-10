@@ -95,6 +95,7 @@
     <Compile Include="CommandManager\Priorities.cs" />
     <Compile Include="CommandManager\Status.cs" />
     <Compile Include="Model\Calculators\DatabaseActiveTimeCalculator.cs" />
+    <Compile Include="Model\Calculators\DatabaseActivityLevelsCalculator.cs" />
     <Compile Include="Model\Calculators\DatabaseDayStartEndCalculator.cs" />
     <Compile Include="Model\CsvModelList.cs" />
     <Compile Include="Model\DatabaseDataSet.cs" />
