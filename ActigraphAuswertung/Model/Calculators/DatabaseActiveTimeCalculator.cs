@@ -40,6 +40,11 @@ namespace ActigraphAuswertung.Model.Calculators
             }
         }
 
+        public DatabaseDayStartEndCalculator getDayStartEndCalculator()
+        {
+            return days;
+        }
+
         /// <summary>
         /// The avarage start time of activity
         /// </summary>

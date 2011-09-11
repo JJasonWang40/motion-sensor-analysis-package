@@ -123,5 +123,25 @@ namespace ActigraphAuswertung.Model.Mapper
             // Return hash value.
             return hashValueString;
         }
+
+        public static DatabaseDataSet filter(DatabaseDataSet data, 
+            Filter.FilterCollection filterCollection,
+            Filter.FilterMethod method)
+        {
+            FilteredDatabaseDataSet model = new FilteredDatabaseDataSet(data.SupportedValues);
+
+            // set filename and supported values
+            model.AbsoluteFileName = data.AbsoluteFileName;
+            model.SupportedValues = data.SupportedValues;
+            model.ID = data.ID;
+
+            // do the filtering
+            filterCollection.filter(data, model, method);
+
+            // finish model
+            model.finishImport();
+
+            return model;
+        }
     }
 }

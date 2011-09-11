@@ -1,6 +1,7 @@
 ﻿using ActigraphAuswertung.Filter;
 using ActigraphAuswertung.Mapper;
 using ActigraphAuswertung.Model;
+using ActigraphAuswertung.Model.Mapper;
 
 namespace ActigraphAuswertung.CommandManager.Commands
 {
@@ -9,7 +10,7 @@ namespace ActigraphAuswertung.CommandManager.Commands
     /// </summary>
     class FilterCommand : AbstractCommand
     {
-        private CsvModel filterData;
+        private DatabaseDataSet filterData;
 
         private FilterCollection filterCollection;
 
@@ -22,7 +23,7 @@ namespace ActigraphAuswertung.CommandManager.Commands
         /// <param name="filterCollection">The filtercollectio to be applied to</param>
         /// <param name="filterMethod">The filtermethod</param>
         /// <param name="callback">The callback for successfull filtering</param>
-        public FilterCommand(CsvModel filterData, FilterCollection filterCollection, FilterMethod filterMethod, CommandFinishedDelegate callback)
+        public FilterCommand(DatabaseDataSet filterData, FilterCollection filterCollection, FilterMethod filterMethod, CommandFinishedDelegate callback)
             : base(Priority.Low, callback)
         {
             this.filterData = filterData;
@@ -38,7 +39,7 @@ namespace ActigraphAuswertung.CommandManager.Commands
         /// <returns>The filtered data: <see cref="CsvModel"/></returns>
         public override object execute()
         {
-            return Factory.filter(filterData, filterCollection, filterMethod);
+            return FileImportMapper.filter(filterData, filterCollection, filterMethod);
         }
     }
 }

@@ -26,7 +26,10 @@ namespace ActigraphAuswertung
             // set bindinglist for gridview
             this.data = data;
             DataTable dt = new DataTable();
-            dt.Load(data.getData());
+            if (!data.isFiltered)
+            {
+                dt.Load(data.getData());
+            }
 
             InitializeComponent();
 
@@ -37,8 +40,14 @@ namespace ActigraphAuswertung
 
             // prepare for custom data-source and columns
             this.fileContentDataGrid.AutoGenerateColumns = false;
-            this.fileContentDataGrid.DataSource = dt;
-
+            if (data.isFiltered)
+            {
+                this.fileContentDataGrid.DataSource = data.getData();
+            }
+            else
+            {
+                this.fileContentDataGrid.DataSource = dt;
+            }
             // add columns supported by data
             foreach (SensorData t in Enum.GetValues(typeof(SensorData)))
             {

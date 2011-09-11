@@ -112,13 +112,18 @@ namespace ActigraphAuswertung.Model.Calculators
 
         private void calculate()
         {
-            while (model.readData(true, SensorData.Date) != null)
+            int count = model.Count;
+            this.model.startReading();
+            
+            for (int i=1; i!= count; i++)
             {
                 RowEntry tmp = new RowEntry();
-                tmp.Activity = (int)model.readData(false, SensorData.Activity);
-                tmp.Vmu = (int)model.readData(false, SensorData.Vmu);
+                this.model.read();
+                if (vmuValueSupported) tmp.Vmu = (int) this.model.getValue(SensorData.Vmu);
+                if (activityValueSupported) tmp.Activity = (int) this.model.getValue(SensorData.Activity);
                 this.Add(tmp);
             }
+            this.model.endReading();
         }
 
         /// <summary>
