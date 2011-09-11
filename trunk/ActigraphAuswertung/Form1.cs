@@ -20,6 +20,7 @@ namespace ActigraphAuswertung
         BindingList<DatabaseDataSet> parsedFiles = new BindingList<DatabaseDataSet>();
         //CsvModelList parsedFiles = new CsvModelList();
         CommandManager.Manager commandManager = new CommandManager.Manager();
+
         /// <summary>
         /// Absolute path to the application directory.
         /// </summary>
@@ -193,22 +194,22 @@ namespace ActigraphAuswertung
 
             // time based filter
             this.filter_time_enabled.Checked = true;
-        //    this.filter_time_start.Text = data.ActiveTimeCalculator.AvgStartTime.ToString();
-        //    this.filter_time_end.Text = data.ActiveTimeCalculator.AvgEndTime.ToString();
+            this.filter_time_start.Text = timeCalculator.AvgStartTime.ToString();
+            this.filter_time_end.Text = timeCalculator.AvgEndTime.ToString();
 
             // day based filter
             this.filter_days_enabled.Checked = true;
             this.filter_days_list.Items.Clear();
-            //foreach(SensorStartEndWearing day in data.DayStartEndCalculator.DayStartEndList)
-            //{
-            //    this.filter_days_list.Items.Add(day.Date);
-            //    if (!day.ActiveTime.Equals(new TimeSpan()))
-            //    {
-            //        this.filter_days_list.SetItemChecked(this.filter_days_list.Items.IndexOf(day.Date), true);
-            //    }
-            //}
-            //this.filter_days_list.SetItemChecked(0, false);
-            //this.filter_days_list.SetItemChecked(this.filter_days_list.Items.Count-1, false);
+            foreach (SensorStartEndWearing day in timeCalculator.getDayStartEndCalculator().DayStartEndList)
+            {
+                this.filter_days_list.Items.Add(day.Date);
+                if (!day.ActiveTime.Equals(new TimeSpan()))
+                {
+                    this.filter_days_list.SetItemChecked(this.filter_days_list.Items.IndexOf(day.Date), true);
+                }
+            }
+            this.filter_days_list.SetItemChecked(0, false);
+            this.filter_days_list.SetItemChecked(this.filter_days_list.Items.Count-1, false);
 
             Application.DoEvents();
         }
@@ -273,7 +274,7 @@ namespace ActigraphAuswertung
         {
             // get model to filter
             int rowIndex = this.parsedFilesGridView.SelectedRows[0].Index;
-            CsvModel data = (CsvModel)this.parsedFilesGridView.Rows[rowIndex].DataBoundItem;
+            DatabaseDataSet data = (DatabaseDataSet)this.parsedFilesGridView.Rows[rowIndex].DataBoundItem;
             FilterCollection filterCollection = new FilterCollection();
 
             // get filter method

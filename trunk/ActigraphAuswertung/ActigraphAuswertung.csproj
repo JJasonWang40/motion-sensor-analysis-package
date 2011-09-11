@@ -99,6 +99,7 @@
     <Compile Include="Model\Calculators\DatabaseDayStartEndCalculator.cs" />
     <Compile Include="Model\CsvModelList.cs" />
     <Compile Include="Model\DatabaseDataSet.cs" />
+    <Compile Include="Model\FilteredDatabaseDataSet.cs" />
     <Compile Include="Model\Storage\DatabaseRow.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -143,7 +143,7 @@ namespace ActigraphAuswertung.Mapper
             model.SupportedValues = data.SupportedValues;
 
             // do the filtering
-            filterCollection.filter(data, model, method);
+            //filterCollection.filter(data, model, method);
 
             // finish model
             model.finishParsing();

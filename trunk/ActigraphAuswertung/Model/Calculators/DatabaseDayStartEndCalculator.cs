@@ -60,13 +60,16 @@ namespace ActigraphAuswertung.Model.Calculators
         {
             currentDay = new SensorStartEndWearing();
             DateTime tmpdatetime, actualDayEnd, actualDayStart;
+            int count = model.Count;
 
-            actualDayStart = (DateTime)model.readData(true, SensorData.Date);
-            actualDayEnd = (DateTime)model.readData(true, SensorData.Date);
+            this.model.startReading();
 
-            while (model.readData(true, SensorData.Date) != null)
+            actualDayStart = (DateTime)this.model.getNextValue(SensorData.Date);
+            actualDayEnd = (DateTime)this.model.getNextValue(SensorData.Date);
+
+            for (int i = 3; i != count; i++)
             {
-                tmpdatetime = (DateTime)model.readData(false, SensorData.Date);
+                tmpdatetime = (DateTime)this.model.getNextValue(SensorData.Date);
                 if (tmpdatetime.Date != actualDayStart.Date)
                 {
                     currentDay.StartTime = actualDayStart;
@@ -82,6 +85,8 @@ namespace ActigraphAuswertung.Model.Calculators
             currentDay.EndTime = actualDayEnd;
             dayStartEndList.Add(currentDay);
             currentDay = new SensorStartEndWearing();
+
+            this.model.endReading();
         }
 
         /// <summary>

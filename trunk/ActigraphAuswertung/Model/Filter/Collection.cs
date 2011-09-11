@@ -35,7 +35,7 @@ namespace ActigraphAuswertung.Filter
         /// <param name="input">The source model</param>
         /// <param name="target">The target model</param>
         /// <param name="method">The filter method</param>
-        public void filter(CsvModel input, CsvModel target, FilterMethod method)
+        public void filter(DatabaseDataSet input, FilteredDatabaseDataSet target, FilterMethod method)
         {
             // Check for empty collection as linq throws exceptions on empty results
             if (this.Count == 0)
@@ -43,14 +43,19 @@ namespace ActigraphAuswertung.Filter
                 return;
             }
 
+            int lowerLimit=0, upperLimit=0, count=input.Count;
+
+            input.startReading();
+
             // different concatinations for the different filter methods
             switch (method)
             {
                 // All rows where any filter returns true 
                 case FilterMethod.EITHER:
                     {
-                        foreach (RowEntry entry in input)
+                        for (int i=1; i!= count; i++)
                         {
+                            RowEntry entry = input.getNextRow();
                             foreach (FilterInterface filterType in this)
                             {
                                 if (filterType.filter(entry))
@@ -68,8 +73,9 @@ namespace ActigraphAuswertung.Filter
                 case FilterMethod.NONE:
                 {
                     bool noFilterApplies;
-                    foreach (RowEntry entry in input)
+                    for (int i = 1; i != count; i++)
                     {
+                        RowEntry entry = input.getNextRow();
                         noFilterApplies = true;
                         foreach (FilterInterface filterType in this)
                         {
@@ -79,7 +85,10 @@ namespace ActigraphAuswertung.Filter
                                 break;
                             }
                         }
-                        if (noFilterApplies) { target.Add(entry); }
+                        if (noFilterApplies) 
+                        {
+                            target.Add(entry);
+                        }
                     }
                 }
                 break;
@@ -90,8 +99,9 @@ namespace ActigraphAuswertung.Filter
                 default:
                 {
                     bool allFilterApply;
-                    foreach (RowEntry entry in input)
+                    for (int i = 1; i != count; i++)
                     {
+                        RowEntry entry = input.getNextRow();
                         allFilterApply = true;
                         foreach (FilterInterface filterType in this)
                         {
@@ -101,11 +111,16 @@ namespace ActigraphAuswertung.Filter
                                 break;
                             }
                         }
-                        if (allFilterApply) { target.Add(entry); }
+                        if (allFilterApply)
+                        {
+                            target.Add(entry);
+                        }
                     }
                 }
                 break;
             }
+
+            input.endReading();
 
             // add all matching rows to the target
             

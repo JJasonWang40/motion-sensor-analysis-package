@@ -13,7 +13,8 @@ namespace ActigraphAuswertung.Model
 
         #region values
         private SQLiteDataReader tmpReader;
-        private int primaryFilesKey;
+        
+        protected int primaryFilesKey;
 
         public bool locked;
 
@@ -25,9 +26,9 @@ namespace ActigraphAuswertung.Model
             set { this.id = value; }
         }
 
-        private int count;
+        protected int count;
 
-        public int Count
+        public virtual int Count
         {
             get
             {
@@ -39,7 +40,7 @@ namespace ActigraphAuswertung.Model
             }
         }
 
-        public TimeSpan EpochPeriod
+        public virtual TimeSpan EpochPeriod
         {
             get
             {
@@ -47,18 +48,25 @@ namespace ActigraphAuswertung.Model
             }
         }
 
-        public DateTime StartDate
+        public virtual Boolean isFiltered
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public virtual DateTime StartDate
         {
             get 
             {
                 SQLiteDataReader reader = getData();
                 reader.Read();
-                String date = reader.GetString(reader.GetOrdinal("Date"));
-                return DateTime.Parse(date);
+                return DateTime.Parse(reader.GetString(reader.GetOrdinal("Date")));
             }
         }
 
-        public DateTime EndDate
+        public virtual DateTime EndDate
         {
             get
             {
@@ -67,8 +75,7 @@ namespace ActigraphAuswertung.Model
                 {
                     reader.Read();
                 }
-                String date = reader.GetString(reader.GetOrdinal("Date"));
-                return DateTime.Parse(date);
+                return DateTime.Parse(reader.GetString(reader.GetOrdinal("Date")));
             }
         }
 
@@ -104,12 +111,13 @@ namespace ActigraphAuswertung.Model
         public DatabaseDataSet(){}
 
         #region writer
-        public void lockData()
+        public virtual void lockData()
         {
+            this.locked = true;
             Program.storage.executeSQLCommand(("update files set Locked=1 where FileHash='" + this.ID+"'"));
         }
 
-        public void Add(IDataRow dataRow)
+        public virtual void Add(IDataRow dataRow)
         {
             if (!Program.storage.locked(this.ID))
             {
@@ -171,7 +179,7 @@ namespace ActigraphAuswertung.Model
             Program.storage.executeSQLCommand("insert into files (FileHash, Locked, Steuercode) VALUES('" + this.ID + "', 0, "+generateSteuerCode()+")");
         }
 
-        public void finishImport()
+        public virtual void finishImport()
         {
             lockData();
             loadData();
@@ -190,110 +198,110 @@ namespace ActigraphAuswertung.Model
             primaryFilesKey = reader.GetInt32(reader.GetOrdinal("key"));
         }
 
-        public void startReading()
+        public virtual void startReading()
         {
-            tmpReader = getData();
+            this.tmpReader = getData();
         }
 
-        public RowEntry getNextRow()
+        public virtual RowEntry getNextRow()
         {
-            if (tmpReader == null)
-            {
-                startReading();
-            }
-            tmpReader.Read();
+            this.tmpReader.Read();
             RowEntry data = new RowEntry();
             for (int i = 0; i != SupportedValues.Length; i++)
             {
                 switch (SupportedValues[i])
                 {
                     case SensorData.Activity:
-                        data.Activity = tmpReader.GetInt32(tmpReader.GetOrdinal("Activity"));
+                        data.Activity = this.tmpReader.GetInt32(this.tmpReader.GetOrdinal("Activity"));
                         break;
                     case SensorData.ActivityY:
-                        data.ActivityY = tmpReader.GetInt32(tmpReader.GetOrdinal("ActivityY"));
+                        data.ActivityY = this.tmpReader.GetInt32(this.tmpReader.GetOrdinal("ActivityY"));
                         break;
                     case SensorData.ActivityZ:
-                        data.ActivityZ = tmpReader.GetInt32(tmpReader.GetOrdinal("ActivityZ"));
+                        data.ActivityZ = this.tmpReader.GetInt32(this.tmpReader.GetOrdinal("ActivityZ"));
                         break;
                     case SensorData.CaloriesActivity:
-                        data.CaloriesActivity = tmpReader.GetFloat(tmpReader.GetOrdinal("CaloriesActivity"));
+                        data.CaloriesActivity = this.tmpReader.GetFloat(this.tmpReader.GetOrdinal("CaloriesActivity"));
                         break;
                     case SensorData.CaloriesTotal:
-                        data.CaloriesTotal = tmpReader.GetFloat(tmpReader.GetOrdinal("CaloriesTotal"));
+                        data.CaloriesTotal = this.tmpReader.GetFloat(this.tmpReader.GetOrdinal("CaloriesTotal"));
                         break;
                     case SensorData.Date:
-                        data.Date = DateTime.Parse(tmpReader.GetString(tmpReader.GetOrdinal("Date")));
+                        data.Date = DateTime.Parse(this.tmpReader.GetString(this.tmpReader.GetOrdinal("Date")));
                         break;
                     case SensorData.Inclinometer:
-                        data.Inclinometer = tmpReader.GetInt32(tmpReader.GetOrdinal("Inclinometer"));
+                        data.Inclinometer = this.tmpReader.GetInt32(this.tmpReader.GetOrdinal("Inclinometer"));
                         break;
                     case SensorData.Steps:
-                        data.Steps = tmpReader.GetInt32(tmpReader.GetOrdinal("Steps"));
+                        data.Steps = this.tmpReader.GetInt32(this.tmpReader.GetOrdinal("Steps"));
                         break;
                     case SensorData.Vmu:
-                        data.Vmu = tmpReader.GetInt32(tmpReader.GetOrdinal("VMU"));
+                        data.Vmu = this.tmpReader.GetInt32(this.tmpReader.GetOrdinal("VMU"));
                         break;
                 }
-            }
-            if (tmpReader.HasRows != true)
-            {
-                tmpReader = null;
             }
             return data;
         }
 
-        public object readData(Boolean newline, SensorData target)
+        public virtual void read()
         {
-            if (tmpReader == null)
-            {
-                tmpReader = getData();
-            }
-            if (newline == true)
-            {
-                tmpReader.Read();
-            }
-            if (tmpReader.HasRows != true)
-            {
-                tmpReader = null;
-            }
-            else
-            {
-                switch (target)
-                {
-                    case SensorData.Activity:
-                        return tmpReader.GetInt32(tmpReader.GetOrdinal("Activity"));
-                    case SensorData.ActivityY:
-                        return tmpReader.GetInt32(tmpReader.GetOrdinal("ActivityY"));
-                    case SensorData.ActivityZ:
-                        return tmpReader.GetInt32(tmpReader.GetOrdinal("ActivityZ"));
-                    case SensorData.CaloriesActivity:
-                        return tmpReader.GetFloat(tmpReader.GetOrdinal("CaloriesActivity"));
-                    case SensorData.CaloriesTotal:
-                        return tmpReader.GetFloat(tmpReader.GetOrdinal("CaloriesTotal"));
-                    case SensorData.Date:
-                        return DateTime.Parse(tmpReader.GetString(tmpReader.GetOrdinal("Date")));
-                    case SensorData.Inclinometer:
-                        return tmpReader.GetInt32(tmpReader.GetOrdinal("Inclinometer"));
-                    case SensorData.Steps:
-                        return tmpReader.GetInt32(tmpReader.GetOrdinal("Steps"));
-                    case SensorData.Vmu:
-                        return tmpReader.GetInt32(tmpReader.GetOrdinal("Vmu"));
-                }
-            }
-            return null;
+            this.tmpReader.Read();
         }
 
-        public SQLiteDataReader getData()
+        public virtual object getNextValue(SensorData target)
         {
-            SQLiteDataReader reader = Program.storage.readDataBase("select * from files where FileHash='" + this.ID + "'");
-            reader.Read();
-            return Program.storage.readDataBase("select * from dataset where files=" + reader.GetInt32(reader.GetOrdinal("key")));
+            read();
+            return getValue(target);
         }
 
+        public virtual object getValue(SensorData target)
+        {
+            switch (target)
+            {
+                case SensorData.Activity:
+                    return this.tmpReader.GetInt32(this.tmpReader.GetOrdinal("Activity"));
+                case SensorData.ActivityY:
+                    return this.tmpReader.GetInt32(this.tmpReader.GetOrdinal("ActivityY"));
+                case SensorData.ActivityZ:
+                    return this.tmpReader.GetInt32(this.tmpReader.GetOrdinal("ActivityZ"));
+                case SensorData.CaloriesActivity:
+                    return this.tmpReader.GetFloat(this.tmpReader.GetOrdinal("CaloriesActivity"));
+                case SensorData.CaloriesTotal:
+                    return this.tmpReader.GetFloat(this.tmpReader.GetOrdinal("CaloriesTotal"));
+                case SensorData.Date:
+                    return DateTime.Parse(this.tmpReader.GetString(this.tmpReader.GetOrdinal("Date")));
+                case SensorData.Inclinometer:
+                    return this.tmpReader.GetInt32(this.tmpReader.GetOrdinal("Inclinometer"));
+                case SensorData.Steps:
+                    return this.tmpReader.GetInt32(this.tmpReader.GetOrdinal("Steps"));
+                case SensorData.Vmu:
+                    return this.tmpReader.GetInt32(this.tmpReader.GetOrdinal("VMU"));
+                default:
+                    return null;
+            }
+        }
+
+        public virtual SQLiteDataReader getData()
+        {
+            return Program.storage.readDataBase("select * from dataset where files=" + primaryFilesKey);
+        }
+
+        public virtual void endReading()
+        {
+            this.tmpReader = null;
+        }
         #endregion
 
         #region operations
+        public Boolean valueSupported(SensorData target)
+        {
+            for (int i = 0; i != SupportedValues.Length; i++)
+            {
+                if (SupportedValues[i] == target) return true;
+            }
+            return false;
+        }
+
         public int countRows()
         {
             tmpReader = getData();
