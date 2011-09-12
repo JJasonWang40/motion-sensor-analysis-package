@@ -116,13 +116,15 @@ namespace ActigraphAuswertung.Model.Calculators
             this.model.startReading();
             RowEntry tmp;
             
-            for (int i=1; i!= count; i++)
+            for (int i = 0; i < count; i++)
             {
                 tmp = new RowEntry();
-
                 this.model.read();
-                tmp.Vmu = (int?) this.model.getValue(SensorData.Vmu) ?? 0;
-                tmp.Activity = (int?) this.model.getValue(SensorData.Activity) ?? 0;
+
+                if (vmuValueSupported)
+                    tmp.Vmu = (int) this.model.getValue(SensorData.Vmu);
+                if (activityValueSupported)
+                    tmp.Activity = (int) this.model.getValue(SensorData.Activity);
 
                 this.Add(tmp);
             }
