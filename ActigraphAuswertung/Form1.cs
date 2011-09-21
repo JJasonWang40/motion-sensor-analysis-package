@@ -200,7 +200,7 @@ namespace ActigraphAuswertung
             // day based filter
             this.filter_days_enabled.Checked = true;
             this.filter_days_list.Items.Clear();
-            foreach (SensorStartEndWearing day in timeCalculator.getDayStartEndCalculator().DayStartEndList)
+            foreach (SensorStartEndWearing day in timeCalculator.Days.DayStartEndList)
             {
                 this.filter_days_list.Items.Add(day.Date);
                 if (!day.ActiveTime.Equals(new TimeSpan()))
