@@ -8,11 +8,10 @@ namespace ActigraphAuswertung.Model.Calculators
     /// </summary>
     public class DatabaseActiveTimeCalculator : CalculatorInterface
     {
-        // the model
+        
         private DatabaseDataSet model;
 
-        // the days
-        private DatabaseDayStartEndCalculator days;
+        public DatabaseDayStartEndCalculator Days { get; private set; }
 
         /// <summary>
         /// The total time of the sensor.
@@ -31,18 +30,13 @@ namespace ActigraphAuswertung.Model.Calculators
             {
                 TimeSpan active = new TimeSpan();
                 
-                foreach (SensorStartEndWearing day in this.days.DayStartEndList)
+                foreach (SensorStartEndWearing day in this.Days.DayStartEndList)
                 {
                     active += day.EndTime - day.StartTime;
                 }
 
                 return active;
             }
-        }
-
-        public DatabaseDayStartEndCalculator getDayStartEndCalculator()
-        {
-            return days;
         }
 
         /// <summary>
@@ -52,7 +46,7 @@ namespace ActigraphAuswertung.Model.Calculators
         {
             get
             {
-                long ticks = (long)this.days.DayStartEndList.AsQueryable().Average<SensorStartEndWearing>(s => s.StartTime.TimeOfDay.Ticks);
+                long ticks = (long) this.Days.DayStartEndList.AsQueryable().Average<SensorStartEndWearing>(s => s.StartTime.TimeOfDay.Ticks);
                 return new TimeSpan(ticks);
             }
         }
@@ -64,7 +58,7 @@ namespace ActigraphAuswertung.Model.Calculators
         {
             get
             {
-                long ticks = (long)this.days.DayStartEndList.AsQueryable().Average<SensorStartEndWearing>(s => s.EndTime.TimeOfDay.Ticks);
+                long ticks = (long)this.Days.DayStartEndList.AsQueryable().Average<SensorStartEndWearing>(s => s.EndTime.TimeOfDay.Ticks);
                 return new TimeSpan(ticks);
             }
         }
@@ -76,7 +70,7 @@ namespace ActigraphAuswertung.Model.Calculators
         public DatabaseActiveTimeCalculator(DatabaseDataSet model)
         {
             this.model = model;
-            this.days = new DatabaseDayStartEndCalculator(this.model);
+            this.Days = new DatabaseDayStartEndCalculator(this.model);
         }
 
         /// <summary>

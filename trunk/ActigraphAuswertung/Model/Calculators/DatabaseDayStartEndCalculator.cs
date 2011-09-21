@@ -67,7 +67,7 @@ namespace ActigraphAuswertung.Model.Calculators
             actualDayStart = (DateTime)this.model.getNextValue(SensorData.Date);
             actualDayEnd = (DateTime)this.model.getNextValue(SensorData.Date);
 
-            for (int i = 3; i != count; i++)
+            for (int i = 2; i < count; i++)
             {
                 tmpdatetime = (DateTime)this.model.getNextValue(SensorData.Date);
                 if (tmpdatetime.Date != actualDayStart.Date)
@@ -84,7 +84,6 @@ namespace ActigraphAuswertung.Model.Calculators
             currentDay.StartTime = actualDayStart;
             currentDay.EndTime = actualDayEnd;
             dayStartEndList.Add(currentDay);
-            currentDay = new SensorStartEndWearing();
 
             this.model.endReading();
         }
