@@ -111,14 +111,5 @@ namespace ActigraphAuswertung.Model.Storage
             //}
             //else { throw new Exception("Model already finished. Can't add new datasets"); };
         }
-
-        public void AddNewFile(string dataSetID)
-        {
-            //SQLiteCommand sqlCommand = sqlite.CreateCommand();
-            //System.Data.SQLite.SQLiteCommand sql = sqlite.CreateCommand();
-            //sql.CommandText = "insert into files (FileHash, Locked) VALUES('" + dataSetID + "', 0)";
-            //sql.ExecuteNonQuery();
-        }
-
     }
 }
