@@ -13,6 +13,8 @@ namespace ActigraphAuswertung.Model
 
         #region values
         private SQLiteDataReader tmpReader;
+
+        StringBuilder sb, vorne, hinten;
         
         protected int primaryFilesKey;
 
@@ -108,7 +110,11 @@ namespace ActigraphAuswertung.Model
         public SensorData[] SupportedValues = null;
         #endregion
 
-        public DatabaseDataSet(){}
+        public DatabaseDataSet(){
+            sb= new StringBuilder("begin;");
+            vorne = new StringBuilder();
+            hinten = new StringBuilder();
+        }
 
         #region writer
         public virtual void lockData()
@@ -123,53 +129,65 @@ namespace ActigraphAuswertung.Model
             {
                 SQLiteDataReader reader = Program.storage.readDataBase("select * from files where FileHash='" + this.ID+"'");
                 reader.Read();
-                String vorne, hinten;
-                vorne = "insert into dataset(files";
-                hinten = ") Values(" + reader.GetInt32(reader.GetOrdinal("key"));
+                vorne.Append("insert into dataset(files");
+                hinten.Append(") Values(" + reader.GetInt32(reader.GetOrdinal("key")));
                 for (int i=0;i!=SupportedValues.Length;i++)
                 {
                     switch (SupportedValues[i])
                     {
                         case SensorData.Date:
-                            vorne = vorne + ", Date";
-                            hinten = hinten + ", '" + dataRow.Date +"'";
+                            vorne.Append(", Date");
+                            hinten.Append(", '");
+                            hinten.Append(dataRow.Date);
+                            hinten.Append("'");
                             break;
                         case SensorData.Activity:
-                            vorne = vorne + ", Activity";
-                            hinten = hinten + ", " + dataRow.Activity;
+                            vorne.Append(", Activity");
+                            hinten.Append(", ");
+                            hinten.Append(dataRow.Activity);
                             break;
                         case SensorData.ActivityY:
-                            vorne = vorne + ", ActivityY";
-                            hinten = hinten + ", " + dataRow.ActivityY;
+                            vorne.Append(", ActivityY");
+                            hinten.Append(", ");
+                            hinten.Append(dataRow.ActivityY);
                             break;
                         case SensorData.ActivityZ:
-                            vorne = vorne + ", ActivityZ";
-                            hinten = hinten + ", " + dataRow.ActivityZ;
+                            vorne.Append(", ActivityZ");
+                            hinten.Append(", ");
+                            hinten.Append(dataRow.ActivityZ);
                             break;
                         case SensorData.Inclinometer:
-                            vorne = vorne + ", Incilometer";
-                            hinten = hinten + ", " + dataRow.Inclinometer;
+                            vorne.Append(", Incilometer");
+                            hinten.Append(", ");
+                            hinten.Append(dataRow.Inclinometer);
                             break;
                         case SensorData.Steps:
-                            vorne = vorne + ", Steps";
-                            hinten =hinten + ", " + dataRow.Steps;
+                            vorne.Append(", Steps");
+                            hinten.Append(", ");
+                            hinten.Append(dataRow.Steps);
                             break;
                         case SensorData.Vmu:
-                            vorne = vorne + ", VMU";
-                            hinten = hinten + ", " + dataRow.Vmu;
+                            vorne.Append(", VMU");
+                            hinten.Append(", ");
+                            hinten.Append(dataRow.Vmu);
                             break;
                         case SensorData.CaloriesActivity:
-                            vorne = vorne +", CaloriesActivity";
-                            hinten = hinten + ", '"+dataRow.CaloriesActivity+"'";
+                            vorne.Append(", CaloriesActivity");
+                            hinten.Append(", '");
+                            hinten.Append(dataRow.CaloriesActivity);
+                            hinten.Append("'");
                             break;
                         case SensorData.CaloriesTotal:
-                            vorne = vorne + ", CaloriesTotal";
-                            hinten = hinten + ", '"+dataRow.CaloriesTotal+"'";
+                            vorne.Append(", CaloriesTotal");
+                            hinten.Append(", '");
+                            hinten.Append(dataRow.CaloriesTotal);
+                            hinten.Append("'");
                             break;
                     }
                 }
-                Program.storage.executeSQLCommand(vorne + hinten + ")");
-                //Program.storage.executeSQLCommand("insert into dataset(files) Values("+ reader.GetInt32(reader.GetOrdinal("key")) + ")");
+                sb.Append(vorne.ToString() + hinten.ToString()+");");
+                vorne.Remove(0,vorne.Length);
+                hinten.Remove(0,hinten.Length);
             }
             else { throw new Exception("Model already finished. Can't add new datasets"); };
         }
@@ -179,8 +197,14 @@ namespace ActigraphAuswertung.Model
             Program.storage.executeSQLCommand("insert into files (FileHash, Locked, Steuercode) VALUES('" + this.ID + "', 0, "+generateSteuerCode()+")");
         }
 
+        private void excecuteSQLStatements(){
+            sb.Append("commit;");
+            Program.storage.executeSQLCommand(sb.ToString());
+        }
+
         public virtual void finishImport()
         {
+            excecuteSQLStatements();
             lockData();
             loadData();
         }
