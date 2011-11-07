@@ -133,7 +133,6 @@ namespace ActigraphAuswertung.Model
 
         public override RowEntry getNextRow()
         {
-            RowEntry tmp;
             currentRow += 1;
             return (RowEntry)(data.ToArray())[currentRow];
         }
