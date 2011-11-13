@@ -6,7 +6,7 @@ using System.Data.SQLite;
 
 namespace ActigraphAuswertung.Model.Storage
 {
-    class DBStorage:IStorage<DatabaseRow>
+    class DBStorage:IStorage<IDataRow>
     {	
         
         private String databasename;
