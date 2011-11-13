@@ -185,7 +185,8 @@ namespace ActigraphAuswertung.Model
                             break;
                     }
                 }
-                sb.Append(vorne.ToString() + hinten.ToString()+");");
+                Program.storage.executeSQLCommand(vorne.ToString()+hinten.ToString()+");");
+                //sb.Append(vorne.ToString() + hinten.ToString()+");");
                 vorne.Remove(0,vorne.Length);
                 hinten.Remove(0,hinten.Length);
             }
