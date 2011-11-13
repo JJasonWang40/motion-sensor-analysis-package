@@ -10,7 +10,7 @@ namespace ActigraphAuswertung.Model.Storage
     {	
         
         private String databasename;
-        private SQLiteConnection sqlite = new SQLiteConnection();
+        public SQLiteConnection sqlite = new SQLiteConnection();
 
         public DBStorage(){
             this.databasename = "Actigraph.sqlite";
@@ -29,7 +29,8 @@ namespace ActigraphAuswertung.Model.Storage
             sqlite.Open();
         }
 
-        private void generatenewdatabase(){
+        private void generatenewdatabase()
+        {
             SQLiteCommand sqlCommand = sqlite.CreateCommand();
             sqlCommand.CommandText = "create table files(key integer PRIMARY KEY AUTOINCREMENT, FileHash String not null, Locked BOOLEAN, Steuercode integer)";
             sqlCommand.ExecuteNonQuery();

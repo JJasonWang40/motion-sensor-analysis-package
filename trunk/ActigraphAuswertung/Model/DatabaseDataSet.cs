@@ -111,7 +111,7 @@ namespace ActigraphAuswertung.Model
         #endregion
 
         public DatabaseDataSet(){
-            sb= new StringBuilder("begin;");
+            sb= new StringBuilder();
             vorne = new StringBuilder();
             hinten = new StringBuilder();
         }
@@ -195,16 +195,13 @@ namespace ActigraphAuswertung.Model
         public void AddNewFile()
         {
             Program.storage.executeSQLCommand("insert into files (FileHash, Locked, Steuercode) VALUES('" + this.ID + "', 0, "+generateSteuerCode()+")");
-        }
-
-        private void excecuteSQLStatements(){
-            sb.Append("commit;");
-            Program.storage.executeSQLCommand(sb.ToString());
+            Program.storage.executeSQLCommand("begin");
         }
 
         public virtual void finishImport()
         {
-            excecuteSQLStatements();
+            sb.Append("commit;");
+            Program.storage.executeSQLCommand(sb.ToString());
             lockData();
             loadData();
         }
