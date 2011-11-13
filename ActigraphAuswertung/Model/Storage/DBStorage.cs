@@ -100,7 +100,7 @@ namespace ActigraphAuswertung.Model.Storage
             //sqlCommand.ExecuteNonQuery();
         }
 
-        public void Add(string dataSetID, DatabaseRow dataRow)
+        public void Add(string dataSetID, IDataRow dataRow)
         {
             //SQLiteCommand sqlCommand = sqlite.CreateCommand();
             //if (!locked(dataSetID))
