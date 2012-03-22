@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -10,6 +11,9 @@ using ActigraphAuswertung.RExport;
 using ActigraphAuswertung.CommandManager.Commands;
 using ActigraphAuswertung.Model.Calculators;
 using ActigraphAuswertung.Model.Storage;
+using System.Text.RegularExpressions;
+using System.Diagnostics;
+using System.Text;
 
 namespace ActigraphAuswertung
 {
@@ -25,6 +29,11 @@ namespace ActigraphAuswertung
         /// Absolute path to the application directory.
         /// </summary>
         public static string APP_PATH = "";
+
+        /// <summary>
+        /// Absolute path to the generated plot.
+        /// </summary>
+        private string outputFileName = "";
 
         /// <summary>   
         /// Constructor.
@@ -330,6 +339,88 @@ namespace ActigraphAuswertung
         {
             this.parsedFiles.Add(result as DatabaseDataSet);
         }
+
+        private String correctTimeStamp(String timeStamp, Boolean isStartTime)
+        {
+            if (timeStamp.Length == 8)
+            {
+                return timeStamp;
+            }
+            String result = timeStamp.Substring(0, 8);
+            int mm = Convert.ToInt32(result.Substring(6, 2));
+            //if (mm % 2 == 0 )
+            //{
+            return result;
+            //}
+            /*http://www.codeproject.com/KB/cs/String2DateTime.aspx*/
+        }
+
+        private void filter_with_jar(object sender, EventArgs e)
+        {
+            //MessageBox.Show("", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                
+            int rowIndex = this.parsedFilesGridView.SelectedRows[0].Index;
+            //String fileName = ((CsvModel)this.parsedFilesGridView.Rows[rowIndex].DataBoundItem).AbsoluteFileName;
+            String fileName = ((DatabaseDataSet)this.parsedFilesGridView.Rows[rowIndex].DataBoundItem).AbsoluteFileName;
+            StringBuilder parameterString = new StringBuilder();
+
+            if (filter_days_enabled.Checked)
+            {
+                String cutFileName = fileName.Substring(0, fileName.LastIndexOf('.')) + "_filtered" + fileName.Substring(fileName.LastIndexOf('.'));
+                String logFileName = fileName.Substring(0, fileName.LastIndexOf('.')) + "_filtered.log";
+                parameterString.Append("-jar \"" + Path.GetDirectoryName(Application.ExecutablePath) + "\\filter.jar\" \"" + fileName + "\" \"" + cutFileName + "\" ");
+                foreach (object itemChecked in filter_days_list.CheckedItems)
+                {
+                    if (filter_time_enabled.Checked)
+                    {
+                        parameterString.Append(itemChecked.ToString().Substring(0, 10) + "-" + filter_time_start.Text + " ");
+                        parameterString.Append(itemChecked.ToString().Substring(0, 10) + "-" + filter_time_end.Text + " ");
+                    }
+                    else
+                    {
+                        parameterString.Append(itemChecked.ToString().Replace(' ', '-') + " ");
+                        // Evtl. später anpassen für kleinere Perioden. Zur Zeit 2s.
+                        parameterString.Append(itemChecked.ToString().Substring(0, 10) + "-" + "23:59:58 ");
+                    }
+                }
+
+                Console.WriteLine("{0}", parameterString);
+                ProcessStartInfo _processStartInfo = new ProcessStartInfo();
+                _processStartInfo.WorkingDirectory = @"TEMP";
+                _processStartInfo.FileName = @"java.exe";
+                _processStartInfo.Arguments = "" + parameterString;
+                _processStartInfo.CreateNoWindow = false;
+                _processStartInfo.UseShellExecute = false;
+                //_processStartInfo.RedirectStandardError = true;
+                _processStartInfo.RedirectStandardOutput = true;
+                Process myProcess = Process.Start(_processStartInfo);
+                //string output = myProcess.StandardError.ReadToEnd();
+                string output = myProcess.StandardOutput.ReadToEnd();
+                myProcess.WaitForExit();
+                Console.WriteLine(output);
+                System.IO.StreamWriter file = new System.IO.StreamWriter(logFileName);
+                file.WriteLine(output);
+                file.Close();
+
+                // parse activity level settings
+                int minSedantary = int.Parse(this.import_activity_sedantary.Text);
+                int minLight = int.Parse(this.import_activity_light.Text);
+                int minModerate = int.Parse(this.import_activity_moderate.Text);
+                int minHeavy = int.Parse(this.import_activity_heavy.Text);
+                int minVeryHeavy = int.Parse(this.import_activity_veryheavy.Text);
+            
+                // Add import to background worker
+                this.commandManager.addCommand(
+                    new ImportCommand(cutFileName,
+                        minSedantary, minLight, minModerate, minHeavy, minVeryHeavy,
+                            this.import_task_finished
+                        )
+                    );
+                
+            }
+            
+        }
+
         #endregion
 
         #region Import events
@@ -503,5 +594,166 @@ namespace ActigraphAuswertung
         }
         #endregion
 
+        #region plot events
+
+        
+        public void plot(object sender, EventArgs e)
+        {
+            try
+            {
+                generate_rscript();
+            }
+            catch
+            {
+                MessageBox.Show("Error while generating R-Script. Plotting canceled. \nIs the filter.jar placed correctly? \nDoes the file have metadata?", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            System.Diagnostics.Process proc = new System.Diagnostics.Process();
+            proc.StartInfo.FileName = this.plot_rscript_path_box.Text;
+            //proc.StartInfo.WorkingDirectory = this.plot_rscript_path_box.Text.Substring(0,this.plot_rscript_path_box.Text.Length-11);
+            //proc.StartInfo.WorkingDirectory = "C:\\Program Files\\R\\R-2.13.2\\bin\\";
+            proc.StartInfo.Arguments = "\"" + Application.StartupPath + "\\plot.r\"";
+            proc.StartInfo.UseShellExecute = true;
+            proc.StartInfo.RedirectStandardOutput = false;
+            proc.Start();
+
+            proc.WaitForExit();
+            System.Diagnostics.Process.Start(this.outputFileName);
+        }
+
+        private void plot_r_script_path_browse_button_Click(object sender, EventArgs e)
+        {
+            DialogResult result = this.selectPathToRScriptDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                this.plot_rscript_path_box.Text = this.selectPathToRScriptDialog.FileName;
+            }
+        }
+
+        private void plot_output_directory_browse_button_Click(object sender, EventArgs e)
+        {
+            DialogResult result = this.plotOutputDirectoryDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                this.plot_output_directory_box.Text = this.plotOutputDirectoryDialog.SelectedPath;
+            }
+        }
+
+        private string getMetadata(string input)
+        {
+            ProcessStartInfo _processStartInfo = new ProcessStartInfo();
+            _processStartInfo.WorkingDirectory = @"TEMP";
+            _processStartInfo.FileName = @"java";
+            _processStartInfo.Arguments = "-jar \"" + Path.GetDirectoryName(Application.ExecutablePath) + "\\filter.jar\" \""+ input + "\" metadata";
+            Console.WriteLine("{0}", _processStartInfo.Arguments);
+            _processStartInfo.CreateNoWindow = false;
+            _processStartInfo.UseShellExecute = false;
+            _processStartInfo.RedirectStandardOutput = true;
+            Process myProcess = Process.Start(_processStartInfo);
+            string _out = myProcess.StandardOutput.ReadToEnd();
+            myProcess.WaitForExit();
+            return _out;
+        }
+
+        private void generate_rscript()
+        {            
+            // replace single slashes of output directory path with double slashes for R and create output_file string
+            string output_file = Regex.Replace(this.plot_output_directory_box.Text, @"\\", @"\\");
+
+            string input_file;
+            string parameter = (String)plot_parameter_dropdown.SelectedItem;
+
+            string fileType = (String)plot_filetype_dropdown.SelectedItem;
+
+            //create input_file string
+            if (openFileDialog.FileNames.Length == 1)
+            {
+                //replace "\" with "/" in path for R
+                input_file = openFileDialog.FileNames[0].Replace('\\', '/');
+            }
+            else
+            {
+                throw new Exception("Please specify a file in the import box before plotting!");
+            }
+
+            //create parameter string
+            string parameterString;
+            switch (parameter)
+            {
+                case "VMU":
+                    parameterString = "test<-sqrt(data[1]^2+data[2]^2+data[3]^2);";
+                    break;
+                case "X":
+                    parameterString = "test<-data[1];";
+                    break;
+                case "Y":
+                    parameterString = "test<-data[2];";
+                    break;
+                case "Z":
+                    parameterString = "test<-data[3];";
+                    break;
+                case "Steps":
+                    parameterString = "test<-data[4];";
+                    break;
+                default:
+                    throw new Exception("Please specify which parameter to plot first!");
+            }
+
+            // create a writer and open the file
+            TextWriter tw = new StreamWriter("plot.r");
+            
+            // write a line of text to the file
+            //tw.WriteLine("pdf(file=" + "\"C:\\\\IDP\\\\RCommands\\\\plot.pdf\");\r\nplot(c(1,2,3),c(2,2,2));\r\ndev.off()");
+            //tw.WriteLine("pdf(file=\"" + output_file + "\\\\preview.pdf\");\r\nplot(c(1,2,3),c(2,2,2));\r\ndev.off()");
+
+            string fileName = input_file.Substring(input_file.LastIndexOf("/") + 1);
+
+            string sedentary = import_activity_sedantary.Text;
+            string light = import_activity_light.Text;
+            string moderate = import_activity_moderate.Text;
+            string heavy = import_activity_heavy.Text;
+
+            string newLine = System.Environment.NewLine;
+
+            
+            string metadata = getMetadata(input_file);
+            //"GT3X"+ newLine + "2000" + newLine + "10" + newLine + "2011 1 14 18 0 0 0" + newLine + ",";
+            string[] metadatum = Regex.Split(metadata, newLine);
+            string skipLinesCount = metadatum[2];
+            string epoche = (float.Parse(metadatum[1]) / 1000).ToString().Replace(',', '.');
+            string[] metadatumDateTime = metadatum[3].Split(' ');
+            string startTime = metadatumDateTime[2] + "." + metadatumDateTime[1] + "." + metadatumDateTime[0] + " " + metadatumDateTime[3] + ":" + metadatumDateTime[4] + ":" + metadatumDateTime[5] + "." + metadatumDateTime[6];
+
+            this.outputFileName = output_file + "\\\\" + fileName + "_" + parameter + "." +fileType;
+
+            tw.WriteLine(fileType + "(file=\"" + this.outputFileName + "\");");
+            tw.WriteLine("data <- read.table(\"" + input_file + "\", sep=\",\", skip=" + skipLinesCount +");");
+            tw.WriteLine(parameterString);
+            tw.WriteLine("vector<-as.vector(test[,]);");
+            tw.WriteLine("plot(vector,type=\"h\",xlab=\"Start time t = " + startTime + "\",ylab=\"" + parameter + "\",main=\"" + fileName + " " + metadatum[0] + "\",xaxt=\"n\",yaxs=\"i\",yaxt=\"n\");");
+            tw.WriteLine("abline(h=c(" + sedentary + "," + light + "," + moderate + "," + heavy + "),col=\"red\");");
+            tw.WriteLine("axis(2,at=c(" + sedentary + "," + light + "," + moderate + "," + heavy + "),labels=c(\"sedentary\",\"light\",\"moderate\",\"heavy\"),las=1,cex.axis=0.8,lwd.ticks=0);");
+            tw.WriteLine("dayMarksCount = floor(length(vector) / (60/" + epoche + "*60*24));");
+            tw.WriteLine("dayT = c(\"t\", rep(\"t+\", dayMarksCount));");
+            tw.WriteLine("daySeq = c(\"\", seq(1, dayMarksCount));");
+            tw.WriteLine("dayUnit = c(\"\", rep(\"d\", dayMarksCount));");
+            tw.WriteLine("dayLabels = paste(dayT, daySeq, dayUnit, sep=\"\");");
+            tw.WriteLine("axis(1,at=seq(0,length(vector),(60/" + epoche + "*60*24)),labels=dayLabels);");
+            tw.WriteLine("dev.off()");
+            // close the stream
+            tw.Close();
+        }
+
+        private void selected_value_test(object sender, EventArgs e)
+        {
+
+            TextWriter tw = new StreamWriter("selected_value.txt");
+
+            tw.WriteLine(plot_parameter_dropdown.SelectedItem);
+
+            tw.Close();
+        }
+
+        #endregion
     }
 }

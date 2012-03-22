@@ -32,9 +32,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.quickoptions = new System.Windows.Forms.TabControl();
@@ -94,7 +94,20 @@
             this.activitylevel_light_limit = new System.Windows.Forms.Label();
             this.activitylevel_sedentary_limit = new System.Windows.Forms.Label();
             this.activitylevels_collabel_limits = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.plot_output_directory_browse_button = new System.Windows.Forms.Button();
+            this.plot_output_directory_box = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.plot_r_script_path_browse_button = new System.Windows.Forms.Button();
+            this.plot_rscript_path_box = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.plot_filetype_dropdown = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.plot_parameter_dropdown = new System.Windows.Forms.ComboBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.filter_apply = new System.Windows.Forms.Button();
             this.filter_days_none = new System.Windows.Forms.Button();
             this.filter_method_panel = new System.Windows.Forms.Panel();
@@ -148,6 +161,8 @@
             this.displayDailyStartEndtimesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectPathToRDialog = new System.Windows.Forms.OpenFileDialog();
             this.exportOutputDirectoryDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.selectPathToRScriptDialog = new System.Windows.Forms.OpenFileDialog();
+            this.plotOutputDirectoryDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.quickoptions.SuspendLayout();
@@ -158,6 +173,9 @@
             this.groupBox2.SuspendLayout();
             this.activitylevel_groupbox.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.filter_method_panel.SuspendLayout();
             this.quickoptions_export_tab.SuspendLayout();
@@ -200,11 +218,12 @@
             // 
             // quickoptions
             // 
-            this.quickoptions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.quickoptions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.quickoptions.Controls.Add(this.tabPage1);
             this.quickoptions.Controls.Add(this.tabPage2);
+            this.quickoptions.Controls.Add(this.tabPage4);
             this.quickoptions.Controls.Add(this.tabPage3);
             this.quickoptions.Controls.Add(this.quickoptions_export_tab);
             this.quickoptions.Controls.Add(this.quickoptions_about_tab);
@@ -223,7 +242,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(787, 206);
+            this.tabPage1.Size = new System.Drawing.Size(787, 205);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Import";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -819,8 +838,139 @@
             this.activitylevels_collabel_limits.TabIndex = 69;
             this.activitylevels_collabel_limits.Text = "Lower limit";
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.groupBox5);
+            this.tabPage4.Controls.Add(this.groupBox4);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(787, 205);
+            this.tabPage4.TabIndex = 5;
+            this.tabPage4.Text = "Plot";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.plot_output_directory_browse_button);
+            this.groupBox5.Controls.Add(this.plot_output_directory_box);
+            this.groupBox5.Controls.Add(this.label10);
+            this.groupBox5.Controls.Add(this.plot_r_script_path_browse_button);
+            this.groupBox5.Controls.Add(this.plot_rscript_path_box);
+            this.groupBox5.Controls.Add(this.label9);
+            this.groupBox5.Location = new System.Drawing.Point(243, 14);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(508, 188);
+            this.groupBox5.TabIndex = 5;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "R-Statistics options";
+            // 
+            // plot_output_directory_browse_button
+            // 
+            this.plot_output_directory_browse_button.Location = new System.Drawing.Point(474, 82);
+            this.plot_output_directory_browse_button.Name = "plot_output_directory_browse_button";
+            this.plot_output_directory_browse_button.Size = new System.Drawing.Size(24, 23);
+            this.plot_output_directory_browse_button.TabIndex = 8;
+            this.plot_output_directory_browse_button.Text = "...";
+            this.plot_output_directory_browse_button.UseVisualStyleBackColor = true;
+            this.plot_output_directory_browse_button.Click += new System.EventHandler(this.plot_output_directory_browse_button_Click);
+            // 
+            // plot_output_directory_box
+            // 
+            this.plot_output_directory_box.Location = new System.Drawing.Point(107, 84);
+            this.plot_output_directory_box.Name = "plot_output_directory_box";
+            this.plot_output_directory_box.Size = new System.Drawing.Size(340, 20);
+            this.plot_output_directory_box.TabIndex = 7;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 87);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(82, 13);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "Output directory";
+            // 
+            // plot_r_script_path_browse_button
+            // 
+            this.plot_r_script_path_browse_button.Location = new System.Drawing.Point(474, 27);
+            this.plot_r_script_path_browse_button.Name = "plot_r_script_path_browse_button";
+            this.plot_r_script_path_browse_button.Size = new System.Drawing.Size(24, 23);
+            this.plot_r_script_path_browse_button.TabIndex = 2;
+            this.plot_r_script_path_browse_button.Text = "...";
+            this.plot_r_script_path_browse_button.UseVisualStyleBackColor = true;
+            this.plot_r_script_path_browse_button.Click += new System.EventHandler(this.plot_r_script_path_browse_button_Click);
+            // 
+            // plot_rscript_path_box
+            // 
+            this.plot_rscript_path_box.Location = new System.Drawing.Point(107, 29);
+            this.plot_rscript_path_box.Name = "plot_rscript_path_box";
+            this.plot_rscript_path_box.Size = new System.Drawing.Size(340, 20);
+            this.plot_rscript_path_box.TabIndex = 1;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 32);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(97, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Path to Rscript.exe";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.plot_filetype_dropdown);
+            this.groupBox4.Controls.Add(this.button2);
+            this.groupBox4.Controls.Add(this.plot_parameter_dropdown);
+            this.groupBox4.Location = new System.Drawing.Point(5, 14);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(182, 120);
+            this.groupBox4.TabIndex = 4;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Parameter";
+            // 
+            // plot_filetype_dropdown
+            // 
+            this.plot_filetype_dropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.plot_filetype_dropdown.FormattingEnabled = true;
+            this.plot_filetype_dropdown.Items.AddRange(new object[] {
+            "png",
+            "jpeg",
+            "bmp",
+            "pdf"});
+            this.plot_filetype_dropdown.Location = new System.Drawing.Point(10, 50);
+            this.plot_filetype_dropdown.Name = "plot_filetype_dropdown";
+            this.plot_filetype_dropdown.Size = new System.Drawing.Size(121, 21);
+            this.plot_filetype_dropdown.TabIndex = 9;
+            this.plot_filetype_dropdown.Tag = "";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(10, 80);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Plot";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.plot);
+            // 
+            // plot_parameter_dropdown
+            // 
+            this.plot_parameter_dropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.plot_parameter_dropdown.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.plot_parameter_dropdown.Items.AddRange(new object[] {
+            "Steps",
+            "VMU",
+            "X",
+            "Y",
+            "Z"});
+            this.plot_parameter_dropdown.Location = new System.Drawing.Point(10, 20);
+            this.plot_parameter_dropdown.Name = "plot_parameter_dropdown";
+            this.plot_parameter_dropdown.Size = new System.Drawing.Size(121, 21);
+            this.plot_parameter_dropdown.TabIndex = 2;
+            // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button1);
             this.tabPage3.Controls.Add(this.filter_apply);
             this.tabPage3.Controls.Add(this.filter_days_none);
             this.tabPage3.Controls.Add(this.filter_method_panel);
@@ -837,10 +987,20 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(787, 206);
+            this.tabPage3.Size = new System.Drawing.Size(787, 205);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Cut data";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(401, 88);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(191, 23);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "Apply with filter.jar and Method=all";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.filter_with_jar);
             // 
             // filter_apply
             // 
@@ -1005,7 +1165,7 @@
             this.quickoptions_export_tab.Location = new System.Drawing.Point(4, 22);
             this.quickoptions_export_tab.Name = "quickoptions_export_tab";
             this.quickoptions_export_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.quickoptions_export_tab.Size = new System.Drawing.Size(787, 206);
+            this.quickoptions_export_tab.Size = new System.Drawing.Size(787, 205);
             this.quickoptions_export_tab.TabIndex = 3;
             this.quickoptions_export_tab.Text = "Export";
             this.quickoptions_export_tab.UseVisualStyleBackColor = true;
@@ -1242,7 +1402,7 @@
             this.quickoptions_about_tab.Location = new System.Drawing.Point(4, 22);
             this.quickoptions_about_tab.Name = "quickoptions_about_tab";
             this.quickoptions_about_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.quickoptions_about_tab.Size = new System.Drawing.Size(787, 206);
+            this.quickoptions_about_tab.Size = new System.Drawing.Size(787, 205);
             this.quickoptions_about_tab.TabIndex = 4;
             this.quickoptions_about_tab.Text = "About";
             this.quickoptions_about_tab.UseVisualStyleBackColor = true;
@@ -1288,40 +1448,40 @@
             this.parsedFilesGridView.AllowUserToAddRows = false;
             this.parsedFilesGridView.AllowUserToDeleteRows = false;
             this.parsedFilesGridView.AllowUserToOrderColumns = true;
-            this.parsedFilesGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.parsedFilesGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.parsedFilesGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.parsedFilesGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.parsedFilesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.parsedFilesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.parsedFilesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.parsedFilesGridView.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.parsedFilesGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.parsedFilesGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.parsedFilesGridView.Location = new System.Drawing.Point(3, 246);
             this.parsedFilesGridView.Name = "parsedFilesGridView";
             this.parsedFilesGridView.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.parsedFilesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.parsedFilesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.parsedFilesGridView.RowHeadersWidth = 43;
             this.parsedFilesGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.parsedFilesGridView.Size = new System.Drawing.Size(798, 105);
@@ -1333,9 +1493,9 @@
             // 
             this.processGridView.AllowUserToAddRows = false;
             this.processGridView.AllowUserToDeleteRows = false;
-            this.processGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.processGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.processGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.processGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
             this.processGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1388,6 +1548,19 @@
             this.exportOutputDirectoryDialog.Description = "Output directory for R";
             this.exportOutputDirectoryDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
+            // selectPathToRScriptDialog
+            // 
+            this.selectPathToRScriptDialog.DefaultExt = "exe";
+            this.selectPathToRScriptDialog.FileName = "Rscript.exe";
+            this.selectPathToRScriptDialog.InitialDirectory = "C:\\Program Files\\R";
+            this.selectPathToRScriptDialog.RestoreDirectory = true;
+            this.selectPathToRScriptDialog.Title = "Bitte wählen Sie die Rscript.exe aus";
+            // 
+            // plotOutputDirectoryDialog
+            // 
+            this.plotOutputDirectoryDialog.Description = "Output directory for a preview pdf";
+            this.plotOutputDirectoryDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1411,6 +1584,10 @@
             this.activitylevel_groupbox.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.filter_method_panel.ResumeLayout(false);
@@ -1547,6 +1724,21 @@
         private System.Windows.Forms.Label activitylevel_light_limit;
         private System.Windows.Forms.Label activitylevel_sedentary_limit;
         private System.Windows.Forms.Label activitylevels_collabel_limits;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button plot_r_script_path_browse_button;
+        private System.Windows.Forms.TextBox plot_rscript_path_box;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox plot_parameter_dropdown;
+        private System.Windows.Forms.OpenFileDialog selectPathToRScriptDialog;
+        private System.Windows.Forms.Button plot_output_directory_browse_button;
+        private System.Windows.Forms.TextBox plot_output_directory_box;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.FolderBrowserDialog plotOutputDirectoryDialog;
+        private System.Windows.Forms.ComboBox plot_filetype_dropdown;
+        private System.Windows.Forms.Button button1;
     }
 }
 
