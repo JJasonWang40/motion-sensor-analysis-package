@@ -340,7 +340,7 @@ namespace ActigraphAuswertung
             this.parsedFiles.Add(result as DatabaseDataSet);
         }
 
-        private String correctTimeStamp(String timeStamp, Boolean isStartTime)
+        private String correctTimeStamp(String timeStamp)
         {
             if (timeStamp.Length == 8)
             {
@@ -348,11 +348,16 @@ namespace ActigraphAuswertung
             }
             String result = timeStamp.Substring(0, 8);
             int mm = Convert.ToInt32(result.Substring(6, 2));
-            //if (mm % 2 == 0 )
-            //{
-            return result;
-            //}
-            /*http://www.codeproject.com/KB/cs/String2DateTime.aspx*/
+            if (mm % 2 == 0)
+            {
+                return result;
+            }
+            else
+            {
+                result = result.Remove(6, 2);
+                result = result.Insert(6, (mm - 1).ToString().PadLeft(2, '0'));
+                return result;
+            }
         }
 
         private void filter_with_jar(object sender, EventArgs e)
@@ -373,8 +378,8 @@ namespace ActigraphAuswertung
                 {
                     if (filter_time_enabled.Checked)
                     {
-                        parameterString.Append(itemChecked.ToString().Substring(0, 10) + "-" + filter_time_start.Text + " ");
-                        parameterString.Append(itemChecked.ToString().Substring(0, 10) + "-" + filter_time_end.Text + " ");
+                        parameterString.Append(itemChecked.ToString().Substring(0, 10) + "-" + correctTimeStamp(filter_time_start.Text) + " ");
+                        parameterString.Append(itemChecked.ToString().Substring(0, 10) + "-" + correctTimeStamp(filter_time_end.Text) + " ");
                     }
                     else
                     {
@@ -408,14 +413,6 @@ namespace ActigraphAuswertung
                 int minModerate = int.Parse(this.import_activity_moderate.Text);
                 int minHeavy = int.Parse(this.import_activity_heavy.Text);
                 int minVeryHeavy = int.Parse(this.import_activity_veryheavy.Text);
-            
-                // Add import to background worker
-                this.commandManager.addCommand(
-                    new ImportCommand(cutFileName,
-                        minSedantary, minLight, minModerate, minHeavy, minVeryHeavy,
-                            this.import_task_finished
-                        )
-                    );
                 
             }
             
