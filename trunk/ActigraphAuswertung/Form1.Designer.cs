@@ -163,6 +163,8 @@
             this.exportOutputDirectoryDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.selectPathToRScriptDialog = new System.Windows.Forms.OpenFileDialog();
             this.plotOutputDirectoryDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.quickoptions.SuspendLayout();
@@ -918,6 +920,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label11);
+            this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Controls.Add(this.plot_filetype_dropdown);
             this.groupBox4.Controls.Add(this.button2);
             this.groupBox4.Controls.Add(this.plot_parameter_dropdown);
@@ -937,17 +941,17 @@
             "jpeg",
             "bmp",
             "pdf"});
-            this.plot_filetype_dropdown.Location = new System.Drawing.Point(10, 50);
+            this.plot_filetype_dropdown.Location = new System.Drawing.Point(109, 53);
             this.plot_filetype_dropdown.Name = "plot_filetype_dropdown";
-            this.plot_filetype_dropdown.Size = new System.Drawing.Size(121, 21);
+            this.plot_filetype_dropdown.Size = new System.Drawing.Size(67, 21);
             this.plot_filetype_dropdown.TabIndex = 9;
             this.plot_filetype_dropdown.Tag = "";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(10, 80);
+            this.button2.Location = new System.Drawing.Point(109, 87);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(67, 23);
             this.button2.TabIndex = 3;
             this.button2.Text = "Plot";
             this.button2.UseVisualStyleBackColor = true;
@@ -963,9 +967,9 @@
             "X",
             "Y",
             "Z"});
-            this.plot_parameter_dropdown.Location = new System.Drawing.Point(10, 20);
+            this.plot_parameter_dropdown.Location = new System.Drawing.Point(109, 19);
             this.plot_parameter_dropdown.Name = "plot_parameter_dropdown";
-            this.plot_parameter_dropdown.Size = new System.Drawing.Size(121, 21);
+            this.plot_parameter_dropdown.Size = new System.Drawing.Size(67, 21);
             this.plot_parameter_dropdown.TabIndex = 2;
             // 
             // tabPage3
@@ -1561,6 +1565,24 @@
             this.plotOutputDirectoryDialog.Description = "Output directory for a preview pdf";
             this.plotOutputDirectoryDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(25, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(76, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Plot Parameter";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(25, 56);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(53, 13);
+            this.label11.TabIndex = 11;
+            this.label11.Text = "Bildformat";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1588,6 +1610,7 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.filter_method_panel.ResumeLayout(false);
@@ -1739,6 +1762,8 @@
         private System.Windows.Forms.FolderBrowserDialog plotOutputDirectoryDialog;
         private System.Windows.Forms.ComboBox plot_filetype_dropdown;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label5;
     }
 }
 
