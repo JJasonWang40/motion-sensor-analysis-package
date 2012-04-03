@@ -103,6 +103,8 @@
             this.plot_rscript_path_box = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.plot_filetype_dropdown = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.plot_parameter_dropdown = new System.Windows.Forms.ComboBox();
@@ -163,8 +165,6 @@
             this.exportOutputDirectoryDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.selectPathToRScriptDialog = new System.Windows.Forms.OpenFileDialog();
             this.plotOutputDirectoryDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.quickoptions.SuspendLayout();
@@ -932,6 +932,24 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Parameter";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(31, 22);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(76, 13);
+            this.label11.TabIndex = 11;
+            this.label11.Text = "Plot Parameter";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(38, 53);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Bildformat";
+            // 
             // plot_filetype_dropdown
             // 
             this.plot_filetype_dropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -941,17 +959,17 @@
             "jpeg",
             "bmp",
             "pdf"});
-            this.plot_filetype_dropdown.Location = new System.Drawing.Point(109, 53);
+            this.plot_filetype_dropdown.Location = new System.Drawing.Point(113, 53);
             this.plot_filetype_dropdown.Name = "plot_filetype_dropdown";
-            this.plot_filetype_dropdown.Size = new System.Drawing.Size(67, 21);
+            this.plot_filetype_dropdown.Size = new System.Drawing.Size(63, 21);
             this.plot_filetype_dropdown.TabIndex = 9;
             this.plot_filetype_dropdown.Tag = "";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(109, 87);
+            this.button2.Location = new System.Drawing.Point(113, 91);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(67, 23);
+            this.button2.Size = new System.Drawing.Size(63, 23);
             this.button2.TabIndex = 3;
             this.button2.Text = "Plot";
             this.button2.UseVisualStyleBackColor = true;
@@ -967,9 +985,9 @@
             "X",
             "Y",
             "Z"});
-            this.plot_parameter_dropdown.Location = new System.Drawing.Point(109, 19);
+            this.plot_parameter_dropdown.Location = new System.Drawing.Point(113, 19);
             this.plot_parameter_dropdown.Name = "plot_parameter_dropdown";
-            this.plot_parameter_dropdown.Size = new System.Drawing.Size(67, 21);
+            this.plot_parameter_dropdown.Size = new System.Drawing.Size(63, 21);
             this.plot_parameter_dropdown.TabIndex = 2;
             // 
             // tabPage3
@@ -1564,24 +1582,6 @@
             // 
             this.plotOutputDirectoryDialog.Description = "Output directory for a preview pdf";
             this.plotOutputDirectoryDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 22);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Plot Parameter";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(25, 56);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(53, 13);
-            this.label11.TabIndex = 11;
-            this.label11.Text = "Bildformat";
             // 
             // Form1
             // 

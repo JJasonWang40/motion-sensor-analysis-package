@@ -358,6 +358,7 @@ namespace ActigraphAuswertung
                 result = result.Insert(6, (mm - 1).ToString().PadLeft(2, '0'));
                 return result;
             }
+
         }
 
         private void filter_with_jar(object sender, EventArgs e)
@@ -389,16 +390,21 @@ namespace ActigraphAuswertung
                     }
                 }
 
-                Console.WriteLine("{0}", parameterString);
-                ProcessStartInfo _processStartInfo = new ProcessStartInfo();
-                _processStartInfo.WorkingDirectory = @"TEMP";
-                _processStartInfo.FileName = @"java.exe";
-                _processStartInfo.Arguments = "" + parameterString;
-                _processStartInfo.CreateNoWindow = false;
-                _processStartInfo.UseShellExecute = false;
-                //_processStartInfo.RedirectStandardError = true;
-                _processStartInfo.RedirectStandardOutput = true;
-                Process myProcess = Process.Start(_processStartInfo);
+              
+                    Console.WriteLine("{0}", parameterString);
+                    ProcessStartInfo _processStartInfo = new ProcessStartInfo();
+                    _processStartInfo.WorkingDirectory = @"TEMP";
+                    _processStartInfo.FileName = @"java.exe";
+                    _processStartInfo.Arguments = "" + parameterString;
+                    _processStartInfo.CreateNoWindow = false;
+                    _processStartInfo.UseShellExecute = false;
+                    //_processStartInfo.RedirectStandardError = true;
+                    _processStartInfo.RedirectStandardOutput = true;
+                    Process myProcess = Process.Start(_processStartInfo);
+               
+                
+
+
                 //string output = myProcess.StandardError.ReadToEnd();
                 string output = myProcess.StandardOutput.ReadToEnd();
                 myProcess.WaitForExit();
@@ -413,6 +419,14 @@ namespace ActigraphAuswertung
                 int minModerate = int.Parse(this.import_activity_moderate.Text);
                 int minHeavy = int.Parse(this.import_activity_heavy.Text);
                 int minVeryHeavy = int.Parse(this.import_activity_veryheavy.Text);
+            
+                // Add import to background worker
+                /*this.commandManager.addCommand(
+                    new ImportCommand(cutFileName,
+                        minSedantary, minLight, minModerate, minHeavy, minVeryHeavy,
+                            this.import_task_finished
+                        )
+                    );*/
                 
             }
             
@@ -682,12 +696,15 @@ namespace ActigraphAuswertung
                     break;
                 case "X":
                     parameterString = "test<-data[1];";
+                    parameter = "Vertikal [X]";
                     break;
                 case "Y":
                     parameterString = "test<-data[2];";
+                    parameter = "Anterposterior [Y]";
                     break;
                 case "Z":
                     parameterString = "test<-data[3];";
+                    parameter = "Lateral [Z]";
                     break;
                 case "Steps":
                     parameterString = "test<-data[4];";
@@ -695,6 +712,7 @@ namespace ActigraphAuswertung
                 default:
                     throw new Exception("Please specify which parameter to plot first!");
             }
+
 
             // create a writer and open the file
             TextWriter tw = new StreamWriter("plot.r");
@@ -705,37 +723,62 @@ namespace ActigraphAuswertung
 
             string fileName = input_file.Substring(input_file.LastIndexOf("/") + 1);
 
-            string sedentary = import_activity_sedantary.Text;
+           /* string sedentary = import_activity_sedantary.Text;
             string light = import_activity_light.Text;
             string moderate = import_activity_moderate.Text;
             string heavy = import_activity_heavy.Text;
+            string veryheavy = import_activity_veryheavy.Text;
+            */
+
+            //Berechnung der genauen Position der Activity Levels Beschriftungen
+            int sedentary = Int32.Parse(import_activity_sedantary.Text);
+            int light = Int32.Parse(import_activity_light.Text);
+            int moderate = Int32.Parse(import_activity_moderate.Text);
+            int heavy = Int32.Parse(import_activity_heavy.Text);
+            int veryheavy = Int32.Parse(import_activity_veryheavy.Text);
+
+            int pos_sed = sedentary + ((light - sedentary) / 2);
+            int pos_light = light + ((moderate - light) / 2);
+            int pos_mod = moderate + ((heavy - moderate) / 2);
+            int pos_heavy = heavy + ((veryheavy - heavy) / 2);
+            int pos_veryheavy = veryheavy + 50;
 
             string newLine = System.Environment.NewLine;
-
-            
+                        
             string metadata = getMetadata(input_file);
-            //"GT3X"+ newLine + "2000" + newLine + "10" + newLine + "2011 1 14 18 0 0 0" + newLine + ",";
+            //"GT3X"+ newLine + "2000" + newLine + "10" + newLine + "2011 1 14 18 0 0 0" + newLine + "4" + ",";
             string[] metadatum = Regex.Split(metadata, newLine);
             string skipLinesCount = metadatum[2];
+            string delimiter = metadatum[5];
             string epoche = (float.Parse(metadatum[1]) / 1000).ToString().Replace(',', '.');
             string[] metadatumDateTime = metadatum[3].Split(' ');
-            string startTime = metadatumDateTime[2] + "." + metadatumDateTime[1] + "." + metadatumDateTime[0] + " " + metadatumDateTime[3] + ":" + metadatumDateTime[4] + ":" + metadatumDateTime[5] + "." + metadatumDateTime[6];
+            //string startTime = metadatumDateTime[2] + "." + metadatumDateTime[1] + "." + metadatumDateTime[0] + " " + metadatumDateTime[3] + ":" + metadatumDateTime[4] + ":" + metadatumDateTime[5] + "." + metadatumDateTime[6];
+            string startTime = metadatumDateTime[2].PadLeft(2, '0') + "." + metadatumDateTime[1].PadLeft(2, '0') + "." + metadatumDateTime[0] + " " + metadatumDateTime[3].PadLeft(2, '0') + ":" + metadatumDateTime[4].PadLeft(2, '0') + ":" + metadatumDateTime[5].PadLeft(2, '0') + "." + metadatumDateTime[6].PadLeft(3, '0');
+            string rightlabel="";
 
+            if((float.Parse(metadatum[1]) / 1000)<=1)
+                rightlabel="Counts";
+            else
+                rightlabel="Rohdaten";
+            
             this.outputFileName = output_file + "\\\\" + fileName + "_" + parameter + "." +fileType;
 
             tw.WriteLine(fileType + "(file=\"" + this.outputFileName + "\");");
-            tw.WriteLine("data <- read.table(\"" + input_file + "\", sep=\",\", skip=" + skipLinesCount +");");
+            tw.WriteLine("data <- read.table(\"" + input_file + "\", sep=\""+delimiter+"\", skip=" + skipLinesCount +");");
             tw.WriteLine(parameterString);
             tw.WriteLine("vector<-as.vector(test[,]);");
+            tw.WriteLine("par(mai=c(1,1,1,1));");
             tw.WriteLine("plot(vector,type=\"h\",xlab=\"Start time t = " + startTime + "\",ylab=\"" + parameter + "\",main=\"" + fileName + " " + metadatum[0] + "\",xaxt=\"n\",yaxs=\"i\",yaxt=\"n\");");
-            tw.WriteLine("abline(h=c(" + sedentary + "," + light + "," + moderate + "," + heavy + "),col=\"red\");");
-            tw.WriteLine("axis(2,at=c(" + sedentary + "," + light + "," + moderate + "," + heavy + "),labels=c(\"sedentary\",\"light\",\"moderate\",\"heavy\"),las=1,cex.axis=0.8,lwd.ticks=0);");
+            tw.WriteLine("mtext(\"" + rightlabel + "\", side = 4, line = 3, cex.lab = 1, las = 0);");
+            tw.WriteLine("abline(h=c(" + sedentary + "," + light + "," + moderate + "," + heavy + "," + veryheavy + "),col=\"red\");");
+            tw.WriteLine("axis(2,at=c(" + pos_sed + "," + pos_light + "," + pos_mod + "," + pos_heavy + "," + pos_veryheavy + "),labels=c(\"sed.\",\"light\",\"mod.\",\"heavy\",\"v. heavy\"),las=1,cex.axis=0.8,lwd.ticks=0);");
+            tw.WriteLine("axis(4,at=c(" + sedentary + "," + light + "," + moderate + "," + heavy + "," + veryheavy + "),labels=c(\"" + sedentary + "\", \"" + light + "\", \"" + moderate + "\", \"" + heavy + "\", \"" + veryheavy + "\"),las=1,cex.axis=0.8,lwd.ticks=0);");
             tw.WriteLine("dayMarksCount = floor(length(vector) / (60/" + epoche + "*60*24));");
             tw.WriteLine("dayT = c(\"t\", rep(\"t+\", dayMarksCount));");
             tw.WriteLine("daySeq = c(\"\", seq(1, dayMarksCount));");
             tw.WriteLine("dayUnit = c(\"\", rep(\"d\", dayMarksCount));");
             tw.WriteLine("dayLabels = paste(dayT, daySeq, dayUnit, sep=\"\");");
-            tw.WriteLine("axis(1,at=seq(0,length(vector),(60/" + epoche + "*60*24)),labels=dayLabels);");
+            tw.WriteLine("axis(1,at=seq(0,length(vector),(60/" + epoche + "*60*24)),labels=dayLabels);"); 
             tw.WriteLine("dev.off()");
             // close the stream
             tw.Close();
