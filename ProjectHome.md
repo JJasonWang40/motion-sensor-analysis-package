@@ -1,0 +1,2 @@
+The software aims to enable the use of multiple accelerometer data for different devices such as Stayhealthy RT3 and Actigraph's GT1M and GT3X, in order to modify and represent data.
+We plan to extent the software to different devices and formats as it is currently limited to CSV.
